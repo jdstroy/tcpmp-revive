@@ -1,0 +1,469 @@
+In file included from ffmpeg.c:30:
+libavcodec/avcodec.h:30:30: error: libavutil/avutil.h: No such file or directory
+libavcodec/avcodec.h:249:5: error: missing binary operator before token "("
+libavcodec/avcodec.h:307:5: error: missing binary operator before token "("
+libavcodec/avcodec.h:422:5: error: missing binary operator before token "("
+In file included from ffmpeg.c:30:
+libavcodec/avcodec.h:534: error: expected specifier-qualifier-list before 'int16_t'
+libavcodec/avcodec.h:780: error: expected specifier-qualifier-list before 'uint8_t'
+libavcodec/avcodec.h:797: error: expected ':', ',', ';', '}' or '__attribute__' before '*' token
+libavcodec/avcodec.h:998:5: error: missing binary operator before token "("
+libavcodec/avcodec.h:1311:5: error: missing binary operator before token "("
+libavcodec/avcodec.h:2217: error: expected declaration specifiers or '...' before 'uint8_t'
+libavcodec/avcodec.h:2220: error: expected ';', ',' or ')' before '*' token
+libavcodec/avcodec.h:2225: error: expected ';' before 'int'
+libavcodec/avcodec.h:2241: error: expected specifier-qualifier-list before 'uint8_t'
+libavcodec/avcodec.h:2267: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'attribute_deprecated'
+libavcodec/avcodec.h:2270: error: expected specifier-qualifier-list before 'uint16_t'
+libavcodec/avcodec.h:2281: error: expected specifier-qualifier-list before 'uint16_t'
+libavcodec/avcodec.h:2306:5: error: missing binary operator before token "("
+libavcodec/avcodec.h:2377: error: expected declaration specifiers or '...' before 'uint8_t'
+libavcodec/avcodec.h:2473:5: error: missing binary operator before token "("
+libavcodec/avcodec.h:2490:5: error: missing binary operator before token "("
+libavcodec/avcodec.h:2637: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'int'
+libavcodec/avcodec.h:2677: error: expected declaration specifiers or '...' before 'int16_t'
+libavcodec/avcodec.h:2679: error: expected ';', ',' or ')' before '*' token
+libavcodec/avcodec.h:2714: error: expected ';', ',' or ')' before '*' token
+libavcodec/avcodec.h:2721: error: expected ';', ',' or ')' before '*' token
+libavcodec/avcodec.h:2722: error: expected declaration specifiers or '...' before 'uint8_t'
+libavcodec/avcodec.h:2724: error: expected declaration specifiers or '...' before 'uint8_t'
+libavcodec/avcodec.h:2744: error: expected declaration specifiers or '...' before 'uint8_t'
+libavcodec/avcodec.h:2762: error: expected declaration specifiers or '...' before 'uint8_t'
+libavcodec/avcodec.h:2764: error: expected declaration specifiers or '...' before 'uint8_t'
+libavcodec/avcodec.h:2808: error: expected specifier-qualifier-list before 'int64_t'
+libavcodec/avcodec.h:2842: error: expected ';', ',' or ')' before '*' token
+libavcodec/avcodec.h:2844: error: expected ';' before 'void'
+libavcodec/avcodec.h:2849:5: error: missing binary operator before token "("
+libavcodec/avcodec.h:2858: error: expected declaration specifiers or '...' before 'uint8_t'
+libavcodec/avcodec.h:2859: error: expected ';', ',' or ')' before '*' token
+libavcodec/avcodec.h:2863: error: expected declaration specifiers or '...' before 'uint8_t'
+libavcodec/avcodec.h:2864: error: expected ';', ',' or ')' before '*' token
+libavcodec/avcodec.h:2881: error: expected declaration specifiers or '...' before 'uint8_t'
+libavcodec/avcodec.h:2882: error: expected ';', ',' or ')' before '*' token
+libavcodec/avcodec.h:2883: error: expected ';' before 'void'
+libavcodec/avcodec.h:2891: error: expected declaration specifiers or '...' before 'uint8_t'
+libavcodec/avcodec.h:2892: error: expected ';', ',' or ')' before '*' token
+libavcodec/avcodec.h:2917: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'void'
+libavcodec/avcodec.h:2929: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'av_malloc_attrib'
+libavcodec/avcodec.h:2950:5: error: missing binary operator before token "("
+libavcodec/avcodec.h:2994: error: expected ')' before '*' token
+ffmpeg.c:34: error: expected specifier-qualifier-list before 'codec'
+ffmpeg.c:53: error: expected ':', ',', ';', '}' or '__attribute__' before '*' token
+ffmpeg.c:62: error: initializer element is not constant
+ffmpeg.c:62: error: (near initialization for 'Info[0].Id')
+ffmpeg.c:62: warning: excess elements in struct initializer
+ffmpeg.c:62: warning: (near initialization for 'Info[0]')
+ffmpeg.c:63: warning: excess elements in struct initializer
+ffmpeg.c:63: warning: (near initialization for 'Info[0]')
+ffmpeg.c:64: error: initializer element is not constant
+ffmpeg.c:64: error: (near initialization for 'Info[1].Id')
+ffmpeg.c:64: warning: excess elements in struct initializer
+ffmpeg.c:64: warning: (near initialization for 'Info[1]')
+ffmpeg.c:65: warning: excess elements in struct initializer
+ffmpeg.c:65: warning: (near initialization for 'Info[1]')
+ffmpeg.c:66: error: initializer element is not constant
+ffmpeg.c:66: error: (near initialization for 'Info[2].Id')
+ffmpeg.c:66: warning: excess elements in struct initializer
+ffmpeg.c:66: warning: (near initialization for 'Info[2]')
+ffmpeg.c:67: warning: excess elements in struct initializer
+ffmpeg.c:67: warning: (near initialization for 'Info[2]')
+ffmpeg.c:68: error: initializer element is not constant
+ffmpeg.c:68: error: (near initialization for 'Info[3].Id')
+ffmpeg.c:68: warning: excess elements in struct initializer
+ffmpeg.c:68: warning: (near initialization for 'Info[3]')
+ffmpeg.c:69: warning: excess elements in struct initializer
+ffmpeg.c:69: warning: (near initialization for 'Info[3]')
+ffmpeg.c:70: error: initializer element is not constant
+ffmpeg.c:70: error: (near initialization for 'Info[4].Id')
+ffmpeg.c:70: warning: excess elements in struct initializer
+ffmpeg.c:70: warning: (near initialization for 'Info[4]')
+ffmpeg.c:71: warning: excess elements in struct initializer
+ffmpeg.c:71: warning: (near initialization for 'Info[4]')
+ffmpeg.c:72: error: initializer element is not constant
+ffmpeg.c:72: error: (near initialization for 'Info[5].Id')
+ffmpeg.c:72: warning: excess elements in struct initializer
+ffmpeg.c:72: warning: (near initialization for 'Info[5]')
+ffmpeg.c:73: warning: excess elements in struct initializer
+ffmpeg.c:73: warning: (near initialization for 'Info[5]')
+ffmpeg.c:74: error: initializer element is not constant
+ffmpeg.c:74: error: (near initialization for 'Info[6].Id')
+ffmpeg.c:74: warning: excess elements in struct initializer
+ffmpeg.c:74: warning: (near initialization for 'Info[6]')
+ffmpeg.c:75: warning: excess elements in struct initializer
+ffmpeg.c:75: warning: (near initialization for 'Info[6]')
+ffmpeg.c:76: error: initializer element is not constant
+ffmpeg.c:76: error: (near initialization for 'Info[7].Id')
+ffmpeg.c:76: warning: excess elements in struct initializer
+ffmpeg.c:76: warning: (near initialization for 'Info[7]')
+ffmpeg.c:77: warning: excess elements in struct initializer
+ffmpeg.c:77: warning: (near initialization for 'Info[7]')
+ffmpeg.c:82: error: initializer element is not constant
+ffmpeg.c:82: error: (near initialization for 'Info[8].Id')
+ffmpeg.c:82: warning: excess elements in struct initializer
+ffmpeg.c:82: warning: (near initialization for 'Info[8]')
+ffmpeg.c:83: warning: excess elements in struct initializer
+ffmpeg.c:83: warning: (near initialization for 'Info[8]')
+ffmpeg.c:84: error: initializer element is not constant
+ffmpeg.c:84: error: (near initialization for 'Info[9].Id')
+ffmpeg.c:84: warning: excess elements in struct initializer
+ffmpeg.c:84: warning: (near initialization for 'Info[9]')
+ffmpeg.c:85: warning: excess elements in struct initializer
+ffmpeg.c:85: warning: (near initialization for 'Info[9]')
+ffmpeg.c:86: error: initializer element is not constant
+ffmpeg.c:86: error: (near initialization for 'Info[10].Id')
+ffmpeg.c:86: warning: excess elements in struct initializer
+ffmpeg.c:86: warning: (near initialization for 'Info[10]')
+ffmpeg.c:87: warning: excess elements in struct initializer
+ffmpeg.c:87: warning: (near initialization for 'Info[10]')
+ffmpeg.c:88: error: initializer element is not constant
+ffmpeg.c:88: error: (near initialization for 'Info[11].Id')
+ffmpeg.c:88: warning: excess elements in struct initializer
+ffmpeg.c:88: warning: (near initialization for 'Info[11]')
+ffmpeg.c:89: warning: excess elements in struct initializer
+ffmpeg.c:89: warning: (near initialization for 'Info[11]')
+ffmpeg.c:90: error: initializer element is not constant
+ffmpeg.c:90: error: (near initialization for 'Info[12].Id')
+ffmpeg.c:90: warning: excess elements in struct initializer
+ffmpeg.c:90: warning: (near initialization for 'Info[12]')
+ffmpeg.c:91: warning: excess elements in struct initializer
+ffmpeg.c:91: warning: (near initialization for 'Info[12]')
+ffmpeg.c:92: error: initializer element is not constant
+ffmpeg.c:92: error: (near initialization for 'Info[13].Id')
+ffmpeg.c:92: warning: excess elements in struct initializer
+ffmpeg.c:92: warning: (near initialization for 'Info[13]')
+ffmpeg.c:93: warning: excess elements in struct initializer
+ffmpeg.c:93: warning: (near initialization for 'Info[13]')
+ffmpeg.c:98: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'BuildOutputFormat'
+ffmpeg.c: In function 'UpdateSettings':
+ffmpeg.c:165: error: 'ffmpeg_video' has no member named 'Context'
+ffmpeg.c:165: error: 'codecinfo' has no member named 'skip_loop_filter'
+ffmpeg.c:165: error: 'ADVANCED_NODEBLOCKING' undeclared (first use in this function)
+ffmpeg.c:165: error: (Each undeclared identifier is reported only once
+ffmpeg.c:165: error: for each function it appears in.)
+ffmpeg.c: In function 'UpdateInput':
+ffmpeg.c:170: error: 'ffmpeg_video' has no member named 'Context'
+ffmpeg.c:171: error: 'ffmpeg_video' has no member named 'Context'
+ffmpeg.c:171: warning: passing argument 1 of 'avcodec_close' from incompatible pointer type
+ffmpeg.c:172: error: 'ffmpeg_video' has no member named 'Context'
+ffmpeg.c:173: error: 'ffmpeg_video' has no member named 'Picture'
+ffmpeg.c:174: error: 'ffmpeg_video' has no member named 'Context'
+ffmpeg.c:174: error: 'NULL' undeclared (first use in this function)
+ffmpeg.c:175: error: 'ffmpeg_video' has no member named 'Picture'
+ffmpeg.c:176: error: 'ffmpeg_video' has no member named 'Buffer'
+ffmpeg.c:178: error: 'ffmpeg_video' has no member named 'Codec'
+ffmpeg.c:178: error: request for member 'In' in something not a structure or union
+ffmpeg.c:178: error: request for member 'Format' in something not a structure or union
+ffmpeg.c:178: error: request for member 'Type' in something not a structure or union
+ffmpeg.c:178: error: 'PACKET_VIDEO' undeclared (first use in this function)
+ffmpeg.c:184: error: 'ffmpeg_video' has no member named 'Codec'
+ffmpeg.c:184: error: request for member 'Node' in something not a structure or union
+ffmpeg.c:184: error: request for member 'Class' in something not a structure or union
+ffmpeg.c:184: warning: comparison between pointer and integer
+ffmpeg.c:187: error: 'ERR_INVALID_DATA' undeclared (first use in this function)
+ffmpeg.c:187: warning: return makes integer from pointer without a cast
+ffmpeg.c:191: warning: return makes integer from pointer without a cast
+ffmpeg.c:193: error: 'ffmpeg_video' has no member named 'Context'
+ffmpeg.c:194: error: 'ffmpeg_video' has no member named 'Picture'
+ffmpeg.c:196: error: 'ffmpeg_video' has no member named 'Context'
+ffmpeg.c:196: error: 'ffmpeg_video' has no member named 'Picture'
+ffmpeg.c:197: error: 'ERR_OUT_OF_MEMORY' undeclared (first use in this function)
+ffmpeg.c:197: warning: return makes integer from pointer without a cast
+ffmpeg.c:199: error: 'ffmpeg_video' has no member named 'Codec'
+ffmpeg.c:199: error: request for member 'In' in something not a structure or union
+ffmpeg.c:199: error: request for member 'Format' in something not a structure or union
+ffmpeg.c:199: error: request for member 'Format' in something not a structure or union
+ffmpeg.c:199: error: request for member 'Video' in something not a structure or union
+ffmpeg.c:199: error: request for member 'Pixel' in something not a structure or union
+ffmpeg.c:199: error: request for member 'Flags' in something not a structure or union
+ffmpeg.c:199: error: 'PF_FRAGMENTED' undeclared (first use in this function)
+ffmpeg.c:199: error: invalid operands to binary &
+ffmpeg.c:200: error: 'AVCodec' has no member named 'capabilities'
+ffmpeg.c:200: error: invalid operands to binary &
+ffmpeg.c:201: error: 'ffmpeg_video' has no member named 'Context'
+ffmpeg.c:201: error: 'codecinfo' has no member named 'flags'
+ffmpeg.c:204: error: 'ffmpeg_video' has no member named 'Context'
+ffmpeg.c:204: error: 'codecinfo' has no member named 'palctrl'
+ffmpeg.c:205: error: 'ffmpeg_video' has no member named 'Context'
+ffmpeg.c:205: error: 'codecinfo' has no member named 'bit_rate'
+ffmpeg.c:206: error: 'ffmpeg_video' has no member named 'Context'
+ffmpeg.c:206: error: 'codecinfo' has no member named 'extradata'
+ffmpeg.c:206: error: 'ffmpeg_video' has no member named 'Codec'
+ffmpeg.c:206: error: request for member 'In' in something not a structure or union
+ffmpeg.c:206: error: request for member 'Format' in something not a structure or union
+ffmpeg.c:206: error: request for member 'Extra' in something not a structure or union
+ffmpeg.c:207: error: 'ffmpeg_video' has no member named 'Context'
+ffmpeg.c:207: error: 'codecinfo' has no member named 'extradata_size'
+ffmpeg.c:207: error: 'ffmpeg_video' has no member named 'Codec'
+ffmpeg.c:207: error: request for member 'In' in something not a structure or union
+ffmpeg.c:207: error: request for member 'Format' in something not a structure or union
+ffmpeg.c:207: error: request for member 'ExtraLength' in something not a structure or union
+ffmpeg.c:208: error: 'ffmpeg_video' has no member named 'Context'
+ffmpeg.c:208: error: 'codecinfo' has no member named 'width'
+ffmpeg.c:208: error: 'ffmpeg_video' has no member named 'Codec'
+ffmpeg.c:208: error: request for member 'In' in something not a structure or union
+ffmpeg.c:208: error: request for member 'Format' in something not a structure or union
+ffmpeg.c:208: error: request for member 'Format' in something not a structure or union
+ffmpeg.c:208: error: request for member 'Video' in something not a structure or union
+ffmpeg.c:208: error: request for member 'Width' in something not a structure or union
+ffmpeg.c:209: error: 'ffmpeg_video' has no member named 'Context'
+ffmpeg.c:209: error: 'codecinfo' has no member named 'height'
+ffmpeg.c:209: error: 'ffmpeg_video' has no member named 'Codec'
+ffmpeg.c:209: error: request for member 'In' in something not a structure or union
+ffmpeg.c:209: error: request for member 'Format' in something not a structure or union
+ffmpeg.c:209: error: request for member 'Format' in something not a structure or union
+ffmpeg.c:209: error: request for member 'Video' in something not a structure or union
+ffmpeg.c:209: error: request for member 'Height' in something not a structure or union
+ffmpeg.c:210: error: 'ffmpeg_video' has no member named 'Context'
+ffmpeg.c:210: error: 'codecinfo' has no member named 'bits_per_sample'
+ffmpeg.c:210: error: 'ffmpeg_video' has no member named 'Codec'
+ffmpeg.c:210: error: request for member 'In' in something not a structure or union
+ffmpeg.c:210: error: request for member 'Format' in something not a structure or union
+ffmpeg.c:210: error: request for member 'Format' in something not a structure or union
+ffmpeg.c:210: error: request for member 'Video' in something not a structure or union
+ffmpeg.c:210: error: request for member 'Pixel' in something not a structure or union
+ffmpeg.c:210: error: request for member 'BitCount' in something not a structure or union
+ffmpeg.c:211: error: 'ffmpeg_video' has no member named 'Codec'
+ffmpeg.c:211: error: request for member 'In' in something not a structure or union
+ffmpeg.c:211: error: request for member 'Format' in something not a structure or union
+ffmpeg.c:211: error: request for member 'Format' in something not a structure or union
+ffmpeg.c:211: error: request for member 'Video' in something not a structure or union
+ffmpeg.c:211: error: request for member 'Pixel' in something not a structure or union
+ffmpeg.c:211: error: request for member 'Palette' in something not a structure or union
+ffmpeg.c:212: error: 'ffmpeg_video' has no member named 'Codec'
+ffmpeg.c:212: error: request for member 'In' in something not a structure or union
+ffmpeg.c:212: error: request for member 'Format' in something not a structure or union
+ffmpeg.c:212: error: request for member 'Format' in something not a structure or union
+ffmpeg.c:212: error: request for member 'Video' in something not a structure or union
+ffmpeg.c:212: error: request for member 'Pixel' in something not a structure or union
+ffmpeg.c:212: error: request for member 'BitCount' in something not a structure or union
+ffmpeg.c:212: warning: comparison between pointer and integer
+ffmpeg.c:214: error: 'ffmpeg_video' has no member named 'Codec'
+ffmpeg.c:214: error: request for member 'In' in something not a structure or union
+ffmpeg.c:214: error: request for member 'Format' in something not a structure or union
+ffmpeg.c:214: error: request for member 'Format' in something not a structure or union
+ffmpeg.c:214: error: request for member 'Video' in something not a structure or union
+ffmpeg.c:214: error: request for member 'Pixel' in something not a structure or union
+ffmpeg.c:214: error: request for member 'BitCount' in something not a structure or union
+ffmpeg.c:214: error: invalid operands to binary <<
+ffmpeg.c:214: warning: initialization makes integer from pointer without a cast
+ffmpeg.c:216: error: 'ffmpeg_video' has no member named 'Palette'
+ffmpeg.c:216: error: request for member 'palette' in something not a structure or union
+ffmpeg.c:216: error: 'ffmpeg_video' has no member named 'Codec'
+ffmpeg.c:216: error: request for member 'In' in something not a structure or union
+ffmpeg.c:216: error: request for member 'Format' in something not a structure or union
+ffmpeg.c:216: error: request for member 'Format' in something not a structure or union
+ffmpeg.c:216: error: request for member 'Video' in something not a structure or union
+ffmpeg.c:216: error: request for member 'Pixel' in something not a structure or union
+ffmpeg.c:216: error: request for member 'Palette' in something not a structure or union
+ffmpeg.c:216: error: 'struct codecinfo' has no member named 'v'
+ffmpeg.c:216: error: assignment of read-only location
+ffmpeg.c:216: error: incompatible types in assignment
+ffmpeg.c:217: error: 'ffmpeg_video' has no member named 'Palette'
+ffmpeg.c:217: error: request for member 'palette_changed' in something not a structure or union
+ffmpeg.c:218: error: 'ffmpeg_video' has no member named 'Context'
+ffmpeg.c:218: error: 'codecinfo' has no member named 'palctrl'
+ffmpeg.c:218: error: 'ffmpeg_video' has no member named 'Palette'
+ffmpeg.c:221: error: 'ffmpeg_video' has no member named 'CodecId'
+ffmpeg.c:223: error: 'ffmpeg_video' has no member named 'Context'
+ffmpeg.c:223: warning: passing argument 1 of 'avcodec_open' from incompatible pointer type
+ffmpeg.c:226: error: 'ffmpeg_video' has no member named 'Context'
+ffmpeg.c:227: error: 'ffmpeg_video' has no member named 'Context'
+ffmpeg.c:228: warning: return makes integer from pointer without a cast
+ffmpeg.c:232: warning: return makes integer from pointer without a cast
+ffmpeg.c:234: error: 'ffmpeg_video' has no member named 'SkipToKey'
+ffmpeg.c:235: error: 'ffmpeg_video' has no member named 'DropToKey'
+ffmpeg.c:236: error: 'ffmpeg_video' has no member named 'Dropping'
+ffmpeg.c:239: error: 'ERR_NONE' undeclared (first use in this function)
+ffmpeg.c:239: warning: return makes integer from pointer without a cast
+ffmpeg.c: At top level:
+ffmpeg.c:242: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'bool_t'
+ffmpeg.c:247: error: expected ';', ',' or ')' before '*' token
+ffmpeg.c: In function 'ReSend':
+ffmpeg.c:367: error: 'flowstate' undeclared (first use in this function)
+ffmpeg.c:367: error: expected ';' before 'State'
+ffmpeg.c:369: error: 'ffmpeg_video' has no member named 'SkipToKey'
+ffmpeg.c:369: error: 'ffmpeg_video' has no member named 'Codec'
+ffmpeg.c:369: error: request for member 'Out' in something not a structure or union
+ffmpeg.c:369: error: request for member 'Pin' in something not a structure or union
+ffmpeg.c:369: error: request for member 'Node' in something not a structure or union
+ffmpeg.c:369: error: 'ffmpeg_video' has no member named 'Picture'
+ffmpeg.c:369: error: 'codecinfo' has no member named 'data'
+ffmpeg.c:369: error: wrong type argument to unary exclamation mark
+ffmpeg.c:370: error: 'ERR_NEED_MORE_DATA' undeclared (first use in this function)
+ffmpeg.c:370: warning: return makes integer from pointer without a cast
+ffmpeg.c:372: error: 'State' undeclared (first use in this function)
+ffmpeg.c:372: error: request for member 'CurrTime' in something not a structure or union
+ffmpeg.c:372: error: 'TIME_RESEND' undeclared (first use in this function)
+ffmpeg.c:373: error: request for member 'DropLevel' in something not a structure or union
+ffmpeg.c:375: error: 'ffmpeg_video' has no member named 'Codec'
+ffmpeg.c:375: error: request for member 'Packet' in something not a structure or union
+ffmpeg.c:375: error: request for member 'RefTime' in something not a structure or union
+ffmpeg.c:375: error: 'TIME_UNKNOWN' undeclared (first use in this function)
+ffmpeg.c:376: error: 'ffmpeg_video' has no member named 'Codec'
+ffmpeg.c:376: error: request for member 'Packet' in something not a structure or union
+ffmpeg.c:376: error: request for member 'Data' in something not a structure or union
+ffmpeg.c:376: error: 'ffmpeg_video' has no member named 'Picture'
+ffmpeg.c:376: error: 'codecinfo' has no member named 'data'
+ffmpeg.c:376: error: assignment of read-only location
+ffmpeg.c:377: error: 'ffmpeg_video' has no member named 'Codec'
+ffmpeg.c:377: error: request for member 'Packet' in something not a structure or union
+ffmpeg.c:377: error: request for member 'Data' in something not a structure or union
+ffmpeg.c:377: error: 'ffmpeg_video' has no member named 'Picture'
+ffmpeg.c:377: error: 'codecinfo' has no member named 'data'
+ffmpeg.c:377: error: assignment of read-only location
+ffmpeg.c:378: error: 'ffmpeg_video' has no member named 'Codec'
+ffmpeg.c:378: error: request for member 'Packet' in something not a structure or union
+ffmpeg.c:378: error: request for member 'Data' in something not a structure or union
+ffmpeg.c:378: error: 'ffmpeg_video' has no member named 'Picture'
+ffmpeg.c:378: error: 'codecinfo' has no member named 'data'
+ffmpeg.c:378: error: assignment of read-only location
+ffmpeg.c:380: error: 'ffmpeg_video' has no member named 'Codec'
+ffmpeg.c:380: error: request for member 'Out' in something not a structure or union
+ffmpeg.c:380: error: request for member 'Process' in something not a structure or union
+ffmpeg.c:380: error: 'ffmpeg_video' has no member named 'Codec'
+ffmpeg.c:380: error: request for member 'Out' in something not a structure or union
+ffmpeg.c:380: error: request for member 'Pin' in something not a structure or union
+ffmpeg.c:380: error: request for member 'Node' in something not a structure or union
+ffmpeg.c:380: error: 'ffmpeg_video' has no member named 'Codec'
+ffmpeg.c:380: error: request for member 'Packet' in something not a structure or union
+ffmpeg.c:380: error: called object '<erroneous-expression>' is not a function
+ffmpeg.c:380: warning: return makes integer from pointer without a cast
+ffmpeg.c: In function 'Flush':
+ffmpeg.c:385: error: 'ffmpeg_video' has no member named 'SkipToKey'
+ffmpeg.c:386: error: 'ffmpeg_video' has no member named 'DropToKey'
+ffmpeg.c:387: error: 'ffmpeg_video' has no member named 'Dropping'
+ffmpeg.c:388: error: 'ffmpeg_video' has no member named 'Context'
+ffmpeg.c:391: error: 'ffmpeg_video' has no member named 'Context'
+ffmpeg.c:391: warning: passing argument 1 of 'avcodec_flush_buffers' from incompatible pointer type
+ffmpeg.c:392: error: 'ffmpeg_video' has no member named 'Context'
+ffmpeg.c:392: error: 'codecinfo' has no member named 'has_b_frames'
+ffmpeg.c:392: error: 'ffmpeg_video' has no member named 'Context'
+ffmpeg.c:392: error: 'codecinfo' has no member named 'frame_number'
+ffmpeg.c:393: error: 'ffmpeg_video' has no member named 'SkipToKey'
+ffmpeg.c:395: error: 'ffmpeg_video' has no member named 'Buffer'
+ffmpeg.c:396: error: 'ERR_NONE' undeclared (first use in this function)
+ffmpeg.c:396: warning: return makes integer from pointer without a cast
+ffmpeg.c: In function 'Set':
+ffmpeg.c:401: error: 'ffmpeg_video' has no member named 'Codec'
+ffmpeg.c:404: error: 'NODE_SETTINGSCHANGED' undeclared (first use in this function)
+ffmpeg.c:405: error: 'ffmpeg_video' has no member named 'Context'
+ffmpeg.c: In function 'Create':
+ffmpeg.c:414: error: 'ffmpeg_video' has no member named 'Codec'
+ffmpeg.c:414: error: request for member 'Node' in something not a structure or union
+ffmpeg.c:414: error: request for member 'Set' in something not a structure or union
+ffmpeg.c:414: error: 'nodeset' undeclared (first use in this function)
+ffmpeg.c:414: error: expected ';' before 'Set'
+ffmpeg.c:415: error: 'ffmpeg_video' has no member named 'Codec'
+ffmpeg.c:415: error: request for member 'Process' in something not a structure or union
+ffmpeg.c:415: error: 'packetprocess' undeclared (first use in this function)
+ffmpeg.c:415: error: expected ';' before 'Process'
+ffmpeg.c:416: error: 'ffmpeg_video' has no member named 'Codec'
+ffmpeg.c:416: error: request for member 'UpdateInput' in something not a structure or union
+ffmpeg.c:416: error: 'nodefunc' undeclared (first use in this function)
+ffmpeg.c:416: error: expected ';' before 'UpdateInput'
+ffmpeg.c:417: error: 'ffmpeg_video' has no member named 'Codec'
+ffmpeg.c:417: error: request for member 'Flush' in something not a structure or union
+ffmpeg.c:417: error: expected ';' before 'Flush'
+ffmpeg.c:418: error: 'ffmpeg_video' has no member named 'Codec'
+ffmpeg.c:418: error: request for member 'ReSend' in something not a structure or union
+ffmpeg.c:418: error: expected ';' before 'ReSend'
+ffmpeg.c:419: error: 'ffmpeg_video' has no member named 'Codec'
+ffmpeg.c:419: error: request for member 'NoHardDropping' in something not a structure or union
+ffmpeg.c:420: error: 'ERR_NONE' undeclared (first use in this function)
+ffmpeg.c:420: warning: return makes integer from pointer without a cast
+ffmpeg.c: At top level:
+ffmpeg.c:423: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FFMPEGVideo'
+ffmpeg.c: In function 'FFMPEG_Init':
+ffmpeg.c:435: error: 'nodedef' undeclared (first use in this function)
+ffmpeg.c:435: error: expected ';' before 'Def'
+ffmpeg.c:439: error: 'mpeg1video_decoder' undeclared (first use in this function)
+ffmpeg.c:439: warning: passing argument 1 of 'register_avcodec' from incompatible pointer type
+ffmpeg.c:440: error: 'mpeg2video_decoder' undeclared (first use in this function)
+ffmpeg.c:440: warning: passing argument 1 of 'register_avcodec' from incompatible pointer type
+ffmpeg.c:441: error: 'mpegvideo_decoder' undeclared (first use in this function)
+ffmpeg.c:441: warning: passing argument 1 of 'register_avcodec' from incompatible pointer type
+ffmpeg.c:443: error: 'svq3_decoder' undeclared (first use in this function)
+ffmpeg.c:443: warning: passing argument 1 of 'register_avcodec' from incompatible pointer type
+ffmpeg.c:444: error: 'h263_decoder' undeclared (first use in this function)
+ffmpeg.c:444: warning: passing argument 1 of 'register_avcodec' from incompatible pointer type
+ffmpeg.c:445: error: 'mpeg4_decoder' undeclared (first use in this function)
+ffmpeg.c:445: warning: passing argument 1 of 'register_avcodec' from incompatible pointer type
+ffmpeg.c:446: error: 'msmpeg4v1_decoder' undeclared (first use in this function)
+ffmpeg.c:446: warning: passing argument 1 of 'register_avcodec' from incompatible pointer type
+ffmpeg.c:447: error: 'msmpeg4v2_decoder' undeclared (first use in this function)
+ffmpeg.c:447: warning: passing argument 1 of 'register_avcodec' from incompatible pointer type
+ffmpeg.c:448: error: 'msmpeg4v3_decoder' undeclared (first use in this function)
+ffmpeg.c:448: warning: passing argument 1 of 'register_avcodec' from incompatible pointer type
+ffmpeg.c:449: error: 'wmv1_decoder' undeclared (first use in this function)
+ffmpeg.c:449: warning: passing argument 1 of 'register_avcodec' from incompatible pointer type
+ffmpeg.c:450: error: 'wmv2_decoder' undeclared (first use in this function)
+ffmpeg.c:450: warning: passing argument 1 of 'register_avcodec' from incompatible pointer type
+ffmpeg.c:452: error: 'h264_decoder' undeclared (first use in this function)
+ffmpeg.c:452: warning: passing argument 1 of 'register_avcodec' from incompatible pointer type
+ffmpeg.c:453: error: 'cinepak_decoder' undeclared (first use in this function)
+ffmpeg.c:453: warning: passing argument 1 of 'register_avcodec' from incompatible pointer type
+ffmpeg.c:454: error: 'msvideo1_decoder' undeclared (first use in this function)
+ffmpeg.c:454: warning: passing argument 1 of 'register_avcodec' from incompatible pointer type
+ffmpeg.c:455: error: 'tscc_decoder' undeclared (first use in this function)
+ffmpeg.c:455: warning: passing argument 1 of 'register_avcodec' from incompatible pointer type
+ffmpeg.c:456: error: 'flv_decoder' undeclared (first use in this function)
+ffmpeg.c:456: warning: passing argument 1 of 'register_avcodec' from incompatible pointer type
+ffmpeg.c:458: error: 'FFMPEGVideo' undeclared (first use in this function)
+ffmpeg.c:459: warning: incompatible implicit declaration of built-in function 'memset'
+ffmpeg.c:459: error: 'Def' undeclared (first use in this function)
+ffmpeg.c:459: warning: passing argument 3 of 'memset' makes integer from pointer without a cast
+ffmpeg.c:463: error: 'NODE_NAME' undeclared (first use in this function)
+ffmpeg.c:463: error: 'codecinfo' has no member named 'Name'
+ffmpeg.c:464: error: 'NODE_CONTENTTYPE' undeclared (first use in this function)
+ffmpeg.c:464: error: 'codecinfo' has no member named 'ContentType'
+ffmpeg.c:466: error: request for member 'Class' in something not a structure or union
+ffmpeg.c:467: error: request for member 'ParentClass' in something not a structure or union
+ffmpeg.c:468: error: request for member 'Priority' in something not a structure or union
+ffmpeg.c:468: error: 'PRI_DEFAULT' undeclared (first use in this function)
+ffmpeg.c:469: error: request for member 'Flags' in something not a structure or union
+ffmpeg.c:471: error: 'PLATFORM_WMPVERSION' undeclared (first use in this function)
+ffmpeg.c:474: error: request for member 'Priority' in something not a structure or union
+ffmpeg.c:479: error: 'WMVF' undeclared (first use in this function)
+ffmpeg.c: In function 'FFMPEG_Done':
+ffmpeg.c:485: error: 'WMVF_ID' undeclared (first use in this function)
+ffmpeg.c: In function 'avcodec_get_chroma_sub_sample':
+ffmpeg.c:494: error: 'PIX_FMT_YUV420P' undeclared (first use in this function)
+ffmpeg.c:495: error: 'PIX_FMT_YUVJ420P' undeclared (first use in this function)
+ffmpeg.c:499: error: 'PIX_FMT_YUVJ422P' undeclared (first use in this function)
+ffmpeg.c:500: error: 'PIX_FMT_YUV422P' undeclared (first use in this function)
+ffmpeg.c:501: error: 'PIX_FMT_YUV422' undeclared (first use in this function)
+ffmpeg.c:502: error: 'PIX_FMT_UYVY422' undeclared (first use in this function)
+ffmpeg.c:506: error: 'PIX_FMT_YUV410P' undeclared (first use in this function)
+ffmpeg.c:510: error: 'PIX_FMT_YUV411P' undeclared (first use in this function)
+ffmpeg.c:511: error: 'PIX_FMT_UYVY411' undeclared (first use in this function)
+ffmpeg.c: At top level:
+ffmpeg.c:522: error: expected declaration specifiers or '...' before 'uint8_t'
+ffmpeg.c: In function 'avpicture_fill':
+ffmpeg.c:530: error: 'PIX_FMT_YUV410P' undeclared (first use in this function)
+ffmpeg.c:531: error: 'PIX_FMT_YUV411P' undeclared (first use in this function)
+ffmpeg.c:532: error: 'PIX_FMT_YUV420P' undeclared (first use in this function)
+ffmpeg.c:533: error: 'PIX_FMT_YUV422P' undeclared (first use in this function)
+ffmpeg.c:534: error: 'PIX_FMT_YUV444P' undeclared (first use in this function)
+ffmpeg.c:537: error: 'AVPicture' has no member named 'data'
+ffmpeg.c:537: error: 'ptr' undeclared (first use in this function)
+ffmpeg.c:537: error: assignment of read-only location
+ffmpeg.c:537: error: incompatible types in assignment
+ffmpeg.c:538: error: 'AVPicture' has no member named 'data'
+ffmpeg.c:538: error: assignment of read-only location
+ffmpeg.c:538: error: incompatible types in assignment
+ffmpeg.c:539: error: 'AVPicture' has no member named 'data'
+ffmpeg.c:539: error: assignment of read-only location
+ffmpeg.c:539: error: incompatible types in assignment
+ffmpeg.c:540: error: 'AVPicture' has no member named 'linesize'
+ffmpeg.c:540: error: assignment of read-only location
+ffmpeg.c:540: error: incompatible types in assignment
+ffmpeg.c:541: error: 'AVPicture' has no member named 'linesize'
+ffmpeg.c:541: error: assignment of read-only location
+ffmpeg.c:541: error: incompatible types in assignment
+ffmpeg.c:542: error: 'AVPicture' has no member named 'linesize'
+ffmpeg.c:542: error: assignment of read-only location
+ffmpeg.c:542: error: incompatible types in assignment
+ffmpeg.c: In function 'avpicture_get_size':
+ffmpeg.c:553: error: 'NULL' undeclared (first use in this function)
+ffmpeg.c:553: warning: passing argument 2 of 'avpicture_fill' makes integer from pointer without a cast
+ffmpeg.c:553: error: too many arguments to function 'avpicture_fill'
