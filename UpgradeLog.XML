@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="tcpmp_vs2008">
+</Property><Property Name="Solution File" Value="D:\PocketPcStuff\tcpmp-0.72rc1-src-vs2008-prerelease\tcpmp_vs2008.sln">
+</Property><Property Name="Date" Value="2010 m. kovo 14 d.">
+</Property><Property Name="Time" Value="13:12:52">
+</Property></Properties><Event ErrorLevel="0" Project="tta" Source="tta\tta.vcproj" Description="Web deployment to the local IIS server is no longer supported. The Web Deployment build tool has been removed from your project settings.">
+</Event><Event ErrorLevel="1" Project="tta" Source="tta\tta.vcproj" Description="This application has been updated to include settings related to the User Account Control (UAC) feature of Windows Vista. By default, when run on Windows Vista with UAC enabled, this application is marked to run with the same privileges as the process that launched it. This marking also disables the application from running with virtualization. You can change UAC related settings from the Property Pages of the project.">
+</Event><Event ErrorLevel="0" Project="tta" Source="tta\tta.vcproj" Description="Project upgraded successfully.">
+</Event><Event ErrorLevel="3" Project="tta" Source="tta\tta.vcproj" Description="Converted">
+</Event></UpgradeLog>
