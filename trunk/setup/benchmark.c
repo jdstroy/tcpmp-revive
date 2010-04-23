@@ -278,7 +278,7 @@ int WinMain(HINSTANCE Instance,HINSTANCE Parent,TCHAR* Cmd,int CmdShow)
 {
 	int32_t Result;
 	//SAFE_BEGIN
-/*	HMODULE GAPI = LoadLibrary(T("gxNew.dll")); //Mod2010
+/*	HMODULE GAPI = LoadLibrary(T("gx.dll")); //Mod2010
 	if (GAPI)
 	{
 		SlowVideoGAPI(GAPI,NULL,&Result);
