@@ -193,9 +193,9 @@ static bool_t LoadDriver(gapi* p)
 	tchar_t Path[MAXPATH];
 
 	if (p->Windows)
-		GetSystemPath(Path,TSIZEOF(Path),T("gxNew.dll")); //Mod2010
+		GetSystemPath(Path,TSIZEOF(Path),T("gx.dll")); //Mod2010
 	else
-		tcscpy_s(Path,TSIZEOF(Path),T("gxNew.dll")); //Mod2010
+		tcscpy_s(Path,TSIZEOF(Path),T("gx.dll")); //Mod2010
 
 	if ((GX = LoadLibrary(Path))==NULL)
 	{

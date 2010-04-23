@@ -147,9 +147,9 @@ DLLEXPORT int WINAPI Install_Exit(HWND Parent, LPCTSTR InstallDir, WORD FailedDi
 	if (!WinPath[0])
 		tcscpy_s(WinPath,MAXPATH,T("\\Windows"));
 
-	tcscat_s(WinPath,MAXPATH,T("\\gxNew.dll")); //Mod2010
+	tcscat_s(WinPath,MAXPATH,T("\\gx.dll")); //Mod2010
 	tcscpy_s(LocalPath,MAXPATH,InstallDir);
-	tcscat_s(LocalPath,MAXPATH,T("\\gxNew.dll")); //Mod2010
+	tcscat_s(LocalPath,MAXPATH,T("\\gx.dll")); //Mod2010
 
 	GAPI = LoadLibrary(WinPath);
 	if (GAPI)
@@ -192,7 +192,7 @@ DLLEXPORT int WINAPI Install_Exit(HWND Parent, LPCTSTR InstallDir, WORD FailedDi
 		if (!GAPI)
 		{
 			DeleteFile(LocalPath);
-			GAPI = LoadLibrary(T("gxNew.dll")); // try load on path
+			GAPI = LoadLibrary(T("gx.dll")); // try load on path
 		}
 	}
 
