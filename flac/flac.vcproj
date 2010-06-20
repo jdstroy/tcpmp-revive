@@ -81,7 +81,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="oldnames.lib"
-				OutputFile="../release/flac.plg"
+				OutputFile="$(OutDir)\flac.plg"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				ProgramDatabaseFile=".\Release/flac.pdb"

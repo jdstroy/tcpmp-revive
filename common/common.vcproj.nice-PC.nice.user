@@ -174,41 +174,6 @@
 			/>
 		</Configuration>
 		<Configuration
-			Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
-			>
-			<DebugSettings
-				Command=""
-				WorkingDirectory=""
-				CommandArguments=""
-				Attach="false"
-				DebuggerType="3"
-				Remote="1"
-				RemoteMachine="NICE-PC"
-				RemoteCommand=""
-				HttpUrl=""
-				PDBPath=""
-				SQLDebugging=""
-				Environment=""
-				EnvironmentMerge="true"
-				DebuggerFlavor=""
-				MPIRunCommand=""
-				MPIRunArguments=""
-				MPIRunWorkingDirectory=""
-				ApplicationCommand=""
-				ApplicationArguments=""
-				ShimCommand=""
-				MPIAcceptMode=""
-				MPIAcceptFilter=""
-			/>
-			<DeploymentTool
-				DeploymentDevice="d1a7b239-28d5-4485-9b8c-5764e3dc79b6"
-			/>
-			<DebuggerTool
-				RemoteExecutable=""
-				Arguments=""
-			/>
-		</Configuration>
-		<Configuration
 			Name="Release|Pocket PC 2003 (ARMV4)"
 			>
 			<DebugSettings
@@ -370,41 +335,6 @@
 			/>
 			<DeploymentTool
 				DeploymentDevice="BEDE20EF-6548-413E-943F-1E87FEC249FA"
-			/>
-			<DebuggerTool
-				RemoteExecutable=""
-				Arguments=""
-			/>
-		</Configuration>
-		<Configuration
-			Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)"
-			>
-			<DebugSettings
-				Command=""
-				WorkingDirectory=""
-				CommandArguments=""
-				Attach="false"
-				DebuggerType="3"
-				Remote="1"
-				RemoteMachine="NICE-PC"
-				RemoteCommand=""
-				HttpUrl=""
-				PDBPath=""
-				SQLDebugging=""
-				Environment=""
-				EnvironmentMerge="true"
-				DebuggerFlavor=""
-				MPIRunCommand=""
-				MPIRunArguments=""
-				MPIRunWorkingDirectory=""
-				ApplicationCommand=""
-				ApplicationArguments=""
-				ShimCommand=""
-				MPIAcceptMode=""
-				MPIAcceptFilter=""
-			/>
-			<DeploymentTool
-				DeploymentDevice="d1a7b239-28d5-4485-9b8c-5764e3dc79b6"
 			/>
 			<DebuggerTool
 				RemoteExecutable=""
@@ -580,41 +510,6 @@
 			/>
 		</Configuration>
 		<Configuration
-			Name="Debug Unicode|Windows Mobile 6 Professional SDK (ARMV4I)"
-			>
-			<DebugSettings
-				Command=""
-				WorkingDirectory=""
-				CommandArguments=""
-				Attach="false"
-				DebuggerType="3"
-				Remote="1"
-				RemoteMachine="NICE-PC"
-				RemoteCommand=""
-				HttpUrl=""
-				PDBPath=""
-				SQLDebugging=""
-				Environment=""
-				EnvironmentMerge="true"
-				DebuggerFlavor=""
-				MPIRunCommand=""
-				MPIRunArguments=""
-				MPIRunWorkingDirectory=""
-				ApplicationCommand=""
-				ApplicationArguments=""
-				ShimCommand=""
-				MPIAcceptMode=""
-				MPIAcceptFilter=""
-			/>
-			<DeploymentTool
-				DeploymentDevice="d1a7b239-28d5-4485-9b8c-5764e3dc79b6"
-			/>
-			<DebuggerTool
-				RemoteExecutable=""
-				Arguments=""
-			/>
-		</Configuration>
-		<Configuration
 			Name="Release Unicode|Pocket PC 2003 (ARMV4)"
 			>
 			<DebugSettings
@@ -776,41 +671,6 @@
 			/>
 			<DeploymentTool
 				DeploymentDevice="BEDE20EF-6548-413E-943F-1E87FEC249FA"
-			/>
-			<DebuggerTool
-				RemoteExecutable=""
-				Arguments=""
-			/>
-		</Configuration>
-		<Configuration
-			Name="Release Unicode|Windows Mobile 6 Professional SDK (ARMV4I)"
-			>
-			<DebugSettings
-				Command=""
-				WorkingDirectory=""
-				CommandArguments=""
-				Attach="false"
-				DebuggerType="3"
-				Remote="1"
-				RemoteMachine="NICE-PC"
-				RemoteCommand=""
-				HttpUrl=""
-				PDBPath=""
-				SQLDebugging=""
-				Environment=""
-				EnvironmentMerge="true"
-				DebuggerFlavor=""
-				MPIRunCommand=""
-				MPIRunArguments=""
-				MPIRunWorkingDirectory=""
-				ApplicationCommand=""
-				ApplicationArguments=""
-				ShimCommand=""
-				MPIAcceptMode=""
-				MPIAcceptFilter=""
-			/>
-			<DeploymentTool
-				DeploymentDevice="d1a7b239-28d5-4485-9b8c-5764e3dc79b6"
 			/>
 			<DebuggerTool
 				RemoteExecutable=""
@@ -986,7 +846,7 @@
 			/>
 		</Configuration>
 		<Configuration
-			Name="cegcc-flac-ffmpeg-release|Windows Mobile 6 Professional SDK (ARMV4I)"
+			Name="RaleaseNoplugins|Pocket PC 2003 (ARMV4)"
 			>
 			<DebugSettings
 				Command=""
@@ -1013,7 +873,140 @@
 				MPIAcceptFilter=""
 			/>
 			<DeploymentTool
-				DeploymentDevice="d1a7b239-28d5-4485-9b8c-5764e3dc79b6"
+				DeploymentDevice="E282E6BE-C7C3-4ece-916A-88FB1CF8AF3C"
+			/>
+			<DebuggerTool
+				RemoteExecutable=""
+				Arguments=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="RaleaseNoplugins|Smartphone 2003 (ARMV4)"
+			>
+			<DebugSettings
+				Command="$(TargetPath)"
+				WorkingDirectory=""
+				CommandArguments=""
+				Attach="false"
+				DebuggerType="3"
+				Remote="1"
+				RemoteMachine="NICE-PC"
+				RemoteCommand=""
+				HttpUrl=""
+				PDBPath=""
+				SQLDebugging=""
+				Environment=""
+				EnvironmentMerge="true"
+				DebuggerFlavor=""
+				MPIRunCommand=""
+				MPIRunArguments=""
+				MPIRunWorkingDirectory=""
+				ApplicationCommand=""
+				ApplicationArguments=""
+				ShimCommand=""
+				MPIAcceptMode=""
+				MPIAcceptFilter=""
+			/>
+			<DeploymentTool
+				DeploymentDevice="DD63BCFB-BCB3-407c-9CDC-219A0240CBA0"
+			/>
+			<DebuggerTool
+				RemoteExecutable=""
+				Arguments=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="RaleaseNoplugins|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)"
+			>
+			<DebugSettings
+				Command="$(TargetPath)"
+				WorkingDirectory=""
+				CommandArguments=""
+				Attach="false"
+				DebuggerType="3"
+				Remote="1"
+				RemoteMachine="NICE-PC"
+				RemoteCommand=""
+				HttpUrl=""
+				PDBPath=""
+				SQLDebugging=""
+				Environment=""
+				EnvironmentMerge="true"
+				DebuggerFlavor=""
+				MPIRunCommand=""
+				MPIRunArguments=""
+				MPIRunWorkingDirectory=""
+				ApplicationCommand=""
+				ApplicationArguments=""
+				ShimCommand=""
+				MPIAcceptMode=""
+				MPIAcceptFilter=""
+			/>
+			<DeploymentTool
+				DeploymentDevice="25D984D9-0DFE-4DB1-A5A0-9A4F660BF2CE"
+			/>
+			<DebuggerTool
+				RemoteExecutable=""
+				Arguments=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="RaleaseNoplugins|Win32"
+			>
+			<DebugSettings
+				Command="$(TargetPath)"
+				WorkingDirectory=""
+				CommandArguments=""
+				Attach="false"
+				DebuggerType="3"
+				Remote="1"
+				RemoteMachine="NICE-PC"
+				RemoteCommand=""
+				HttpUrl=""
+				PDBPath=""
+				SQLDebugging=""
+				Environment=""
+				EnvironmentMerge="true"
+				DebuggerFlavor=""
+				MPIRunCommand=""
+				MPIRunArguments=""
+				MPIRunWorkingDirectory=""
+				ApplicationCommand=""
+				ApplicationArguments=""
+				ShimCommand=""
+				MPIAcceptMode=""
+				MPIAcceptFilter=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="RaleaseNoplugins|Windows Mobile 5.0 Smartphone SDK (ARMV4I)"
+			>
+			<DebugSettings
+				Command="$(TargetPath)"
+				WorkingDirectory=""
+				CommandArguments=""
+				Attach="false"
+				DebuggerType="3"
+				Remote="1"
+				RemoteMachine="NICE-PC"
+				RemoteCommand=""
+				HttpUrl=""
+				PDBPath=""
+				SQLDebugging=""
+				Environment=""
+				EnvironmentMerge="true"
+				DebuggerFlavor=""
+				MPIRunCommand=""
+				MPIRunArguments=""
+				MPIRunWorkingDirectory=""
+				ApplicationCommand=""
+				ApplicationArguments=""
+				ShimCommand=""
+				MPIAcceptMode=""
+				MPIAcceptFilter=""
+			/>
+			<DeploymentTool
+				DeploymentDevice="BEDE20EF-6548-413E-943F-1E87FEC249FA"
 			/>
 			<DebuggerTool
 				RemoteExecutable=""
