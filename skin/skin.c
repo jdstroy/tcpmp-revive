@@ -35,7 +35,7 @@ int volumeVal, oldVolume;
 int seekPos;
 int oldSeekPos = -1;
 
-void DrawButton(skin* p, HDC DC, int no);
+void DrawButton(skin* p, HDC DC, int no, rect* r);
 int ParseSkinFile(skin* p, void* Wnd, const tchar_t* FileName);
 void LoadSkinNo(skin *p, int no);
 int LoadSkinItem(tchar_t *Name, skin* p, int no);
@@ -367,13 +367,13 @@ void SkinDraw(const skin* p,void* DC,rect* r) {
 		//DeleteObject(hBackBmp);
 	}
 }
-void DrawButton(skin* p, HDC DC, int no)
+void DrawButton(skin* p, HDC DC, int no, rect* r)
 {
 	if (p->Item[no].Pushed)
 	{
 		hOldBmp = (HBITMAP)SelectObject(hdcMem, p->Bitmap[1].Bitmap);
 		BitBlt(DC, p->Item[no].Rect.x,
-			p->Item[no].Rect.y,
+			p->Item[no].Rect.y + r->y,
 			p->Item[no].Rect.Width,
 			p->Item[no].Rect.Height,
 			hdcMem,
@@ -386,7 +386,7 @@ void DrawButton(skin* p, HDC DC, int no)
 	{
 		hOldBmp = (HBITMAP)SelectObject(hdcMem, p->Bitmap[0].Bitmap);
 		BitBlt(DC, p->Item[no].Rect.x,
-			p->Item[no].Rect.y,
+			p->Item[no].Rect.y + r->y,
 			p->Item[no].Rect.Width,
 			p->Item[no].Rect.Height,
 			hdcMem,
@@ -410,7 +410,7 @@ void SkinDrawItem(skin* p,void* Wnd,int n,rect* r)
 			{
 				hOldBmp = (HBITMAP)SelectObject(hdcMem, p->Bitmap[0].Bitmap);
 				BitBlt(DC, p->Item[SKIN_SEEK].Rect.x,
-					p->Item[SKIN_SEEK].Rect.y,
+					p->Item[SKIN_SEEK].Rect.y + r->y,
 					p->Item[SKIN_SEEK].Rect.Width,
 					p->Item[SKIN_SEEK].Rect.Height,
 					hdcMem,
@@ -420,7 +420,7 @@ void SkinDrawItem(skin* p,void* Wnd,int n,rect* r)
 
 				hOldBmp = (HBITMAP)SelectObject(hdcMem, p->Bitmap[1].Bitmap);
 				BitBlt(DC, p->Item[SKIN_SEEK_THUMB].Rect.x + seekPos,
-					p->Item[SKIN_SEEK_THUMB].Rect.y,
+					p->Item[SKIN_SEEK_THUMB].Rect.y + r->y,
 					p->Item[SKIN_SEEK_THUMB].Rect.Width,
 					p->Item[SKIN_SEEK_THUMB].Rect.Height,
 					hdcMem,
@@ -430,7 +430,7 @@ void SkinDrawItem(skin* p,void* Wnd,int n,rect* r)
 				SelectObject(hdcMem, hOldBmp);
 				/*
 				BitBlt(DC, p->Item[SKIN_SEEK].Rect.x,
-					p->Item[SKIN_SEEK].Rect.y,
+					p->Item[SKIN_SEEK].Rect.y + r->y,
 					p->Item[SKIN_SEEK].Rect.Width,
 					p->Item[SKIN_SEEK].Rect.Height,
 					hdcBuf,
@@ -443,7 +443,7 @@ void SkinDrawItem(skin* p,void* Wnd,int n,rect* r)
 			{
 				hOldBmp = (HBITMAP)SelectObject(hdcMem, p->Bitmap[0].Bitmap);
 				BitBlt(DC, p->Item[SKIN_SEEK].Rect.x,
-					p->Item[SKIN_SEEK].Rect.y,
+					p->Item[SKIN_SEEK].Rect.y + r->y,
 					p->Item[SKIN_SEEK].Rect.Width,
 					p->Item[SKIN_SEEK].Rect.Height,
 					hdcMem,
@@ -457,7 +457,7 @@ void SkinDrawItem(skin* p,void* Wnd,int n,rect* r)
 		{
 			hOldBmp = (HBITMAP)SelectObject(hdcMem, p->Bitmap[0].Bitmap);
 			BitBlt(DC, p->Item[SKIN_VOLUME].Rect.x,
-				p->Item[SKIN_VOLUME].Rect.y,
+				p->Item[SKIN_VOLUME].Rect.y + r->y,
 				p->Item[SKIN_VOLUME].Rect.Width,
 				p->Item[SKIN_VOLUME].Rect.Height,
 				hdcMem,
@@ -467,7 +467,7 @@ void SkinDrawItem(skin* p,void* Wnd,int n,rect* r)
 
 				hOldBmp = (HBITMAP)SelectObject(hdcMem, p->Bitmap[1].Bitmap);
 				BitBlt(DC, p->Item[SKIN_VOLUME_THUMB].Rect.x + ((volumeVal * (p->Item[SKIN_VOLUME].Rect.Width - p->Item[SKIN_VOLUME_THUMB].Rect.Width) ) / 100), //volPos - p->Item[SKIN_VOLUME].Rect.Width,
-					p->Item[SKIN_VOLUME_THUMB].Rect.y,
+					p->Item[SKIN_VOLUME_THUMB].Rect.y + r->y,
 					p->Item[SKIN_VOLUME_THUMB].Rect.Width,
 					p->Item[SKIN_VOLUME_THUMB].Rect.Height,
 					hdcMem,
@@ -477,7 +477,7 @@ void SkinDrawItem(skin* p,void* Wnd,int n,rect* r)
 				SelectObject(hdcMem, hOldBmp);
 				/*
 				BitBlt(DC, p->Item[SKIN_VOLUME].Rect.x,
-					p->Item[SKIN_VOLUME].Rect.y,
+					p->Item[SKIN_VOLUME].Rect.y + r->y,
 					p->Item[SKIN_VOLUME].Rect.Width,
 					p->Item[SKIN_VOLUME].Rect.Height,
 					hdcBuf,
@@ -488,7 +488,7 @@ void SkinDrawItem(skin* p,void* Wnd,int n,rect* r)
 		}
 		else
 		{
-			DrawButton(p, DC, n);
+			DrawButton(p, DC, n, r);
 		}
 		ReleaseDC(Wnd, DC);
 	}
