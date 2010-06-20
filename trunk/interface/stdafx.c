@@ -26,6 +26,7 @@
 #include "about.h"
 #include "benchresult.h"
 #include "mediainfo.h"
+#include "avrcp.h"
 #include "settings.h"
 #include "win32/interface.h"
 
@@ -50,11 +51,17 @@ int DLLRegister(int Version)
 	BenchResult_Init();
 	MediaInfo_Init();
 	Settings_Init();
+#if defined(CONFIG_AVRCP)	
+	AVRCP_Init();
+#endif	
 	return ERR_NONE;
 }
 
 void DLLUnRegister()
 {
+#if defined(CONFIG_AVRCP)	
+	AVRCP_Done();
+#endif	
 	About_Done();
 	BenchResult_Done();
 	MediaInfo_Done();

@@ -20,6 +20,11 @@
  * Copyright (c) 2004-2005 Gabor Kovacs
  *
  ****************************************************************************/
+#if defined(CONFIG_AVRCP)
+#include <stdio.h>
+#include <tchar.h>
+#include <altcecrt.h>
+#endif
 
 #ifndef __WIN_WIN32_H
 #define __WIN_WIN32_H
@@ -83,7 +88,9 @@ struct wincontrol
 	point SaveScreen;																	\
 	int32_t SaveRect[4];																\
 	int WinCmd[2];
-
+#if defined(CONFIG_AVRCP)
+void _debug(TCHAR *szFormat, ...);
+#endif
 bool_t WinEssentialKey(int HotKey);
 bool_t WinNoHotKey(int HotKey);
 void WinRegisterHotKey(win* p,int Id,int HotKey);
@@ -100,7 +107,16 @@ void* WinFont(win*,winunit* FontSize,bool_t Bold);
 void* WinCursorArrow();
 win* WinGetObject(void* Wnd);
 void WinSetObject(void* Wnd,win* p);
-
+#if defined(CONFIG_AVRCP)
+int AvrcpMsgProcess (void* p);
+int CloseAvrcpMsgQueue(void);
+unsigned int GetAvrcpCmd(int CtrlID);
+int AvrcpConfMode(int hConf);
+int AvrcpGetOpid(void);
+HANDLE IsAvrcpThreadRunning(void);
+int ToggleA2DP(void);
+DWORD CheckBthHeadsetStatus(void);
+#endif
 winunit WinPixelToUnitX(win* p,int Pixel);
 winunit WinPixelToUnitY(win* p,int Pixel);
 int WinUnitToPixelX(win* p,winunit Pos);
