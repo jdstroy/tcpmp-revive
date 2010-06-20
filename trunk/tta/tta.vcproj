@@ -77,7 +77,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../release/tta.plg"
+				OutputFile="$(OutDir)\tta.plg"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				ProgramDatabaseFile=".\Release/tta.pdb"

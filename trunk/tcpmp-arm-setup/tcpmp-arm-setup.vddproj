@@ -56,18 +56,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_2A22AAEC0FE549C3A429EED9C3788980"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_2A5391C7FB534DFB9DD59355709768BD"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_2DDFA43250E14DC7A5429AB9A4C2481F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -88,6 +76,12 @@
         {
         "MsmKey" = "8:_41ADA08E490448A7AE50BA8D096856AF"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_53611758D03E15D9386F9B0874037D87"
+        "OwnerKey" = "8:_C90A0E3D1FD941868148AB30058A8F52"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -118,6 +112,12 @@
         {
         "MsmKey" = "8:_7E63196ABBEC4A0584A1D1ABD1182612"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_7F3E658D8334D8FA90DC15301A1D1F33"
+        "OwnerKey" = "8:_2018FCACCBB848608623E8BD79AB1B8A"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -302,6 +302,24 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{BA458234-9B71-4F46-8107-E91156377184}:_53611758D03E15D9386F9B0874037D87"
+            {
+            "SourcePath" = "8:COMDLG32.dll"
+            "TargetName" = "8:COMDLG32.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_44BF2EEA229B4C7098810727D7C53318"
+            "Condition" = "8:"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "Register" = "3:0"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{BA458234-9B71-4F46-8107-E91156377184}:_7B714D033BF748569A97DA648CA23F7B"
             {
             "SourcePath" = "8:..\\armplg\\ffmpeg.plg"
@@ -318,6 +336,24 @@
             "Register" = "3:0"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{BA458234-9B71-4F46-8107-E91156377184}:_7F3E658D8334D8FA90DC15301A1D1F33"
+            {
+            "SourcePath" = "8:WININET.dll"
+            "TargetName" = "8:WININET.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_44BF2EEA229B4C7098810727D7C53318"
+            "Condition" = "8:"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "Register" = "3:0"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{BA458234-9B71-4F46-8107-E91156377184}:_AB6EF756C7344EBE9C09344E38590A92"
@@ -587,58 +623,6 @@
             "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:Built"
             "OutputProjectGuid" = "8:{0F6204A7-46DC-4FA5-ABF9-D75EE7BDF144}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
-            "{605BE39E-5046-48BD-AEC0-63C3A46626D5}:_2A22AAEC0FE549C3A429EED9C3788980"
-            {
-            "SourcePath" = "8:..\\Pocket PC 2003 (ARMV4)\\Release\\asap.plg"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_44BF2EEA229B4C7098810727D7C53318"
-            "Condition" = "8:"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "Register" = "3:0"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:0"
-            "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:Built"
-            "OutputProjectGuid" = "8:{B082C70E-EEF3-48D1-B1DD-F9061AF736BD}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
-            "{605BE39E-5046-48BD-AEC0-63C3A46626D5}:_2A5391C7FB534DFB9DD59355709768BD"
-            {
-            "SourcePath" = "8:..\\Pocket PC 2003 (ARMV4)\\Release\\mpc.plg"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_44BF2EEA229B4C7098810727D7C53318"
-            "Condition" = "8:"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "Register" = "3:0"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:0"
-            "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:Built"
-            "OutputProjectGuid" = "8:{19751795-42A0-4F0A-AB2F-159C04738BA1}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {
