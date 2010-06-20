@@ -29,6 +29,9 @@
 #include "../about.h"
 #include "../benchresult.h"
 #include "../mediainfo.h"
+#if defined(CONFIG_AVRCP)
+#include "../avrcp.h"
+#endif
 #include "../settings.h"
 #include "playlst.h"
 #include "../skin.h"
@@ -1643,6 +1646,9 @@ static menudef MenuDef[] =
 #if defined(CONFIG_SKIN)
 	{ 1,INTERFACE_ID, IF_OPTIONS_SKIN },
 #endif
+#if defined(CONFIG_AVRCP)
+	{ 1,INTERFACE_ID, IF_OPTIONS_AVRCP_SETTING },
+#endif	
 	{ 1,-1,-1 },
 	{ 1,INTERFACE_ID, IF_OPTIONS_SETTINGS },
 
@@ -2230,6 +2236,14 @@ static int Command(intface* p,int Cmd)
 
 		p->Player->Set(p->Player,PLAYER_UPDATEVIDEO,NULL,0); 
 		break;
+		
+#if defined(CONFIG_AVRCP)
+	//add by xiaojin1985 AVRCP
+	case IF_OPTIONS_AVRCP_SETTING:
+		AvrcpConfMode(1);
+		WinPopupClass(AVRCP_ID,&p->Win);
+		break;
+#endif
 
 	case IF_FILE_PLAYLIST:
 		WinPopupClass(PLAYLIST_ID,&p->Win);
@@ -2848,6 +2862,10 @@ static bool_t Proc(intface* p, int Msg, uint32_t wParam, uint32_t lParam, int* R
 	int i,Key;
 	PAINTSTRUCT Paint;
 	notify Notify;
+#if defined(CONFIG_AVRCP)	
+	bool_t bAvrcp = 0;
+	bool_t bA2DP = 0;
+#endif		
 	msg = Msg; //Mod2010
 	switch (Msg) 
 	{
@@ -2879,7 +2897,9 @@ static bool_t Proc(intface* p, int Msg, uint32_t wParam, uint32_t lParam, int* R
 		break;
 
 	case WM_PAINT:
+#if defined(TARGET_WINCE)
 		ForceNoZOrder(); //Mod2010: forces no Z order for window
+#endif
 		BeginPaint(p->Win.Wnd,&Paint);
 		if (p->Skin[p->SkinNo].Valid)
 			SkinDraw(&p->Skin[p->SkinNo],Paint.hdc,&p->SkinArea);
@@ -3130,6 +3150,9 @@ static bool_t Proc(intface* p, int Msg, uint32_t wParam, uint32_t lParam, int* R
 
 	case WM_DESTROY:
 		BeforeExit(p);
+#if defined(TARGET_WINCE) && defined(CONFIG_ACVRCP)		
+		CloseAvrcpMsgQueue();
+#endif		
 		PostQuitMessage(0);
 
 		SkinFree(p->Skin,NULL);
@@ -3241,6 +3264,13 @@ static bool_t Proc(intface* p, int Msg, uint32_t wParam, uint32_t lParam, int* R
 		return 1;
 
 	case WM_CREATE:
+#if defined(CONFIG_AVRCP)	
+		//A2DP add by xiaojin1985
+		NodeRegLoadValue(AVRCP_ID,A2DP_TOGGLE,&bA2DP,sizeof(int),TYPE_INT);
+		if(bA2DP){
+			ToggleA2DP();
+		}
+#endif		
 
 		WinTitle(&p->Win,Context()->ProgramName);
 
@@ -3288,6 +3318,15 @@ static bool_t Proc(intface* p, int Msg, uint32_t wParam, uint32_t lParam, int* R
 		PostMessage(p->Win.Wnd,MSG_INIT,0,0);
 
 		UpdateHotKey(p,1,0);
+
+#if defined(CONFIG_AVRCP)
+		//add by xiaojin1985
+		NodeRegLoadValue(AVRCP_ID,AVRCP_ENABLE,&bAvrcp,sizeof(int),TYPE_INT);
+		if(bAvrcp){
+			AvrcpConfMode(0);
+			ThreadCreate(AvrcpMsgProcess,p,1);
+		}
+#endif		
 		break;
 	}
 

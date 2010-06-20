@@ -28,6 +28,9 @@
 #include "openfile_win32.h"
 #include "playlst.h"
 #include "interface.h"
+#if defined(CONFIG_AVRCP)
+#include "../avrcp.h"
+#endif
 
 #if defined(TARGET_WINCE) || defined(TARGET_WIN32)
 
@@ -41,10 +44,25 @@
 #endif
 #include <commctrl.h>
 #include <shellapi.h>
-
+#if defined(CONFIG_AVRCP)
+#include <pm.h>
+#endif
 #include "resource.h"
+#if defined(CONFIG_AVRCP)
+#include <MMSystem.h>
+#include <msgqueue.h>
+#endif
 
 #define MAXFONTSIZE	64
+#if defined(CONFIG_AVRCP)
+//Bluetooth A2DP
+#define WODM_OPEN_CLOSE_A2DP			517
+#define WODM_PARAM_OPEN_A2DP			1
+#define WODM_PARAM_CLOSE_A2DP			0
+//State Notifications
+#define SN_BLUETOOTHSTATEA2DPCONNECTED_BITMASK 4
+#define SN_BLUETOOTHSTATEHANDSFERECONTROL_BITMASK 0x10
+#endif
 
 static HFONT FontCache[MAXFONTSIZE][2];
 static WNDCLASS WinClass;
@@ -84,6 +102,26 @@ static BOOL (WINAPI* FuncAllKeys)( int State ) = NULL;
 #endif
 #else
 #define BTNS_SHOWTEXT					0
+#endif
+
+#if defined(CONFIG_AVRCP)
+HANDLE hMsgQ=NULL;
+
+int intConfAvrcpMsg = 0;
+
+int hAvrcpConfMode=0;
+
+typedef enum {
+	UNITINFO_T = 0x30,  
+	SUBUNITINFO_T,  
+	PASSTHRU_T = 0x7C
+} AVCOpCodes;
+
+typedef struct _AvrcpMsg {
+	UINT    OpCode;
+	UINT    OpId;
+	UINT    Reserved[4];
+} AvrcpMsg;
 #endif
 
 static const menudef* MenuDef(win* Win,const menudef* p,bool_t Popup,void** Menu)
@@ -437,7 +475,7 @@ void WinSetFullScreen(win* p,bool_t State)
 			p->SaveRect[2] += GetSystemMetrics(SM_CXSCREEN) - p->SaveScreen.x;
 			p->SaveRect[3] += GetSystemMetrics(SM_CYSCREEN) - p->SaveScreen.y;
 			SetWindowPos(p->Wnd,HWND_NOTOPMOST,p->SaveRect[0],p->SaveRect[1],
-				p->SaveRect[2]-p->SaveRect[0],p->SaveRect[3]-p->SaveRect[1],SWP_NOACTIVATE);
+				p->SaveRect[2]-p->SaveRect[0],p->SaveRect[3]-p->SaveRect[1],0);//tronikos screen repaint fix
 
 			if (!TaskBarHidden)
 			{
@@ -828,6 +866,222 @@ void WinSetFullScreen(win* p,bool_t State)
 	}
 }
 
+#endif
+
+#if defined(CONFIG_AVRCP)
+void _debug(TCHAR *szFormat, ...)
+{
+	FILE *f = _tfopen(TEXT("\\dbg_msg.txt"),TEXT("a"));
+	SYSTEMTIME pSystemTime; 
+	TCHAR szBuffer[10240]; //in this buffer we form the message
+	const size_t NUMCHARS = sizeof(szBuffer) / sizeof(szBuffer[0]);
+	const int LASTCHAR = NUMCHARS - 1;
+	//format the input string
+	va_list pArgs;
+	va_start(pArgs, szFormat);
+	// use a bounded buffer size to prevent buffer overruns.  Limit count to
+	// character size minus one to allow for a NULL terminating character.
+	_vsntprintf(szBuffer, LASTCHAR, szFormat, pArgs);
+	va_end(pArgs);
+	//ensure that the formatted string is NULL-terminated
+	GetLocalTime( &pSystemTime ); 
+	//write the file
+	_ftprintf(f, TEXT("[%2d:%2d:%2d] %s\n"),
+		pSystemTime.wHour,
+		pSystemTime.wMinute,
+		pSystemTime.wSecond,szBuffer);
+	fclose(f);
+}
+
+DWORD CheckBthHeadsetStatus(void)
+{
+	DWORD lpStatus = 0;
+	HKEY Key;
+	uint8_t Buffer[MAXDATA];
+	DWORD RegType;
+	DWORD RegSize = sizeof(Buffer);
+
+	if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, TEXT("System\\State\\Hardware"), 0, KEY_READ, &Key) == ERROR_SUCCESS)
+	{
+		if (RegQueryValueEx(Key, TEXT("Bluetooth"), 0, &RegType, Buffer, &RegSize) == ERROR_SUCCESS){
+			lpStatus = *(DWORD*)Buffer;
+		}
+		RegCloseKey(Key);
+	}
+	if(lpStatus & SN_BLUETOOTHSTATEA2DPCONNECTED_BITMASK){
+		//_debug(L"A2DP Audio");
+		return SN_BLUETOOTHSTATEA2DPCONNECTED_BITMASK;
+	}else if(lpStatus & SN_BLUETOOTHSTATEHANDSFERECONTROL_BITMASK){
+		//_debug(L"Handsfree connected");
+		return SN_BLUETOOTHSTATEHANDSFERECONTROL_BITMASK;
+	}else{
+		//_debug(L"None");
+		return 0;
+	}
+}
+
+int ToggleA2DP(void){
+	WAVEOUTCAPS hWOC = {0};
+	UINT devid;
+	UINT nNumDevs = waveOutGetNumDevs();
+	DWORD BthHeadsetStatus = CheckBthHeadsetStatus();
+
+	if(!BthHeadsetStatus) return 0;
+	if(BthHeadsetStatus==SN_BLUETOOTHSTATEA2DPCONNECTED_BITMASK) return 0;
+
+	for(devid = 0; devid < nNumDevs; devid++)
+	{
+		if(waveOutGetDevCaps(devid, &hWOC, sizeof(hWOC)) == MMSYSERR_NOERROR)
+		{
+			if(_tcscmp(hWOC.szPname, TEXT("Bluetooth Advanced Audio Output")) == 0)
+			{
+				if(devid){
+					waveOutMessage((HWAVEOUT)devid, WODM_OPEN_CLOSE_A2DP, WODM_PARAM_OPEN_A2DP, 0);
+					break;
+				}
+			}
+		}
+	}
+	return devid;
+}
+
+HANDLE IsAvrcpThreadRunning(void){
+	if (hMsgQ) {
+		return hMsgQ;
+	} 
+	return NULL;
+}
+
+int CloseAvrcpMsgQueue(void){
+	if (hMsgQ) {
+		//_debug(L"MsgQueue closed.");
+		CloseMsgQueue(hMsgQ);
+		hMsgQ=NULL;
+	} 
+	return 0;
+}
+
+UINT GetAvrcpCmd(int CtrlID){
+	int AvrcpCmd = 0;
+	NodeRegLoadValue(AVRCP_ID,CtrlID,&AvrcpCmd,sizeof(int),TYPE_INT);
+	if(AvrcpCmd){
+		//_debug(L"Avrcp Cmd:%x",AvrcpCmd);
+		return AvrcpCmd;
+	}
+	return 0;
+}
+
+int AvrcpConfMode(int hConf){
+	intConfAvrcpMsg=0;
+	//_debug(L"AvrcpConfMode:%d",hAvrcpConfMode);
+	hAvrcpConfMode=hConf;
+	return hConf;
+}
+
+int AvrcpGetOpid(void){
+	//_debug(L"Avrcp Opid:%d",intConfAvrcpMsg);
+	return intConfAvrcpMsg;
+}
+
+int AvrcpMsgProcess (void* p){
+	static int avrcp_tick;
+	bool_t PlayState = 0;
+	bool_t bAvrcp = 0;
+	fraction Percent;
+	int Param = PLAYER_PLAY;
+	node* Player = Context()->Player;
+	MSGQUEUEOPTIONS mqOptions;
+	memset (&mqOptions, 0, sizeof(mqOptions));
+	mqOptions.dwFlags = MSGQUEUE_ALLOW_BROKEN;
+	mqOptions.dwSize = sizeof(mqOptions);
+	mqOptions.dwMaxMessages = 2;
+	mqOptions.cbMaxMessage = 100;
+	mqOptions.bReadAccess = TRUE;
+	hMsgQ = CreateMsgQueue(AVRCP_MSG_SZ, &mqOptions);
+	if (! hMsgQ) {     
+		goto exit_bt;
+	}
+	//_debug(L"MsgQueue created.");
+	while (hMsgQ != 0) {
+		DWORD dwWait = WaitForSingleObject (hMsgQ, INFINITE);
+		NodeRegLoadValue(AVRCP_ID,AVRCP_ENABLE,&bAvrcp,sizeof(int),TYPE_INT);
+		if(! bAvrcp){
+			goto exit_bt;
+		}
+		if (WAIT_OBJECT_0 == dwWait) {
+			AvrcpMsg btAvrcp;
+			DWORD dwFlags = 0;
+			DWORD dwBytesRead = 0;
+			BOOL fRet = ReadMsgQueue (hMsgQ, &btAvrcp, sizeof(AvrcpMsg), &dwBytesRead, 10, &dwFlags);
+			if (fRet) {
+				if(hAvrcpConfMode==1){
+					avrcp_tick++;
+					if(avrcp_tick>1){
+						//_debug(L"Avrcp Config Accessed:%x,tick:%d",btAvrcp.OpId,avrcp_tick);
+						intConfAvrcpMsg=btAvrcp.OpId;
+						avrcp_tick=0;
+					}
+				}else{
+					//_debug(L"Avrcp Normal Accessed:%x",btAvrcp.OpId);
+					//
+					//0x44 & 0xC4 = Pause
+					//0x46 & 0xC6 = Play
+					//0x4B & 0xCB = Next
+					//0x4C & 0xCC = Prev
+					//Pass_thru = 0x7c
+					if(btAvrcp.OpId==GetAvrcpCmd(AVRCP_PLAY)){
+						Param=PLAYER_PLAY;
+						if(Player->Get(Player,Param,&PlayState,sizeof(PlayState))==ERR_NONE)
+						{
+							PlayState = !PlayState;
+						}else{
+							PlayState = 1 - PlayState;
+						}
+						Player->Set(Player,Param,&PlayState,sizeof(PlayState));
+					}else if(btAvrcp.OpId==GetAvrcpCmd(AVRCP_PAUSE)){
+						Param=PLAYER_PLAY;
+						if(Player->Get(Player,Param,&PlayState,sizeof(PlayState))==ERR_NONE)
+						{
+							PlayState = !PlayState;
+						}else{
+							PlayState = 1 - PlayState;
+						}
+						Player->Set(Player,Param,&PlayState,sizeof(PlayState));
+					}else if(btAvrcp.OpId==GetAvrcpCmd(AVRCP_STOP)){
+						Param=PLAYER_STOP;
+						Player->Set(Player,Param,NULL,1);
+						Percent.Num = 0;
+						Percent.Den = TRACKMAX;
+						Player->Set(Player,PLAYER_PERCENT,&Percent,sizeof(Percent));
+					}else if(btAvrcp.OpId==GetAvrcpCmd(AVRCP_PREV)){
+						Param=PLAYER_PREV;
+						Player->Set(Player,Param,NULL,0);
+					}else if(btAvrcp.OpId==GetAvrcpCmd(AVRCP_NEXT)){
+						Param=PLAYER_NEXT;
+						Player->Set(Player,Param,NULL,0);
+					}else if(btAvrcp.OpId==GetAvrcpCmd(AVRCP_BACKWARD)){
+						Param=PLAYER_MOVEBACK;
+						Player->Set(Player,Param,NULL,0);
+					}else if(btAvrcp.OpId==GetAvrcpCmd(AVRCP_FORWARD)){
+						Param=PLAYER_MOVEFFWD;
+						Player->Set(Player,Param,NULL,0);
+					}
+					if(GetAvrcpCmd(AVRCP_OFFSCREEN)){
+						if(GetAvrcpCmd(AVRCP_LOCK_KEYPAD)) keybd_event(0x85,0,0,0);
+						SetSystemPowerState( NULL, POWER_STATE_IDLE, POWER_FORCE);
+					}
+				}
+				//SendMessage(HWND_BROADCAST, WM_USER+1985, btAvrcp.OpId, btAvrcp.OpCode);
+			}     
+		} 
+	}
+exit_bt:
+	if (hMsgQ) {     
+		CloseMsgQueue(hMsgQ);
+		hMsgQ=NULL;
+	} 
+	return 0;
+}
 #endif
 
 static int GetDataDefType(wincontrol* i)

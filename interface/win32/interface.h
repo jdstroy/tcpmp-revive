@@ -147,6 +147,7 @@ void Interface_Done();
 #define IF_OPTIONS_AUDIO_PREAMP_INC		0x256
 #define IF_OPTIONS_SKIN					0x260
 #define IF_OPTIONS_AUDIO_STEREO_TOGGLE	0x261
+#define IF_OPTIONS_AVRCP_SETTING		0x262
 
 #define IF_FILE							0x0DC
 #define IF_FILE_OPENFILE                0x181

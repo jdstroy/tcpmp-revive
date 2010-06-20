@@ -25,7 +25,9 @@
 #include "../win.h"
 #include "querykey_win32.h"
 #include "widcommaudio.h"
-
+#if defined(CONFIG_AVRCP)
+#define AVRCP_MSG_SZ		TEXT("Avrcp10MsgQ")
+#endif
 #if defined(TARGET_WINCE) || defined(TARGET_WIN32)
 
 #ifndef STRICT
@@ -34,6 +36,10 @@
 #include <windows.h>
 
 #define TIMER_CLOSE		507
+
+#if defined(CONFIG_AVRCP)
+int b_ExitThread=0;
+#endif
 
 typedef struct querykey
 {
@@ -45,6 +51,29 @@ typedef struct querykey
 	bool_t Keep;
 
 } querykey;
+
+#if defined(CONFIG_AVRCP)
+int GetMyAvrcpMsg (querykey* p){
+	int intTmpMsg=0;
+	MSG msg; 
+	//_debug(L"Avrcp Key Config thread created.");
+	while(b_ExitThread==0){
+		intTmpMsg = AvrcpGetOpid();
+		if(intTmpMsg) break;
+		if(PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) 
+		{ 
+			TranslateMessage(&msg); 
+			DispatchMessage(&msg); 
+		} 
+	}
+	//_debug(L"Key Avrcp Cmd:%x",intTmpMsg);
+	p->VCode = intTmpMsg;
+	p->Key = intTmpMsg;
+	PostMessage(p->Win.Wnd,WM_CLOSE,0,0);
+	//_debug(L"Avrcp Key Config thread end.");
+	return intTmpMsg;
+}
+#endif
 
 static bool_t DialogProc(querykey* p,int Msg, uint32_t wParam, uint32_t lParam, int* Result)
 {
@@ -138,6 +167,9 @@ static bool_t Proc(querykey* p,int Msg, uint32_t wParam, uint32_t lParam, int* R
 		break;
 
 	case WM_CLOSE:
+#if defined(CONFIG_AVRCP)	
+		b_ExitThread=1;
+#endif		
 		KillTimer(p->Win.Wnd,TIMER_CLOSE);
 		if (p->Keep)
 		{
@@ -203,6 +235,12 @@ static int Create(querykey* p)
 	p->Win.Command = (wincommand)Command;
 	p->Win.Init = Init;
 	p->Win.Node.Get = Get;
+#if defined(CONFIG_AVRCP)	
+	AvrcpConfMode(1);
+	if(!IsAvrcpThreadRunning()) ThreadCreate(AvrcpMsgProcess,p,1);
+	b_ExitThread=0;
+	ThreadCreate(GetMyAvrcpMsg,p,1);
+#endif	
 	return ERR_NONE;
 }
 
@@ -222,6 +260,7 @@ void QueryKey_Init()
 
 void QueryKey_Done()
 {
+	//CloseMyAvrcpMsgQueue();
 	NodeUnRegisterClass(QUERYKEY_ID);
 }
 
