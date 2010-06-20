@@ -1895,6 +1895,11 @@ static int UpdateTrackBar(intface* p,bool_t DoResize)
 
 static void BeforeExit(intface* p)
 {
+#if defined(TARGET_WINCE) //mod2010: variables for handling registry
+	HKEY hKey;
+	DWORD dwDisp;
+	int success;
+#endif
 	if (Context()->Wnd)
 	{
 		NodeRegSaveValue(0,REG_INITING,NULL,0,TYPE_INT);
@@ -1907,6 +1912,16 @@ static void BeforeExit(intface* p)
 		}
 		Context_Wnd(NULL);
 	}
+#if defined(TARGET_WINCE) //mod2010: reset play status and title in registry, can be used by homescrren plugin
+		success = RegCreateKeyEx(HKEY_LOCAL_MACHINE, T("SOFTWARE\\TCPMP\\Remote"), 0, NULL, 0, 0, NULL, &hKey, &dwDisp);//RegCreateKeyEx( HKEY_CURRENT_USER, "Software\\TCPMP\\Remote", 0,NULL, REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &hKey,&dwDisp);
+		if (success == ERROR_SUCCESS)
+		{
+			success = 0;
+			RegSetValueEx(hKey, T("PlayStatus"), 0, REG_DWORD, (CONST BYTE*)&success, sizeof(success));
+			RegSetValueEx(hKey, T("Title"), 0, REG_SZ, (LPBYTE)T(""), sizeof(T("")));
+			RegCloseKey(hKey);
+		}
+#endif
 }
 
 static void ShowError2(intface* p, const tchar_t* s)
