@@ -24,7 +24,9 @@
 #include "common.h"
 #include "playlist/m3u.h"
 #include "../config.h"
-
+#if defined(TARGET_WINCE)
+#include "windows.h" //mod2010: for RegCreateKeyEx
+#endif
 #define VIDEO_STREAMING_UNDERRUN	(256*1024)/BLOCKSIZE
 
 #define ALIGN_SIZE			4096
@@ -990,8 +992,12 @@ static void UpdateKeepAlive(player_base* p)
 
 static int SetPlay(player_base* p,bool_t Stop)
 {
+#if defined(TARGET_WINCE) //mod2010: variables for handling registry
+	HKEY hKey;
+	DWORD dwDisp;
+	int success;
+#endif
 	bool_t Refresh;
-
 	if (Stop)
 	{
 		p->Play = 0;
@@ -1052,7 +1058,14 @@ static int SetPlay(player_base* p,bool_t Stop)
 	UpdateTimeouts(p);
 	UpdateBackground(p);
 	Notify(p,PLAYER_PLAY,p->Play);
-
+#if defined(TARGET_WINCE) //mod2010: write play status to registry, can be used by homescrren plugin
+		success = RegCreateKeyEx(HKEY_LOCAL_MACHINE, T("SOFTWARE\\TCPMP\\Remote"), 0, NULL, 0, 0, NULL, &hKey, &dwDisp);//RegCreateKeyEx( HKEY_CURRENT_USER, "Software\\TCPMP\\Remote", 0,NULL, REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &hKey,&dwDisp);
+		if (success == ERROR_SUCCESS)
+		{
+			RegSetValueEx(hKey, T("PlayStatus"), 0, REG_DWORD, (CONST BYTE*)&p->Play, sizeof(p->Play));
+			RegCloseKey(hKey);
+		}
+#endif
 	return ERR_NONE;
 }
 
@@ -2196,9 +2209,13 @@ static bool_t ReDirect(player_base* p,const tchar_t* New,const tchar_t* Orig,boo
 	*Result = Load(p,Silent,OnlyLocal,Nested);
 	return 1;
 }
-
 static int Load(player_base* p,bool_t Silent,bool_t OnlyLocal,bool_t Nested)
 {
+#if defined(TARGET_WINCE) //mod2010: variables for handling registry
+	HKEY hKey;
+	DWORD dwDisp;
+	int success;
+#endif
 	tchar_t ContentType[MAXPATH];
 	array List;
 	block Probe;
@@ -2256,7 +2273,14 @@ static int Load(player_base* p,bool_t Silent,bool_t OnlyLocal,bool_t Nested)
 			tcscpy_s(p->Title,TSIZEOF(p->Title),p->PlayList[p->Current].Title);
 		else
 			URLToTitle(p->Title,TSIZEOF(p->Title),URL);
-
+#if defined(TARGET_WINCE) //mod2010: write title to registry, can be used by homescrren plugin
+		success = RegCreateKeyEx(HKEY_LOCAL_MACHINE, T("SOFTWARE\\TCPMP\\Remote"), 0, NULL, 0, 0, NULL, &hKey, &dwDisp);//RegCreateKeyEx( HKEY_CURRENT_USER, "Software\\TCPMP\\Remote", 0,NULL, REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &hKey,&dwDisp);
+		if (success == ERROR_SUCCESS)
+		{
+			RegSetValueEx(hKey, T("Title"), 0, REG_SZ, (LPBYTE)p->Title, sizeof(p->Title));
+			RegCloseKey(hKey);
+		}
+#endif
 		memset(p->StreamSkip,0,sizeof(p->StreamSkip));
 
 		UpdateSpeed(p);
@@ -2454,7 +2478,6 @@ newstream:
 #else
 	p->WaitForProcess = 0;
 #endif
-
 	return ERR_NONE;
 }
 
@@ -3755,6 +3778,7 @@ static int Set(player_base* p, int No, const void* Data, int Size)
 					p->Fill = 1;
 				}
 				Result = SetPlay(p,0);
+				
 			}
 			break;
 
