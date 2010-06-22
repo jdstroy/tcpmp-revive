@@ -29,6 +29,8 @@
 #define STRICT
 #endif
 #include <windows.h>
+//#include <Pm.h>
+//#include <Pmpolicy.h>
 
 // registry backups of original value
 #define REG_BATTERYTIMEOUT	 0x2000
@@ -60,6 +62,8 @@ void File_Done();
 #if defined(TARGET_WINCE)
 
 #define POWER_NAME			1
+#define POWER_FORCE         (DWORD)(0x00001000)
+#define POWER_NOTIFICATION_UNATTENDEDMODE  0x0003
 #define POWER_UNSPEC		-1
 #define POWER_D0			0
 #define POWER_D4			4
@@ -118,6 +122,7 @@ static HANDLE (WINAPI* FuncCreateMsgQueue)(LPCWSTR lpName, MSGQUEUEOPTIONS2* lpO
 static BOOL (WINAPI* FuncCloseMsgQueue)(HANDLE hMsgQ) = NULL;
 static HANDLE (WINAPI* FuncRequestPowerNotifications)(HANDLE  hMsgQ,DWORD Flags) = NULL;
 static DWORD (WINAPI* FuncStopPowerNotifications)(HANDLE h) = NULL;
+static BOOL (WINAPI* FuncPowerPolicyNotify)(DWORD dwMessage, DWORD dwData) = NULL; 
 
 static HMODULE CoreDLL = NULL;
 static HMODULE CEShellDLL = NULL;
@@ -451,7 +456,7 @@ void PlatformDetect(platform* p)
 
 #if defined(TARGET_WINCE)
 
-/*
+
 #define PBT_TRANSITION      1
 
 #define POWER_STATE(i)		((i)&0xFFFF0000)
@@ -471,6 +476,8 @@ static HANDLE Power = NULL;
 static HANDLE PowerMsgQueue = NULL;
 static HANDLE PowerExitEvent = NULL;
 static HANDLE PowerThreadHandle = NULL;
+static HANDLE hWAVPowerReq = NULL;
+static HANDLE hDSKPowerReq = NULL;
 
 static DWORD WINAPI PowerThread( LPVOID Parameter )
 {
@@ -491,9 +498,17 @@ static DWORD WINAPI PowerThread( LPVOID Parameter )
 
 		if (FuncReadMsgQueue(PowerMsgQueue,&Msg,sizeof(Msg),&Size,0,&Flags))
 		{
+			
 			if (Size >= sizeof(DWORD)*2 && Msg.Message == PBT_TRANSITION && Msg.Flags &&
 				PowerState != POWER_STATE(Msg.Flags))
 			{
+				if (tcscmp(Msg.SystemPowerState,T("resuming")) == 0)
+					if (FuncPowerPolicyNotify)
+						FuncPowerPolicyNotify(POWER_NOTIFICATION_UNATTENDEDMODE, TRUE);
+				if (tcscmp(Msg.SystemPowerState, T("unattended")) == 0)
+				{
+					SystemIdleTimerReset();
+				}
 				PowerState = POWER_STATE(Msg.Flags);
 				if (PowerState == POWER_STATE_ON || PowerState == POWER_STATE_SUSPEND)
 				{
@@ -532,7 +547,16 @@ static void Power_Init()
 			{
 				Power = FuncRequestPowerNotifications(PowerMsgQueue,PBT_TRANSITION);
 				if (Power)
+				{
 					PowerThreadHandle = CreateThread(NULL,0,PowerThread,0,0,&Id);
+					if (FuncSetPowerRequirement)
+					{
+						hWAVPowerReq = FuncSetPowerRequirement(T("WAV1:"), POWER_D0, POWER_NAME|POWER_FORCE, NULL, 0);
+						hDSKPowerReq = FuncSetPowerRequirement(T("DSK1:"), POWER_D0, POWER_NAME|POWER_FORCE, NULL, 0);
+					}
+					if (FuncPowerPolicyNotify)
+						FuncPowerPolicyNotify(POWER_NOTIFICATION_UNATTENDEDMODE, TRUE);
+				}
 			}
 		}
 	}
@@ -540,6 +564,14 @@ static void Power_Init()
 
 static void Power_Done()
 {
+	if (FuncPowerPolicyNotify)
+		FuncPowerPolicyNotify(POWER_NOTIFICATION_UNATTENDEDMODE, FALSE);
+	if (hWAVPowerReq && FuncReleasePowerRequirement)
+		FuncReleasePowerRequirement(hWAVPowerReq);
+	if (hDSKPowerReq && FuncReleasePowerRequirement)
+		FuncReleasePowerRequirement(hDSKPowerReq);
+
+
 	if (PowerThreadHandle)
 	{
 		SetEvent(PowerExitEvent);
@@ -563,10 +595,10 @@ static void Power_Done()
 		PowerExitEvent = NULL;
 	}
 }
-*/
 
-static void Power_Init() {}
-static void Power_Done() {}
+
+//static void Power_Init() {}
+//static void Power_Done() {}
 
 #endif
 
@@ -594,6 +626,7 @@ void Platform_Init()
 		*(FARPROC*)&FuncCloseMsgQueue = GetProcAddress(CoreDLL,T("CloseMsgQueue"));
 		*(FARPROC*)&FuncRequestPowerNotifications = GetProcAddress(CoreDLL,T("RequestPowerNotifications"));
 		*(FARPROC*)&FuncStopPowerNotifications = GetProcAddress(CoreDLL,T("StopPowerNotifications"));
+		*(FARPROC*)&FuncPowerPolicyNotify = GetProcAddress(CoreDLL,T("PowerPolicyNotify"));
 	}
 	CEShellDLL = LoadLibrary(T("ceshell.dll"));
 	if (CEShellDLL)
