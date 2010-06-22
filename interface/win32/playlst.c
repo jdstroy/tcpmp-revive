@@ -167,7 +167,7 @@ static void AddCol(playlistwin* p, int Index, const tchar_t* Name, int Width, in
 
 static void CreateButtons(playlistwin* p)
 {
-	if (QueryPlatform(PLATFORM_TYPENO) != TYPE_SMARTPHONE)
+	if ((QueryPlatform(PLATFORM_TYPENO) != TYPE_SMARTPHONE) && !p->Win.PPCSoftMenu)
 	{
 		WinBitmap(&p->Win,IDB_PLAYLIST16,IDB_PLAYLIST32,5);
 		WinAddButton(&p->Win,-1,-1,NULL,0);
@@ -242,6 +242,7 @@ static void EndUpdate(playlistwin* p)
 static void Play(playlistwin* p, int i)
 {
 	bool_t b;
+	int Id;
 	node* Format;
 
 	p->Player->Set(p->Player,PLAYER_LIST_CURRENT,&i,sizeof(i));
@@ -252,8 +253,7 @@ static void Play(playlistwin* p, int i)
 		b = 1;
 		p->Player->Set(p->Player,PLAYER_PLAY,&b,sizeof(b));
 	}
-
-	WinClose(&p->Win);
+	//WinClose(&p->Win);
 }
 
 static bool_t Proc(playlistwin* p,int Msg, uint32_t wParam, uint32_t lParam, int* Result)
@@ -523,6 +523,11 @@ WINCREATE(PlayList)
 
 static int Create(playlistwin* p)
 {
+#if defined(CONFIG_PPC_SOFTMENU)
+	p->Win.PPCSoftMenu = p->Win.Smartphone ? 0 : 1;
+#else
+	p->Win.PPCSoftMenu = 0;
+#endif
 	PlayListCreate(&p->Win);
 
 	if (!p->Win.Smartphone)

@@ -78,6 +78,8 @@ void OpenFile_Done();
 #define OPENFILE_SELECTDIR2		0x21C
 #define OPENFILE_URL			0x21D
 #define OPENFILE_LIST			0x21E
+#define OPENFILE_BACK			0x21F
+#define OPENFILE_SELECT_RECURS	0x220
 
 #define OPENFLAG_SAVE	0x01
 // single mode (no multiple possible)
