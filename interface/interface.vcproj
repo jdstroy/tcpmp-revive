@@ -60,7 +60,7 @@
 				Name="VCCLCompilerTool"
 				ExecutionBucket="7"
 				Optimization="0"
-				PreprocessorDefinitions="_WIN32_WCE=$(CEVER);UNDER_CE=$(CEVER);WINCE;$(PLATFORMDEFINES);_DEBUG;DEBUG;_WINDOWS;_USRDLL;INTERFACE_EXPORTS;$(ARCHFAM);$(_ARCHFAM_);_UNICODE;UNICODE;CONFIG_AVRCP"
+				PreprocessorDefinitions="_WIN32_WCE=$(CEVER);UNDER_CE=$(CEVER);WINCE;$(PLATFORMDEFINES);_DEBUG;DEBUG;_WINDOWS;_USRDLL;INTERFACE_EXPORTS;$(ARCHFAM);$(_ARCHFAM_);_UNICODE;UNICODE;CONFIG_AVRCP;CONFIG_PPC_SOFTMENU"
 				MinimalRebuild="true"
 				RuntimeLibrary="1"
 				BufferSecurityCheck="false"
@@ -314,7 +314,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				PreprocessorDefinitions="INTERFACE_EXPORTS;_CRT_SECURE_NO_WARNINGS"
+				PreprocessorDefinitions="INTERFACE_EXPORTS;_CRT_SECURE_NO_WARNINGS;CONFIG_PPC_SOFTMENU"
 				WarningLevel="3"
 				DebugInformationFormat="3"
 			/>
@@ -469,7 +469,7 @@
 				Name="VCCLCompilerTool"
 				ExecutionBucket="7"
 				Optimization="2"
-				PreprocessorDefinitions="_WIN32_WCE=$(CEVER);UNDER_CE=$(CEVER);WINCE;$(PLATFORMDEFINES);NDEBUG;_WINDOWS;_USRDLL;INTERFACE_EXPORTS;$(ARCHFAM);$(_ARCHFAM_);_UNICODE;UNICODE;CONFIG_AVRCP"
+				PreprocessorDefinitions="_WIN32_WCE=$(CEVER);UNDER_CE=$(CEVER);WINCE;$(PLATFORMDEFINES);NDEBUG;_WINDOWS;_USRDLL;INTERFACE_EXPORTS;$(ARCHFAM);$(_ARCHFAM_);_UNICODE;UNICODE;CONFIG_AVRCP;CONFIG_PPC_SOFTMENU"
 				RuntimeLibrary="0"
 				BufferSecurityCheck="false"
 				UsePrecompiledHeader="0"
