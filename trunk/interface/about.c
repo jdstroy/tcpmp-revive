@@ -69,6 +69,7 @@ static int Init(about* p)
 
 	WinTitle(&p->Win,p->Title);
 	WinLabel(&p->Win,&y,-1,-1,T("The Core Pocket Media Player"),12,LABEL_BOLD|LABEL_CENTER,NULL);
+	WinLabel(&p->Win,&y,-1,-1,T("(bimbam69's unnoficial build)"),12,LABEL_BOLD|LABEL_CENTER,NULL);
 	WinLabel(&p->Win,&y,-1,-1,p->Head,11,LABEL_CENTER,NULL);
 
 #if defined(CONFIG_DEMO)
@@ -84,6 +85,9 @@ static int Init(about* p)
 	y+=7;
 	WinLabel(&p->Win,&y,-1,-1,T("CoreCodec Audio / Video Project"),11,LABEL_CENTER,NULL);
 	WinLabel(&p->Win,&y,-1,-1,T("http://www.corecodec.org"),11,LABEL_BOLD|LABEL_CENTER,NULL);
+	y+=7;
+	WinLabel(&p->Win,&y,-1,-1,T("Latest unnoficial builds:"),11,LABEL_CENTER,NULL);
+	WinLabel(&p->Win,&y,-1,-1,T("http://tcpmp-revive.googlecode.com"),11,LABEL_BOLD|LABEL_CENTER,NULL);
 	y+=7;
 
 	Translate = LangStr(ABOUT_ID,ABOUT_TRANSLATION);
@@ -138,13 +142,21 @@ WINCREATE(About)
 static int Create(about* p)
 {
 	context* c = Context();
+#if defined(CONFIG_PPC_SOFTMENU)
+	p->Win.PPCSoftMenu = p->Win.Smartphone ? 0 : 1;
+#else
+	p->Win.PPCSoftMenu = 0;
+#endif
 	AboutCreate(&p->Win);
 
 	p->Win.WinWidth = 180;
 	p->Win.WinHeight = 240;
 	p->Win.Flags |= WIN_DIALOG;
 #ifdef WINSHOWHTML
-	p->Win.MenuDef = (p->Win.Flags & WIN_2BUTTON) ? MenuDef2 : MenuDef;
+	if (p->Win.PPCSoftMenu)
+		p->Win.MenuDef = MenuDef2;
+	else
+		p->Win.MenuDef = (p->Win.Flags & WIN_2BUTTON) ? MenuDef2 : MenuDef;
 #else
 	p->Win.MenuDef = MenuDef;
 #endif

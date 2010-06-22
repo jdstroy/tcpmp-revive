@@ -64,6 +64,7 @@ struct wincontrol
 	bool_t (*Proc)(void*, int Msg, uint32_t wParam, uint32_t lParam,int* Result);		\
 	bool_t (*DialogProc)(void*, int Msg, uint32_t wParam, uint32_t lParam,int* Result);	\
 	bool_t Smartphone;																	\
+	bool_t PPCSoftMenu;																	\
 	bool_t FullScreen;																	\
 	bool_t ScrollV;																		\
 	bool_t ScrollH;																		\

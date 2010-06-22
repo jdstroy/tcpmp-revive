@@ -33,6 +33,9 @@
 #define STRICT
 #endif
 #include <windows.h>
+#if defined(TARGET_WINCE)
+#include <sipapi.h>
+#endif
 #if _MSC_VER > 1000
 #pragma warning(disable : 4201)
 #endif
@@ -70,6 +73,7 @@ typedef struct openfile
 	HWND WndList;
 	HWND WndURL;
 	HWND WndGo;
+	HWND WndBack;
 	int* CurrentFileType;
 	int FileType;
 	int FileTypeSingle;
@@ -320,7 +324,6 @@ static void SavePos(openfile* p)
 {
 	LVITEM Item;
 	int n;
-
 	p->Last[0] = 0;
 
 	for (n=0;n<ListView_GetItemCount(p->WndList);++n)
@@ -386,7 +389,7 @@ static void UpdateSelectDir(openfile* p)
 	if (p->Flags & OPENFLAG_SINGLE) 
 		return;
 
-	if (p->Win.Smartphone)
+	if (p->Win.Smartphone || p->Win.PPCSoftMenu)
 	{
 		WinMenuCheck(&p->Win,1,OPENFILE_SELECTDIR2,p->SelectDir);
 	}
@@ -410,7 +413,7 @@ static void UpdateMultiple(openfile* p)
 	if (p->Flags & OPENFLAG_SINGLE) 
 		return;
 
-	if (p->Win.Smartphone)
+	if (p->Win.Smartphone || p->Win.PPCSoftMenu)
 	{
 		WinMenuCheck(&p->Win,1,OPENFILE_MORE,p->Multiple);
 	}
@@ -456,7 +459,6 @@ static void SetURLText(openfile* p,const tchar_t* s)
 static void AddHistory(openfile* p,const tchar_t* s)
 {
 	int i;
-
 
 	for (i=0;i<p->HistoryCount;++i)
 		if (p->History[i] && tcsicmp(p->History[i],s)==0)
@@ -944,10 +946,11 @@ static void Resize(openfile* p)
 
 		SendMessage(p->WndURL,CB_SHOWDROPDOWN,0,0);
 		r.right -= ButtonWidth;
-		MoveWindow(p->WndURL,r.left,p->Top+BorderY,r.right-r.left-BorderX,WinUnitToPixelY(&p->Win,200),0);
+		MoveWindow(p->WndURL,r.left+ButtonWidth+1,p->Top+BorderY,r.right-r.left-ButtonWidth-BorderX-1,WinUnitToPixelY(&p->Win,200),0);
 		GetWindowRect(p->WndURL,&Combo);
 		URLHeight = Combo.bottom - Combo.top + BorderY*2;
 		MoveWindow(p->WndGo,r.right,p->Top+BorderY,ButtonWidth,URLHeight-BorderY*2,0);
+		MoveWindow(p->WndBack, r.left, p->Top+BorderY, ButtonWidth, URLHeight-BorderY*2,0);
 	}
 
 	GetClientRect(p->Win.Wnd,&r);
@@ -998,6 +1001,15 @@ static bool_t DialogProc(openfile* p,int Msg, uint32_t wParam, uint32_t lParam, 
 		if (p->WndGo == (HWND)lParam && HIWORD(wParam)==BN_CLICKED && !p->InUpdate)
 			SendMessage(p->Win.Wnd,WM_COMMAND,OPENFILE_GO,0);
 
+		if (p->WndBack == (HWND)lParam && HIWORD(wParam)==BN_CLICKED && !p->InUpdate)
+		{
+			if (UpperPath(p->Path,p->Last,TSIZEOF(p->Last))) 
+			{
+				p->LastClick = -1;
+				UpdateList(p,1,1);
+			}
+		}
+
 		if (p->WndURL == (HWND)lParam)
 		{
 			if (p->Win.Smartphone)
@@ -1031,10 +1043,16 @@ static bool_t DialogProc(openfile* p,int Msg, uint32_t wParam, uint32_t lParam, 
 
 				case CBN_SETFOCUS:
 					WinPropFocus(&p->Win,&p->Win.Node,OPENFILE_URL,0);
+#if defined(TARGET_WINCE)
+					SipShowIM(SIPF_ON);
+#endif
 					p->Win.CaptureKeys = 1;
 					break;
 
 				case CBN_KILLFOCUS:
+#if defined(TARGET_WINCE)
+					SipShowIM(SIPF_OFF);
+#endif
 					p->Win.CaptureKeys = 0;
 					break;
 				}
@@ -1133,9 +1151,41 @@ static const menudef MenuDefSmartSingleSave[] =
 
 	MENUDEF_END
 };
+static const menudef MenuDefPPCSoftMenu[] =
+{
+	{ 0,PLATFORM_ID, PLATFORM_OK },
+	{ 0,OPENFILE_ID, OPENFILE_OPTIONS },
+	{ 1,OPENFILE_ID, OPENFILE_MORE },
+	{ 1,OPENFILE_ID, OPENFILE_SELECTALL },
+	{ 1,OPENFILE_ID, OPENFILE_SELECT_RECURS },
+	{ 1,OPENFILE_ID, OPENFILE_SELECTDIR2 },
+	{ 1,OPENFILE_ID, OPENFILE_FILTER },
+	{ 2,OPENFILE_ID, OPENFILE_ALL_FILES },
+	{ 1,OPENFILE_ID, OPENFILE_HISTORYMENU },
+	{ 2,OPENFILE_ID, OPENFILE_EMPTY },
+	{ 1,OPENFILE_ID, OPENFILE_ONLYNAME },
+	{ 1,PLATFORM_ID, PLATFORM_CANCEL },
+
+	MENUDEF_END
+};
+
+static const menudef MenuDefPPCSoftMenuSingle[] =
+{
+	{ 0,PLATFORM_ID, PLATFORM_OK },
+	{ 0,OPENFILE_ID, OPENFILE_OPTIONS },
+	{ 1,OPENFILE_ID, OPENFILE_FILTER },
+	{ 2,OPENFILE_ID, OPENFILE_ALL_FILES },
+	{ 1,OPENFILE_ID, OPENFILE_HISTORYMENU },
+	{ 2,OPENFILE_ID, OPENFILE_EMPTY },
+	{ 1,OPENFILE_ID, OPENFILE_ONLYNAME },
+	{ 1,PLATFORM_ID, PLATFORM_CANCEL },
+
+	MENUDEF_END
+};
 
 static int Command(openfile* p,int i)
 {
+	bool_t SelectDirDefault, MultipleDefault;
 	if (i>=OPENFILE_HISTORY && i<OPENFILE_HISTORY+p->HistoryCount && !p->InUpdate)
 	{
 		SetURLText(p,p->History[i-OPENFILE_HISTORY]);					
@@ -1211,6 +1261,20 @@ static int Command(openfile* p,int i)
 		WinPropFocus(&p->Win,&p->Win.Node,OPENFILE_URL,1);
 		break;
 
+	case OPENFILE_SELECT_RECURS:
+		SelectDirDefault = p->SelectDir;
+		MultipleDefault = p->Multiple;
+		if (!p->SelectDir)
+			p->SelectDir = 1;
+		if (!p->Multiple)
+			p->Multiple = 1;
+		//UpdateSelectDir(p);
+		//SelectAll(p);
+		//UpdateMultiple(p);
+		SelectAll(p);
+		//p->SelectDir = SelectDirDefault;
+		//p->Multiple = MultipleDefault;
+		break;
 	case OPENFILE_SELECTDIR:
 	case OPENFILE_SELECTDIR2:
 		p->SelectDir = !p->SelectDir;
@@ -1234,7 +1298,6 @@ static int Command(openfile* p,int i)
 		*p->CurrentFileType = ARRAYBEGIN(p->Types,int)[i-OPENFILE_TYPES];
 		UpdateFileType(p,1);
 	}
-
 	return ERR_INVALID_PARAM;
 }
 
@@ -1246,7 +1309,6 @@ static bool_t Proc(openfile* p,int Msg, uint32_t wParam, uint32_t lParam, int* R
 	wincontrol* Control;
 	bool_t HasHost;
 	tchar_t Mime[MAXMIME];
-
 	switch (Msg)
 	{
 	case WM_KEYDOWN:
@@ -1273,6 +1335,8 @@ static bool_t Proc(openfile* p,int Msg, uint32_t wParam, uint32_t lParam, int* R
 				p->Win.MenuDef = MenuDefSmartSingleSave;
 			else
 				p->Win.MenuDef = (p->Flags & OPENFLAG_SINGLE) ? MenuDefSmartSingle : MenuDefSmart;
+		else if (p->Win.PPCSoftMenu)
+			p->Win.MenuDef = (p->Flags & OPENFLAG_SINGLE) ? MenuDefPPCSoftMenuSingle : MenuDefPPCSoftMenu;
 		else
 			p->Win.MenuDef = (p->Flags & OPENFLAG_SINGLE) ? MenuDefSingle : MenuDef;
 		break;
@@ -1281,6 +1345,7 @@ static bool_t Proc(openfile* p,int Msg, uint32_t wParam, uint32_t lParam, int* R
 		if (p->Win.Smartphone)
 		{
 			p->WndGo = NULL;
+			p->WndBack = NULL;
 			p->WndURL = CreateWindow(T("EDIT"), NULL, WS_TABSTOP|WS_VISIBLE|WS_CHILD|WS_BORDER|ES_AUTOHSCROLL, 
 				0,0,10,10,p->Win.WndDialog, NULL, p->Win.Module, NULL);
 			SetWindowLong(p->WndURL,GWL_USERDATA,1); // send back key to control
@@ -1298,6 +1363,12 @@ static bool_t Proc(openfile* p,int Msg, uint32_t wParam, uint32_t lParam, int* R
 
 			FontSize = 11;
 			SendMessage(p->WndGo,WM_SETFONT,(WPARAM)WinFont(&p->Win,&FontSize,0),0);
+
+			p->WndBack = CreateWindow(T("BUTTON"),NULL,WS_TABSTOP|WS_VISIBLE|WS_CHILD|BS_PUSHBUTTON|BS_NOTIFY,
+				0,0,10,10,p->Win.WndDialog, NULL, p->Win.Module, NULL );
+			SetWindowText(p->WndBack, LangStr(OPENFILE_ID,OPENFILE_BACK));
+			SendMessage(p->WndBack,WM_SETFONT,(WPARAM)WinFont(&p->Win,&FontSize,0),0);
+
 		}
 
 		FontSize = 12;
@@ -1314,7 +1385,7 @@ static bool_t Proc(openfile* p,int Msg, uint32_t wParam, uint32_t lParam, int* R
 
 		if (WinUnitToPixelX(&p->Win,72) >= 96*2)
 			ListView_SetImageList(p->WndList,
-				ImageList_LoadBitmap(p->Win.Module,MAKEINTRESOURCE(IDB_FICON32),48,0,0xFF00FF), LVSIL_SMALL); //Mos2010
+				ImageList_LoadBitmap(p->Win.Module,MAKEINTRESOURCE(IDB_FICON32),48,0,0xFF00FF), LVSIL_SMALL); //Mod2010
 		else
 			ListView_SetImageList(p->WndList,
 				ImageList_LoadBitmap(p->Win.Module,MAKEINTRESOURCE(IDB_FICON16),32,0,0xFF00FF), LVSIL_SMALL); //Mod2010
@@ -1558,6 +1629,12 @@ static void Delete(openfile* p)
 
 static int Create(openfile* p)
 {
+
+#if defined(CONFIG_PPC_SOFTMENU)
+	p->Win.PPCSoftMenu = p->Win.Smartphone ? 0 : 1;
+#else
+	p->Win.PPCSoftMenu = 0;
+#endif
 	p->OnlyName = p->Win.Smartphone;
 	p->DlgWidth[1] = 40;
 	p->DlgWidth[2] = 46;
