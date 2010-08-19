@@ -198,7 +198,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/ALIGN:4096 /subsystem:windowsce,5.00 /machine:ARM /ARMPADCODE"
+				AdditionalOptions="/ALIGN:4096 /subsystem:windowsce,4.20 /machine:ARM /ARMPADCODE"
 				AdditionalDependencies="commctrl.lib coredll.lib"
 				OutputFile="$(OutDir)\player.exe"
 				LinkIncremental="1"
