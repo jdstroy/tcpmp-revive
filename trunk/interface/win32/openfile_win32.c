@@ -27,6 +27,8 @@
 #include "interface.h"
 #include "resource.h"
 
+extern BOOL (WINAPI* FuncSipShowIM)(DWORD);
+
 #if defined(TARGET_WINCE) || defined(TARGET_WIN32)
 
 #ifndef STRICT
@@ -1044,14 +1046,18 @@ static bool_t DialogProc(openfile* p,int Msg, uint32_t wParam, uint32_t lParam, 
 				case CBN_SETFOCUS:
 					WinPropFocus(&p->Win,&p->Win.Node,OPENFILE_URL,0);
 #if defined(TARGET_WINCE)
-					SipShowIM(SIPF_ON);
+					if (FuncSipShowIM) {
+						FuncSipShowIM(SIPF_ON);
+					}
 #endif
 					p->Win.CaptureKeys = 1;
 					break;
 
 				case CBN_KILLFOCUS:
 #if defined(TARGET_WINCE)
-					SipShowIM(SIPF_OFF);
+					if (FuncSipShowIM) {
+						FuncSipShowIM(SIPF_OFF);
+					}
 #endif
 					p->Win.CaptureKeys = 0;
 					break;

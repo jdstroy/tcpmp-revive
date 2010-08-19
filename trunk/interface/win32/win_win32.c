@@ -300,7 +300,7 @@ typedef struct SIPINFO
 static HMODULE AygShell = NULL;
 static HMODULE CoreDLL = NULL;
 static BOOL (WINAPI* FuncSipGetInfo)(SIPINFO *pSipInfo) = NULL;
-static BOOL (WINAPI* FuncSipShowIM)(DWORD) = NULL;
+BOOL (WINAPI* FuncSipShowIM)(DWORD) = NULL;
 static BOOL (WINAPI* FuncSHCreateMenuBar)( SHMENUBARINFO *pmb ) = NULL;
 static BOOL (WINAPI* FuncSHInitDialog)( SHINITDLGINFO *shdi ) = NULL;
 static BOOL (WINAPI* FuncSHFullScreen)( HWND, DWORD ) = NULL;
