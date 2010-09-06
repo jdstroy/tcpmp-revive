@@ -153,6 +153,9 @@ void CPUDetect(cpudetect* p)
 			case 0x12:
 				p->Model = T("PXA210");
 				break;
+			case 0x9:
+				p->Model = T("PXA31x");
+				break;
 			}
 		}
 	}
