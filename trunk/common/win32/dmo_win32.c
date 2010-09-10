@@ -38,6 +38,7 @@
 #define DMO_MODULE		0x200
 #define DMO_MODULEPPC	0x201
 #define DMO_CLASSID		0x202
+#define DMO_MODULEPPC_ALT_NAME 0x203
 
 // registry
 #define DMO_FOUND		0x400
@@ -1028,6 +1029,10 @@ static int Flush(dmo* p)
 static int Create(dmo* p)
 {
 	p->Module = LoadLibrary(LangStr(p->Codec.Node.Class,DMO_MODULEPPC));
+#if defined(TARGET_WINCE)
+	if (!p->Module)
+		p->Module = LoadLibrary(LangStr(p->Codec.Node.Class,DMO_MODULEPPC_ALT_NAME));
+#endif
 	GetProc(&p->Module,&p->CreateCodecDMO,T("CreateCodecDMO"),0);
 	GetProc(&p->Module,&p->CreateCodecDMOEx,T("CreateCodecDMOEx"),1);
 	GetProc(&p->Module,&p->QueryUnloadCodecDMO,T("QueryUnloadCodecDMO"),1);
