@@ -3021,6 +3021,10 @@ static int Create(win* p)
 {
 	UpdateDPI(p); // with NULL Wnd, because we need ScreenWidth
 	p->Smartphone = QueryPlatform(PLATFORM_TYPENO) == TYPE_SMARTPHONE;
+	if (!p->Smartphone)
+		p->PPCSoftMenu = !QueryAdvanced(ADVANCED_OLD_MENU);
+	else
+		p->PPCSoftMenu = 0;
 	p->Popup = Popup;
 	p->Closed = 1;
 	return ERR_NONE;

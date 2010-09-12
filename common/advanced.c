@@ -27,6 +27,7 @@ typedef struct advanced
 {
 	node Node;
 	bool_t OldShell;
+	bool_t OldMenu;
 	bool_t SlowVideo;
 	bool_t ColorLookup;
 	bool_t NoBackLight;
@@ -60,6 +61,8 @@ static const datatable Params[] =
 	{ ADVANCED_HOMESCREEN, TYPE_BOOL, DF_SETUP|DF_CHECKLIST },
 #if defined(TARGET_WINCE)
 	{ ADVANCED_OLDSHELL,	TYPE_BOOL, DF_SETUP|DF_RESTART|DF_CHECKLIST },
+	{ ADVANCED_OLD_MENU,	TYPE_BOOL, DF_SETUP|DF_RESTART|DF_CHECKLIST },
+
 #endif
 #if defined(ARM) 
 	{ ADVANCED_NOWMMX,		TYPE_BOOL, DF_SETUP|DF_CHECKLIST|DF_RESTART },
@@ -122,6 +125,8 @@ static int Enum(advanced* p, int* No, datadef* Param)
 			QueryPlatform(PLATFORM_TYPENO) == TYPE_SMARTPHONE || 
 			(QueryPlatform(PLATFORM_TYPENO) == TYPE_POCKETPC && QueryPlatform(PLATFORM_VER) >= 421)))
 			Param->Flags |= DF_HIDDEN;
+		if (Param->No == ADVANCED_OLD_MENU && (QueryPlatform(PLATFORM_TYPENO) == TYPE_SMARTPHONE))
+			Param->Flags |= DF_HIDDEN;
 #endif
 #if defined(TARGET_PALMOS)
 		if (Param->No == ADVANCED_MEMORYOVERRIDE && !MemGetInfo(NULL))
@@ -167,6 +172,7 @@ static int Get(advanced* p, int No, void* Data, int Size)
 	case ADVANCED_NOBATTERYWARNING: GETVALUE(p->NoBatteryWarning,bool_t); break;
 	case ADVANCED_NOEVENTCHECKING: GETVALUE(p->NoEventChecking,bool_t); break;
 	case ADVANCED_CARDPLUGINS: GETVALUE(p->CardPlugins,bool_t); break;
+	case ADVANCED_OLD_MENU: GETVALUE(p->OldMenu,bool_t); break;
 	}
 	return Result;
 }
@@ -201,6 +207,7 @@ static int Set(advanced* p, int No, const void* Data, int Size)
 	case ADVANCED_NOBATTERYWARNING: SETVALUE(p->NoBatteryWarning,bool_t,ERR_NONE); break;
 	case ADVANCED_NOEVENTCHECKING: SETVALUECMP(p->NoEventChecking,bool_t,NodeSettingsChanged(),EqBool); break;
 	case ADVANCED_CARDPLUGINS: SETVALUE(p->CardPlugins,bool_t,ERR_NONE); break;
+	case ADVANCED_OLD_MENU: SETVALUE(p->OldMenu,bool_t,ERR_NONE); break;
 	case ADVANCED_WIDCOMMDLL: 
 		assert(Size==sizeof(bool_t));
 		if (p->WidcommDLL && !*(bool_t*)Data)

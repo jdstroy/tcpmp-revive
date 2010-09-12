@@ -1716,7 +1716,7 @@ static void CreateVolumeTrack(intface* p)
 	!p->Skin->Valid
 	this makes sure that volume track is'nt displayded when skin is loaded
 	*/
-	if ((QueryPlatform(PLATFORM_TYPENO) != TYPE_SMARTPHONE) && !p->Skin->Valid)
+	if (((QueryPlatform(PLATFORM_TYPENO) != TYPE_SMARTPHONE) && !p->Skin->Valid) || !p->Win.PPCSoftMenu)
 	{
 		WNDCLASS WinClass;
 
@@ -3320,7 +3320,7 @@ static bool_t Proc(intface* p, int Msg, uint32_t wParam, uint32_t lParam, int* R
 
 		SkinLoad(p->Skin,p->Win.Wnd,p->SkinPath);
 
-		if (!p->Skin[0].Valid)
+		if (!p->Skin[0].Valid || !p->Win.PPCSoftMenu)
 			CreateButtons(p);
 		UpdateSkin(p,0);
 		UpdateTrackBar(p,0);

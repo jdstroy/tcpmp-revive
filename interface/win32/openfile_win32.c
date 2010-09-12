@@ -26,8 +26,9 @@
 #include "openfile_win32.h"
 #include "interface.h"
 #include "resource.h"
-
-extern BOOL (WINAPI* FuncSipShowIM)(DWORD);
+#if defined(TARGET_WINCE)
+	extern BOOL (WINAPI* FuncSipShowIM)(DWORD);
+#endif
 
 #if defined(TARGET_WINCE) || defined(TARGET_WIN32)
 
@@ -1635,12 +1636,6 @@ static void Delete(openfile* p)
 
 static int Create(openfile* p)
 {
-
-#if defined(CONFIG_PPC_SOFTMENU)
-	p->Win.PPCSoftMenu = p->Win.Smartphone ? 0 : 1;
-#else
-	p->Win.PPCSoftMenu = 0;
-#endif
 	p->OnlyName = p->Win.Smartphone;
 	p->DlgWidth[1] = 40;
 	p->DlgWidth[2] = 46;
