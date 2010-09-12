@@ -48,6 +48,7 @@
 #define ADVANCED_WAVEOUTPRIORITY 0x3F
 #define ADVANCED_NODEBLOCKING	0x41
 #define ADVANCED_BLINKLED		0x42
+#define ADVANCED_OLD_MENU		0x43
 
 // these are not boolean (should not use QueryAdvanced)
 #define ADVANCED_DROPTOL		0x2A

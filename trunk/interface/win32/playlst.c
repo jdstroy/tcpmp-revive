@@ -523,11 +523,6 @@ WINCREATE(PlayList)
 
 static int Create(playlistwin* p)
 {
-#if defined(CONFIG_PPC_SOFTMENU)
-	p->Win.PPCSoftMenu = p->Win.Smartphone ? 0 : 1;
-#else
-	p->Win.PPCSoftMenu = 0;
-#endif
 	PlayListCreate(&p->Win);
 
 	if (!p->Win.Smartphone)

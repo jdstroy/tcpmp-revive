@@ -142,11 +142,6 @@ WINCREATE(About)
 static int Create(about* p)
 {
 	context* c = Context();
-#if defined(CONFIG_PPC_SOFTMENU)
-	p->Win.PPCSoftMenu = p->Win.Smartphone ? 0 : 1;
-#else
-	p->Win.PPCSoftMenu = 0;
-#endif
 	AboutCreate(&p->Win);
 
 	p->Win.WinWidth = 180;
