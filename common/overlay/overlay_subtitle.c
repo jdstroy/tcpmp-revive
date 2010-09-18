@@ -1563,6 +1563,8 @@ void SubtitleLoad(subtitlex *p) {
 	if(tcscmp(s2, p->OpenedFile) != 0){
 
 		Player->Get(Player,PLAYER_FORMAT,&Reader,sizeof(Reader));
+		if (!Reader)
+			return;
 		for (No=0;Reader->Get(Reader,FORMAT_STREAM+No,&Pin,sizeof(Pin))==ERR_NONE;++No)
 			if (PlayerGetStream((player*)Player,No,&Format,NULL,0,NULL))
 			{
