@@ -26,12 +26,13 @@ LANGSV=Swedish
 LANGTR=Türkçe
 LANGHE=Hebrew
 LANGUA=Ukrainian
+LANGLT=Lithuanian
 
 ; strings without language (or only internally used)
 ; no translation needed
 
 ABOU00CE= - Ogg Vorbis Tremor\n - ffmpeg (parts)\n - liba52\n - Matroska Library Parser\n - zlib\n - Peal\n - libmusepack\n - libmikmod\n - Mobile Stream Rot. headers\n - Intel 2700G SDK headers\n - CoreTheque
-ABOU00D0= - Picard da man!\n - ffmpeg\n - PocketMVP aka Marc Dukette\n - XviD\n - The Magic Lantern
+ABOU00D0= - Picard da man!\n - ffmpeg\n - PocketMVP aka Marc Dukette\n - XviD\n - The Magic Lantern\n - fmarozz\n - nv\n - nikoro\n - eoc
 DRAW0000=DirectDraw
 DIRC0000=Direct
 FLYT0000=FlyPresenter
@@ -351,14 +352,16 @@ FAAD0001=acodec/0xAAC0,acodec/0x00FF
 AACF0001=acodec/0xAAC0,acodec/0x00FF
 WMV_0001=vcodec/mp43,vcodec/mp42,vcodec/mpeg3,vcodec/wmv1,vcodec/wmv2,vcodec/wmv3,vcodec/wmvp,vcodec/wvp2,vcodec/wmva,vcodec/mss2
 WMV_0200=wmvdmod.dll
-WMV_0201=wmv9decoder.dll
+WMV_0201=wmvdecoder.dll
+WMV_0203=wmv9decoder.dll
 WMV_0202=82d353df-90bd-4382-8bc2-3f6192b76e34
 WMVA0001=vcodec/wvp2,vcodec/wmva
 WMVA0200=wmvadvd.dll
 WMVA0202=03BE3AC4-84B7-4E0E-A78D-D3524E60395A
 WMA_0001=acodec/0x0160,acodec/0x0161,acodec/0x0162,acodec/0x0163,acodec/0x000A
 WMA_0200=wmadmod.dll
-WMA_0201=wma9decoder.dll
+WMA_0201=wmadecoder.dll
+WMA_0203=wma9prodecoder.dll
 WMA_0202=2eeb4adf-4578-4d10-bca7-bb955f56320a
 WMAV0001=acodec/0x000A
 WMAV0200=wmspdmod.dll
