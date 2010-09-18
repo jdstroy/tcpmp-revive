@@ -170,6 +170,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_E61B8082E7774B7E8F8DA2548A226DB4"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_ECA90D8008E741E3B8BDB171312D177D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -362,6 +368,24 @@
             "TargetName" = "8:wavpack.plg"
             "Tag" = "8:"
             "Folder" = "8:_44BF2EEA229B4C7098810727D7C53318"
+            "Condition" = "8:"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "Register" = "3:0"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{BA458234-9B71-4F46-8107-E91156377184}:_E61B8082E7774B7E8F8DA2548A226DB4"
+            {
+            "SourcePath" = "8:Release\\tcpmp.png"
+            "TargetName" = "8:tcpmp.png"
+            "Tag" = "8:"
+            "Folder" = "8:_F37307A696404E35A84D97500E1F2BF0"
             "Condition" = "8:"
             "Vital" = "11:TRUE"
             "ReadOnly" = "11:FALSE"
@@ -981,6 +1005,68 @@
             {
                 "Keys"
                 {
+                    "{B1EBC968-6B66-4532-A885-748B79AF4477}:_34A232DE1C964E52A5D701EB1FACAD13"
+                    {
+                    "Name" = "8:Security"
+                    "Condition" = "8:"
+                        "Keys"
+                        {
+                            "{B1EBC968-6B66-4532-A885-748B79AF4477}:_5928853CFC524F609C976BC5C4D07143"
+                            {
+                            "Name" = "8:Shell"
+                            "Condition" = "8:"
+                                "Keys"
+                                {
+                                    "{B1EBC968-6B66-4532-A885-748B79AF4477}:_EFAD1892937B44398603218DEB27ADCE"
+                                    {
+                                    "Name" = "8:StartInfo"
+                                    "Condition" = "8:"
+                                        "Keys"
+                                        {
+                                            "{B1EBC968-6B66-4532-A885-748B79AF4477}:_C5CFD223BC314F15BBD42AE65B259DEF"
+                                            {
+                                            "Name" = "8:Start"
+                                            "Condition" = "8:"
+                                                "Keys"
+                                                {
+                                                    "{B1EBC968-6B66-4532-A885-748B79AF4477}:_9405B74CF8BA4206BE2B0B1A33A9F1CE"
+                                                    {
+                                                    "Name" = "8:TCPMP.lnk"
+                                                    "Condition" = "8:"
+                                                        "Keys"
+                                                        {
+                                                        }
+                                                        "Values"
+                                                        {
+                                                            "{C3684F64-58E2-4092-8E3C-D7483080DE5A}:_25E9BD5EDAFF4EC2AA48CC9CC0D3AFD0"
+                                                            {
+                                                            "Name" = "8:Icon"
+                                                            "Condition" = "8:"
+                                                            "ValueTypes" = "3:1"
+                                                            "Value" = "8:\\Windows\\tcpmp.png"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                "Values"
+                                                {
+                                                }
+                                            }
+                                        }
+                                        "Values"
+                                        {
+                                        }
+                                    }
+                                }
+                                "Values"
+                                {
+                                }
+                            }
+                        }
+                        "Values"
+                        {
+                        }
+                    }
                 }
             }
             "HKCU"
