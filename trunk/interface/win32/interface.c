@@ -1711,12 +1711,9 @@ static void UpdateVolume(intface* p)
 
 static void CreateVolumeTrack(intface* p)
 {
-	/*
-	Mod2010: added the folowing line into if statment
-	!p->Skin->Valid
-	this makes sure that volume track is'nt displayded when skin is loaded
-	*/
-	if (((QueryPlatform(PLATFORM_TYPENO) != TYPE_SMARTPHONE) && !p->Skin->Valid) || !p->Win.PPCSoftMenu)
+	if (QueryPlatform(PLATFORM_TYPENO) == TYPE_SMARTPHONE)
+		return;
+	if (!p->Skin->Valid || !p->Win.PPCSoftMenu)
 	{
 		WNDCLASS WinClass;
 
