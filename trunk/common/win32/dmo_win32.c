@@ -1113,7 +1113,7 @@ static const nodedef WMAV =
 //todo: auto find supported content-types
 static int Find(int Class)
 {
-	if (CheckModule(LangStr(Class,DMO_MODULEPPC)))
+	if (CheckModule(LangStr(Class,DMO_MODULEPPC)) || CheckModule(LangStr(Class,DMO_MODULEPPC_ALT_NAME)))
 		return 2;
 	if (CheckModule(LangStr(Class,DMO_MODULE)))
 		return 1;
