@@ -1,4 +1,7 @@
 ;CODEPAGE=1252
+;File modified 2010.09.06
+;	reson: added new strings for tcpmp-revive player build
+;	all new strings are at the bottom of this file
 
 [EN]
 GE2D0000=Sony GE2D
@@ -533,3 +536,45 @@ COSP0000=Core OS Panarama files (COSP)
 FLAC0000=Free Lossless Audio files (FLAC)
 WVPF0000=WavPack files (WV)
 TTAF0000=TTA files (TTA)
+;**********************************************************************
+;*			new strings as of 2010.09                     *
+;**********************************************************************
+OPEN021F=Back
+OPEN0220=Select Recursively
+INTF0262=AVRCP Control
+AVRP0100=Make TCPMP supports AVRCP
+AVRP0101=AVRCP Enabled
+AVRP0102=Play
+AVRP0103=Pause 
+AVRP0104=Prev
+AVRP0105=Next
+AVRP0106=Backward
+AVRP0107=Forward
+AVRP0108=Off Screen when Headset Button pressed
+AVRP0109=Auto toggle A2DP Mode
+AVRP0110=You have set "Auto toggle A2DP Mode",when you connect a Headset and run TCPMP,it will toggle A2DP output automaticlly.\n\nNOTICE:If TCPMP is already opened while Headset connecting,you must restart TCPMP to take effect.
+AVRP0111=Lock keypad while Screen Off
+AVRP0112=Stop
+SUBT0000=Subtitles
+SUBT0010=Font
+SUBT0011=Hi res size
+SUBT0012=Low res size
+SUBT0013=Low res boundary
+SUBT0014=Speed (1/10 sec)
+SUBT0016=Enabled
+SUBT0017=Bold font
+SUBT0018=Old style (shadow)
+SUBT0019=FPS (.SUB, 1/1000 sec)
+SUBT0020=Top align
+SUBT0021=Horiz. margin
+SUBT0022=Vert. margin
+SUBT001A=Do not hide text
+SUBT001B=Font color
+INTF0244=Open...
+INTF0303=Speed decrease
+INTF0304=Speed %d (clear)
+INTF0305=Speed increase
+INTF0307=Previous keyframe
+INTF0308=Repeat keyframe
+INTF0309=Subtitles on/off
+ADVP0043=Old style menu
