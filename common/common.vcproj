@@ -447,6 +447,95 @@
 			/>
 		</Configuration>
 		<Configuration
+			Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
+			OutputDirectory="Windows Mobile 6 Professional SDK (ARMV4I)\$(ConfigurationName)"
+			IntermediateDirectory="Windows Mobile 6 Professional SDK (ARMV4I)\$(ConfigurationName)"
+			ConfigurationType="2"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="1"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				ExecutionBucket="7"
+				Optimization="0"
+				PreprocessorDefinitions="FASTEST;BUILDFIXED;DYNAMIC_CRC_TABLE;NO_ERRNO_H;ZLIB_DLL;_WIN32_WCE=$(CEVER);UNDER_CE=$(CEVER);WINCE;$(PLATFORMDEFINES);_DEBUG;DEBUG;_WINDOWS;_USRDLL;COMMON_EXPORTS;$(ARCHFAM);$(_ARCHFAM_);_UNICODE;UNICODE"
+				MinimalRebuild="true"
+				RuntimeLibrary="1"
+				BufferSecurityCheck="false"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+				CompileForArchitecture="0"
+				InterworkCalls="false"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_DEBUG;_UNICODE;UNICODE;_WIN32_WCE;UNDER_CE"
+				Culture="1033"
+				AdditionalIncludeDirectories="$(IntDir)"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions="/ALIGN:4096 /subsystem:windowsce,4.20 /machine:ARM /ARMPADCODE"
+				AdditionalDependencies="commctrl.lib coredll.lib"
+				OutputFile="$(OutDir)\common.dll"
+				LinkIncremental="2"
+				DelayLoadDLLs="$(NOINHERIT)"
+				GenerateDebugInformation="true"
+				ProgramDatabaseFile="$(OutDir)/common.pdb"
+				SubSystem="0"
+				ImportLibrary="$(OutDir)/common.lib"
+				TargetMachine="0"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCCodeSignTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+			<DeploymentTool
+				ForceDirty="-1"
+				RemoteDirectory=""
+				RegisterOutput="0"
+				AdditionalFiles=""
+			/>
+			<DebuggerTool
+			/>
+		</Configuration>
+		<Configuration
 			Name="Release|Pocket PC 2003 (ARMV4)"
 			OutputDirectory="..\$(PlatformName)\$(ConfigurationName)"
 			IntermediateDirectory="$(PlatformName)\$(ConfigurationName)"
@@ -472,7 +561,7 @@
 				Name="VCCLCompilerTool"
 				ExecutionBucket="7"
 				Optimization="2"
-				PreprocessorDefinitions="FASTEST;BUILDFIXED;DYNAMIC_CRC_TABLE;NO_ERRNO_H;ZLIB_DLL;_WIN32_WCE=$(CEVER);UNDER_CE=$(CEVER);WINCE;$(PLATFORMDEFINES);NDEBUG;_WINDOWS;_USRDLL;COMMON_EXPORTS;$(ARCHFAM);$(_ARCHFAM_);_UNICODE;UNICODE;FIXED_POINT"
+				PreprocessorDefinitions="FASTEST;BUILDFIXED;DYNAMIC_CRC_TABLE;NO_ERRNO_H;ZLIB_DLL;_WIN32_WCE=$(CEVER);UNDER_CE=$(CEVER);WINCE;$(PLATFORMDEFINES);NDEBUG;_WINDOWS;_USRDLL;COMMON_EXPORTS;$(ARCHFAM);$(_ARCHFAM_);_UNICODE;UNICODE;FIXED_POINT;CONFIG_SUBS"
 				RuntimeLibrary="0"
 				BufferSecurityCheck="false"
 				UsePrecompiledHeader="0"
@@ -861,6 +950,96 @@
 				RemoteDirectory="%CSIDL_PROGRAM_FILES%\TCPMP"
 				RegisterOutput="0"
 				AdditionalFiles="%CSIDL_PROGRAM_FILES%\TCPMP2"
+			/>
+			<DebuggerTool
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)"
+			OutputDirectory="..\$(PlatformName)\$(ConfigurationName)"
+			IntermediateDirectory="$(PlatformName)\$(ConfigurationName)"
+			ConfigurationType="2"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="1"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				ExecutionBucket="7"
+				Optimization="2"
+				PreprocessorDefinitions="FASTEST;BUILDFIXED;DYNAMIC_CRC_TABLE;NO_ERRNO_H;ZLIB_DLL;_WIN32_WCE=$(CEVER);UNDER_CE=$(CEVER);WINCE;$(PLATFORMDEFINES);NDEBUG;_WINDOWS;_USRDLL;COMMON_EXPORTS;$(ARCHFAM);$(_ARCHFAM_);_UNICODE;UNICODE;FIXED_POINT"
+				RuntimeLibrary="0"
+				BufferSecurityCheck="false"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+				CompileForArchitecture="0"
+				InterworkCalls="true"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG;_UNICODE;UNICODE;_WIN32_WCE;UNDER_CE"
+				Culture="1033"
+				AdditionalIncludeDirectories="$(IntDir)"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions="/ALIGN:4096 /subsystem:windowsce,4.20 /ARMPADCODE"
+				AdditionalDependencies="commctrl.lib coredll.lib"
+				OutputFile="$(OutDir)\common.dll"
+				LinkIncremental="1"
+				DelayLoadDLLs="$(NOINHERIT)"
+				GenerateDebugInformation="true"
+				ProgramDatabaseFile="$(OutDir)/common.pdb"
+				SubSystem="0"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				ImportLibrary="$(OutDir)/common.lib"
+				TargetMachine="0"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCCodeSignTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+			<DeploymentTool
+				ForceDirty="-1"
+				RemoteDirectory=""
+				RegisterOutput="0"
+				AdditionalFiles=""
 			/>
 			<DebuggerTool
 			/>
@@ -1277,6 +1456,95 @@
 				RemoteDirectory="%CSIDL_PROGRAM_FILES%\TCPMP"
 				RegisterOutput="0"
 				AdditionalFiles="%CSIDL_PROGRAM_FILES%\TCPMP2"
+			/>
+			<DebuggerTool
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug Unicode|Windows Mobile 6 Professional SDK (ARMV4I)"
+			OutputDirectory="Windows Mobile 6 Professional SDK (ARMV4I)\$(ConfigurationName)"
+			IntermediateDirectory="Windows Mobile 6 Professional SDK (ARMV4I)\$(ConfigurationName)"
+			ConfigurationType="2"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="1"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				ExecutionBucket="7"
+				Optimization="0"
+				PreprocessorDefinitions="FASTEST;BUILDFIXED;DYNAMIC_CRC_TABLE;NO_ERRNO_H;ZLIB_DLL;_WIN32_WCE=$(CEVER);UNDER_CE=$(CEVER);WINCE;$(PLATFORMDEFINES);_DEBUG;DEBUG;_WINDOWS;_USRDLL;COMMON_EXPORTS;$(ARCHFAM);$(_ARCHFAM_);_UNICODE;UNICODE"
+				MinimalRebuild="true"
+				RuntimeLibrary="1"
+				BufferSecurityCheck="false"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+				CompileForArchitecture="0"
+				InterworkCalls="false"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_DEBUG;_UNICODE;UNICODE;_WIN32_WCE;UNDER_CE"
+				Culture="1033"
+				AdditionalIncludeDirectories="$(IntDir)"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions="/ALIGN:4096 /subsystem:windowsce,4.20 /machine:ARM /ARMPADCODE"
+				AdditionalDependencies="commctrl.lib coredll.lib"
+				OutputFile="$(OutDir)\common.dll"
+				LinkIncremental="2"
+				DelayLoadDLLs="$(NOINHERIT)"
+				GenerateDebugInformation="true"
+				ProgramDatabaseFile="$(OutDir)/common.pdb"
+				SubSystem="0"
+				ImportLibrary="$(OutDir)/common.lib"
+				TargetMachine="0"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCCodeSignTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+			<DeploymentTool
+				ForceDirty="-1"
+				RemoteDirectory=""
+				RegisterOutput="0"
+				AdditionalFiles=""
 			/>
 			<DebuggerTool
 			/>
@@ -1713,6 +1981,99 @@
 			/>
 		</Configuration>
 		<Configuration
+			Name="Release Unicode|Windows Mobile 6 Professional SDK (ARMV4I)"
+			OutputDirectory="Windows Mobile 6 Professional SDK (ARMV4I)\$(ConfigurationName)"
+			IntermediateDirectory="Windows Mobile 6 Professional SDK (ARMV4I)\$(ConfigurationName)"
+			ConfigurationType="2"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="1"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				ExecutionBucket="7"
+				Optimization="2"
+				FavorSizeOrSpeed="1"
+				WholeProgramOptimization="true"
+				PreprocessorDefinitions="FASTEST;BUILDFIXED;DYNAMIC_CRC_TABLE;NO_ERRNO_H;ZLIB_DLL;_WIN32_WCE=$(CEVER);UNDER_CE=$(CEVER);WINCE;$(PLATFORMDEFINES);NDEBUG;_WINDOWS;_USRDLL;COMMON_EXPORTS;$(ARCHFAM);$(_ARCHFAM_);_UNICODE;UNICODE"
+				RuntimeLibrary="0"
+				BufferSecurityCheck="false"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+				CompileForArchitecture="0"
+				InterworkCalls="false"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG;_UNICODE;UNICODE;_WIN32_WCE;UNDER_CE"
+				Culture="1033"
+				AdditionalIncludeDirectories="$(IntDir)"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions="/ALIGN:4096 /subsystem:windowsce,4.20 /machine:ARM /ARMPADCODE"
+				AdditionalDependencies="commctrl.lib coredll.lib"
+				OutputFile="$(OutDir)\common.dll"
+				LinkIncremental="1"
+				DelayLoadDLLs="$(NOINHERIT)"
+				GenerateDebugInformation="true"
+				ProgramDatabaseFile="$(OutDir)/common.pdb"
+				SubSystem="0"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				LinkTimeCodeGeneration="1"
+				ImportLibrary="$(OutDir)/common.lib"
+				TargetMachine="0"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCCodeSignTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+			<DeploymentTool
+				ForceDirty="-1"
+				RemoteDirectory=""
+				RegisterOutput="0"
+				AdditionalFiles=""
+			/>
+			<DebuggerTool
+			/>
+		</Configuration>
+		<Configuration
 			Name="cegcc-flac-ffmpeg-release|Pocket PC 2003 (ARMV4)"
 			OutputDirectory="Pocket PC 2003 (ARMV4)\$(ConfigurationName)"
 			IntermediateDirectory="Pocket PC 2003 (ARMV4)\$(ConfigurationName)"
@@ -2137,6 +2498,96 @@
 			/>
 		</Configuration>
 		<Configuration
+			Name="cegcc-flac-ffmpeg-release|Windows Mobile 6 Professional SDK (ARMV4I)"
+			OutputDirectory="Windows Mobile 6 Professional SDK (ARMV4I)\$(ConfigurationName)"
+			IntermediateDirectory="Windows Mobile 6 Professional SDK (ARMV4I)\$(ConfigurationName)"
+			ConfigurationType="2"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="1"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				ExecutionBucket="7"
+				Optimization="2"
+				PreprocessorDefinitions="FASTEST;BUILDFIXED;DYNAMIC_CRC_TABLE;NO_ERRNO_H;ZLIB_DLL;_WIN32_WCE=$(CEVER);UNDER_CE=$(CEVER);WINCE;$(PLATFORMDEFINES);NDEBUG;_WINDOWS;_USRDLL;COMMON_EXPORTS;$(ARCHFAM);$(_ARCHFAM_);_UNICODE;UNICODE;FIXED_POINT"
+				RuntimeLibrary="0"
+				BufferSecurityCheck="false"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+				CompileForArchitecture="0"
+				InterworkCalls="true"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG;_UNICODE;UNICODE;_WIN32_WCE;UNDER_CE"
+				Culture="1033"
+				AdditionalIncludeDirectories="$(IntDir)"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions="/ALIGN:4096 /subsystem:windowsce,4.20 /ARMPADCODE"
+				AdditionalDependencies="commctrl.lib coredll.lib"
+				OutputFile="$(OutDir)\common.dll"
+				LinkIncremental="1"
+				DelayLoadDLLs="$(NOINHERIT)"
+				GenerateDebugInformation="true"
+				ProgramDatabaseFile="$(OutDir)/common.pdb"
+				SubSystem="0"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				ImportLibrary="$(OutDir)/common.lib"
+				TargetMachine="0"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCCodeSignTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+			<DeploymentTool
+				ForceDirty="-1"
+				RemoteDirectory=""
+				RegisterOutput="0"
+				AdditionalFiles=""
+			/>
+			<DebuggerTool
+			/>
+		</Configuration>
+		<Configuration
 			Name="RaleaseNoplugins|Pocket PC 2003 (ARMV4)"
 			OutputDirectory="..\$(PlatformName)\$(ConfigurationName)"
 			IntermediateDirectory="$(PlatformName)\$(ConfigurationName)"
@@ -2445,11 +2896,8 @@
 			/>
 		</Configuration>
 		<Configuration
-			Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
-			OutputDirectory="Windows Mobile 6 Professional SDK (ARMV4I)\$(ConfigurationName)"
-			IntermediateDirectory="Windows Mobile 6 Professional SDK (ARMV4I)\$(ConfigurationName)"
-			ConfigurationType="2"
-			CharacterSet="1"
+			Name="RaleaseNoplugins|Windows Mobile 6 Professional SDK (ARMV4I)"
+			ConfigurationType="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -2465,46 +2913,22 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TargetEnvironment="1"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				ExecutionBucket="7"
-				Optimization="0"
-				PreprocessorDefinitions="FASTEST;BUILDFIXED;DYNAMIC_CRC_TABLE;NO_ERRNO_H;ZLIB_DLL;_WIN32_WCE=$(CEVER);UNDER_CE=$(CEVER);WINCE;$(PLATFORMDEFINES);_DEBUG;DEBUG;_WINDOWS;_USRDLL;COMMON_EXPORTS;$(ARCHFAM);$(_ARCHFAM_);_UNICODE;UNICODE"
-				MinimalRebuild="true"
-				RuntimeLibrary="1"
-				BufferSecurityCheck="false"
-				UsePrecompiledHeader="0"
-				WarningLevel="3"
-				DebugInformationFormat="3"
-				CompileForArchitecture="0"
-				InterworkCalls="false"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG;_UNICODE;UNICODE;_WIN32_WCE;UNDER_CE"
-				Culture="1033"
-				AdditionalIncludeDirectories="$(IntDir)"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/ALIGN:4096 /subsystem:windowsce,4.20 /machine:ARM /ARMPADCODE"
-				AdditionalDependencies="commctrl.lib coredll.lib"
-				OutputFile="$(OutDir)\common.dll"
-				LinkIncremental="2"
-				DelayLoadDLLs="$(NOINHERIT)"
-				GenerateDebugInformation="true"
-				ProgramDatabaseFile="$(OutDir)/common.pdb"
-				SubSystem="0"
-				ImportLibrary="$(OutDir)/common.lib"
-				TargetMachine="0"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -2534,9 +2958,9 @@
 			/>
 		</Configuration>
 		<Configuration
-			Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)"
-			OutputDirectory="..\$(PlatformName)\$(ConfigurationName)"
-			IntermediateDirectory="$(PlatformName)\$(ConfigurationName)"
+			Name="ReleaseWOsubs|Pocket PC 2003 (ARMV4)"
+			OutputDirectory="..\Pocket PC 2003 (ARMV4)\$(ConfigurationName)"
+			IntermediateDirectory="Pocket PC 2003 (ARMV4)\$(ConfigurationName)"
 			ConfigurationType="2"
 			CharacterSet="1"
 			>
@@ -2566,6 +2990,7 @@
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				DebugInformationFormat="3"
+				CompileAs="1"
 				CompileForArchitecture="0"
 				InterworkCalls="true"
 			/>
@@ -2583,7 +3008,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/ALIGN:4096 /subsystem:windowsce,4.20 /ARMPADCODE"
+				AdditionalOptions="/ALIGN:4096 /subsystem:windowsce,4.20 /machine:ARM /ARMPADCODE"
 				AdditionalDependencies="commctrl.lib coredll.lib"
 				OutputFile="$(OutDir)\common.dll"
 				LinkIncremental="1"
@@ -2624,9 +3049,9 @@
 			/>
 		</Configuration>
 		<Configuration
-			Name="Debug Unicode|Windows Mobile 6 Professional SDK (ARMV4I)"
-			OutputDirectory="Windows Mobile 6 Professional SDK (ARMV4I)\$(ConfigurationName)"
-			IntermediateDirectory="Windows Mobile 6 Professional SDK (ARMV4I)\$(ConfigurationName)"
+			Name="ReleaseWOsubs|Smartphone 2003 (ARMV4)"
+			OutputDirectory="Smartphone 2003 (ARMV4)\$(ConfigurationName)"
+			IntermediateDirectory="Smartphone 2003 (ARMV4)\$(ConfigurationName)"
 			ConfigurationType="2"
 			CharacterSet="1"
 			>
@@ -2649,23 +3074,20 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				ExecutionBucket="7"
-				Optimization="0"
-				PreprocessorDefinitions="FASTEST;BUILDFIXED;DYNAMIC_CRC_TABLE;NO_ERRNO_H;ZLIB_DLL;_WIN32_WCE=$(CEVER);UNDER_CE=$(CEVER);WINCE;$(PLATFORMDEFINES);_DEBUG;DEBUG;_WINDOWS;_USRDLL;COMMON_EXPORTS;$(ARCHFAM);$(_ARCHFAM_);_UNICODE;UNICODE"
-				MinimalRebuild="true"
-				RuntimeLibrary="1"
+				Optimization="2"
+				PreprocessorDefinitions="FASTEST;BUILDFIXED;DYNAMIC_CRC_TABLE;NO_ERRNO_H;ZLIB_DLL;_WIN32_WCE=$(CEVER);UNDER_CE=$(CEVER);WINCE;$(PLATFORMDEFINES);NDEBUG;_WINDOWS;_USRDLL;COMMON_EXPORTS;$(ARCHFAM);$(_ARCHFAM_);_UNICODE;UNICODE;FIXED_POINT"
+				RuntimeLibrary="0"
 				BufferSecurityCheck="false"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				DebugInformationFormat="3"
-				CompileForArchitecture="0"
-				InterworkCalls="false"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG;_UNICODE;UNICODE;_WIN32_WCE;UNDER_CE"
+				PreprocessorDefinitions="NDEBUG;_UNICODE;UNICODE;_WIN32_WCE;UNDER_CE"
 				Culture="1033"
 				AdditionalIncludeDirectories="$(IntDir)"
 			/>
@@ -2675,13 +3097,14 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/ALIGN:4096 /subsystem:windowsce,4.20 /machine:ARM /ARMPADCODE"
-				AdditionalDependencies="commctrl.lib coredll.lib"
 				OutputFile="$(OutDir)\common.dll"
-				LinkIncremental="2"
+				LinkIncremental="1"
 				DelayLoadDLLs="$(NOINHERIT)"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="$(OutDir)/common.pdb"
 				SubSystem="0"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
 				ImportLibrary="$(OutDir)/common.lib"
 				TargetMachine="0"
 			/>
@@ -2713,9 +3136,9 @@
 			/>
 		</Configuration>
 		<Configuration
-			Name="Release Unicode|Windows Mobile 6 Professional SDK (ARMV4I)"
-			OutputDirectory="Windows Mobile 6 Professional SDK (ARMV4I)\$(ConfigurationName)"
-			IntermediateDirectory="Windows Mobile 6 Professional SDK (ARMV4I)\$(ConfigurationName)"
+			Name="ReleaseWOsubs|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)"
+			OutputDirectory="Windows Mobile 5.0 Pocket PC SDK (ARMV4I)\$(ConfigurationName)"
+			IntermediateDirectory="Windows Mobile 5.0 Pocket PC SDK (ARMV4I)\$(ConfigurationName)"
 			ConfigurationType="2"
 			CharacterSet="1"
 			>
@@ -2741,14 +3164,13 @@
 				Optimization="2"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="true"
-				PreprocessorDefinitions="FASTEST;BUILDFIXED;DYNAMIC_CRC_TABLE;NO_ERRNO_H;ZLIB_DLL;_WIN32_WCE=$(CEVER);UNDER_CE=$(CEVER);WINCE;$(PLATFORMDEFINES);NDEBUG;_WINDOWS;_USRDLL;COMMON_EXPORTS;$(ARCHFAM);$(_ARCHFAM_);_UNICODE;UNICODE"
+				PreprocessorDefinitions="FASTEST;BUILDFIXED;DYNAMIC_CRC_TABLE;NO_ERRNO_H;ZLIB_DLL;_WIN32_WCE=$(CEVER);UNDER_CE=$(CEVER);WINCE;$(PLATFORMDEFINES);NDEBUG;_WINDOWS;_USRDLL;COMMON_EXPORTS;$(ARCHFAM);$(_ARCHFAM_);_UNICODE;UNICODE;FIXED_POINT"
 				RuntimeLibrary="0"
 				BufferSecurityCheck="false"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				DebugInformationFormat="3"
 				CompileForArchitecture="0"
-				InterworkCalls="false"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -2764,8 +3186,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/ALIGN:4096 /subsystem:windowsce,4.20 /machine:ARM /ARMPADCODE"
-				AdditionalDependencies="commctrl.lib coredll.lib"
+				AdditionalOptions="/ALIGN:4096 /subsystem:windowsce,5.01"
 				OutputFile="$(OutDir)\common.dll"
 				LinkIncremental="1"
 				DelayLoadDLLs="$(NOINHERIT)"
@@ -2792,6 +3213,8 @@
 			/>
 			<Tool
 				Name="VCCodeSignTool"
+				AuthenticodeSignature="false"
+				Certificate="SHA-1 Hash=00655AD0C5BD2895782249A5765CF1F7758914A8|00655AD0C5BD2895782249A5765CF1F7758914A8"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
@@ -2806,7 +3229,161 @@
 			/>
 		</Configuration>
 		<Configuration
-			Name="cegcc-flac-ffmpeg-release|Windows Mobile 6 Professional SDK (ARMV4I)"
+			Name="ReleaseWOsubs|Win32"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				WholeProgramOptimization="true"
+				PreprocessorDefinitions="MMX,COMMON_EXPORTS,BUILDFIXED,DYNAMIC_CRC_TABLE,NO_ERRNO_H,ZLIB_DLL,FASTEST"
+				WarningLevel="3"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="winmm.lib"
+				OutputFile="$(OutDir)\common.dll"
+				LinkTimeCodeGeneration="1"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="ReleaseWOsubs|Windows Mobile 5.0 Smartphone SDK (ARMV4I)"
+			OutputDirectory="Windows Mobile 5.0 Smartphone SDK (ARMV4I)\$(ConfigurationName)"
+			IntermediateDirectory="Windows Mobile 5.0 Smartphone SDK (ARMV4I)\$(ConfigurationName)"
+			ConfigurationType="2"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="1"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				ExecutionBucket="7"
+				Optimization="2"
+				PreprocessorDefinitions="FASTEST;BUILDFIXED;DYNAMIC_CRC_TABLE;NO_ERRNO_H;ZLIB_DLL;_WIN32_WCE=$(CEVER);UNDER_CE=$(CEVER);WINCE;$(PLATFORMDEFINES);NDEBUG;_WINDOWS;_USRDLL;COMMON_EXPORTS;$(ARCHFAM);$(_ARCHFAM_);_UNICODE;UNICODE;FIXED_POINT"
+				RuntimeLibrary="0"
+				BufferSecurityCheck="false"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG;_UNICODE;UNICODE;_WIN32_WCE;UNDER_CE"
+				Culture="1033"
+				AdditionalIncludeDirectories="$(IntDir)"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions=" /subsystem:windowsce,5.01 /machine:THUMB"
+				OutputFile="$(OutDir)\common.dll"
+				LinkIncremental="1"
+				DelayLoadDLLs="$(NOINHERIT)"
+				GenerateDebugInformation="true"
+				ProgramDatabaseFile="$(OutDir)/common.pdb"
+				SubSystem="0"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				ImportLibrary="$(OutDir)/common.lib"
+				TargetMachine="0"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCCodeSignTool"
+				AuthenticodeSignature="false"
+				Certificate="SHA-1 Hash=00655AD0C5BD2895782249A5765CF1F7758914A8|00655AD0C5BD2895782249A5765CF1F7758914A8"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+			<DeploymentTool
+				ForceDirty="-1"
+				RemoteDirectory=""
+				RegisterOutput="0"
+				AdditionalFiles=""
+			/>
+			<DebuggerTool
+			/>
+		</Configuration>
+		<Configuration
+			Name="ReleaseWOsubs|Windows Mobile 6 Professional SDK (ARMV4I)"
 			OutputDirectory="Windows Mobile 6 Professional SDK (ARMV4I)\$(ConfigurationName)"
 			IntermediateDirectory="Windows Mobile 6 Professional SDK (ARMV4I)\$(ConfigurationName)"
 			ConfigurationType="2"
@@ -3593,6 +4170,14 @@
 						Name="VCCLCompilerTool"
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\dyncode\dyncode_mips.h"
@@ -3607,6 +4192,14 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="cegcc-flac-ffmpeg-release|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)"
 					ExcludedFromBuild="true"
 					>
 					<Tool
@@ -3633,6 +4226,14 @@
 						Name="VCCLCompilerTool"
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\dyncode\dyncode_sh3.h"
@@ -3653,6 +4254,14 @@
 						Name="VCCustomBuildTool"
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\dyncode\dyncode_x86.c"
@@ -3667,6 +4276,14 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="cegcc-flac-ffmpeg-release|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)"
 					ExcludedFromBuild="true"
 					>
 					<Tool
@@ -3755,6 +4372,15 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="cegcc-flac-ffmpeg-release|Win32"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="yasm -f win32 -o &quot;$(IntDir)/$(InputName).obj&quot; $(InputPath)&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Win32"
 					>
 					<Tool
 						Name="VCCustomBuildTool"
@@ -4011,6 +4637,15 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
+					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
 					Name="Release|Pocket PC 2003 (ARMV4)"
 					>
 					<Tool
@@ -4039,6 +4674,15 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release|Windows Mobile 5.0 Smartphone SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)"
 					>
 					<Tool
 						Name="VCCustomBuildTool"
@@ -4083,6 +4727,15 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
+					Name="Debug Unicode|Windows Mobile 6 Professional SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
 					Name="Release Unicode|Pocket PC 2003 (ARMV4)"
 					>
 					<Tool
@@ -4111,6 +4764,15 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release Unicode|Windows Mobile 5.0 Smartphone SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release Unicode|Windows Mobile 6 Professional SDK (ARMV4I)"
 					>
 					<Tool
 						Name="VCCustomBuildTool"
@@ -4155,43 +4817,52 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
-					>
-					<Tool
-						Name="VCCustomBuildTool"
-						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
-						Outputs="$(IntDir)/$(InputName).obj"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)"
-					>
-					<Tool
-						Name="VCCustomBuildTool"
-						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
-						Outputs="$(IntDir)/$(InputName).obj"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug Unicode|Windows Mobile 6 Professional SDK (ARMV4I)"
-					>
-					<Tool
-						Name="VCCustomBuildTool"
-						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
-						Outputs="$(IntDir)/$(InputName).obj"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release Unicode|Windows Mobile 6 Professional SDK (ARMV4I)"
-					>
-					<Tool
-						Name="VCCustomBuildTool"
-						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
-						Outputs="$(IntDir)/$(InputName).obj"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
 					Name="cegcc-flac-ffmpeg-release|Windows Mobile 6 Professional SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Pocket PC 2003 (ARMV4)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Smartphone 2003 (ARMV4)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Windows Mobile 5.0 Smartphone SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Windows Mobile 6 Professional SDK (ARMV4I)"
 					>
 					<Tool
 						Name="VCCustomBuildTool"
@@ -4277,6 +4948,25 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
+					Name="ReleaseWOsubs|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -arch 6 -cpu arm1136 &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Win32"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="yasm -f win32 -o &quot;$(IntDir)/$(InputName).obj&quot; $(InputPath)&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
 					Name="Debug|x64"
 					>
 					<Tool
@@ -4353,6 +5043,15 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
+					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
 					Name="Release|Pocket PC 2003 (ARMV4)"
 					>
 					<Tool
@@ -4381,6 +5080,15 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release|Windows Mobile 5.0 Smartphone SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)"
 					>
 					<Tool
 						Name="VCCustomBuildTool"
@@ -4425,6 +5133,15 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
+					Name="Debug Unicode|Windows Mobile 6 Professional SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
 					Name="Release Unicode|Pocket PC 2003 (ARMV4)"
 					>
 					<Tool
@@ -4453,6 +5170,15 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release Unicode|Windows Mobile 5.0 Smartphone SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release Unicode|Windows Mobile 6 Professional SDK (ARMV4I)"
 					>
 					<Tool
 						Name="VCCustomBuildTool"
@@ -4497,43 +5223,52 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
-					>
-					<Tool
-						Name="VCCustomBuildTool"
-						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
-						Outputs="$(IntDir)/$(InputName).obj"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)"
-					>
-					<Tool
-						Name="VCCustomBuildTool"
-						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
-						Outputs="$(IntDir)/$(InputName).obj"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug Unicode|Windows Mobile 6 Professional SDK (ARMV4I)"
-					>
-					<Tool
-						Name="VCCustomBuildTool"
-						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
-						Outputs="$(IntDir)/$(InputName).obj"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release Unicode|Windows Mobile 6 Professional SDK (ARMV4I)"
-					>
-					<Tool
-						Name="VCCustomBuildTool"
-						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
-						Outputs="$(IntDir)/$(InputName).obj"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
 					Name="cegcc-flac-ffmpeg-release|Windows Mobile 6 Professional SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Pocket PC 2003 (ARMV4)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Smartphone 2003 (ARMV4)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Windows Mobile 5.0 Smartphone SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Windows Mobile 6 Professional SDK (ARMV4I)"
 					>
 					<Tool
 						Name="VCCustomBuildTool"
@@ -4561,6 +5296,16 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="cegcc-flac-ffmpeg-release|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -arch 6 -cpu arm1136 &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)"
 					ExcludedFromBuild="true"
 					>
 					<Tool
@@ -4610,6 +5355,15 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
+					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
 					Name="Release|Pocket PC 2003 (ARMV4)"
 					>
 					<Tool
@@ -4638,6 +5392,15 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release|Windows Mobile 5.0 Smartphone SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)"
 					>
 					<Tool
 						Name="VCCustomBuildTool"
@@ -4682,6 +5445,15 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
+					Name="Debug Unicode|Windows Mobile 6 Professional SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
 					Name="Release Unicode|Pocket PC 2003 (ARMV4)"
 					>
 					<Tool
@@ -4710,6 +5482,15 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release Unicode|Windows Mobile 5.0 Smartphone SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release Unicode|Windows Mobile 6 Professional SDK (ARMV4I)"
 					>
 					<Tool
 						Name="VCCustomBuildTool"
@@ -4754,43 +5535,52 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
-					>
-					<Tool
-						Name="VCCustomBuildTool"
-						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
-						Outputs="$(IntDir)/$(InputName).obj"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)"
-					>
-					<Tool
-						Name="VCCustomBuildTool"
-						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
-						Outputs="$(IntDir)/$(InputName).obj"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug Unicode|Windows Mobile 6 Professional SDK (ARMV4I)"
-					>
-					<Tool
-						Name="VCCustomBuildTool"
-						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
-						Outputs="$(IntDir)/$(InputName).obj"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release Unicode|Windows Mobile 6 Professional SDK (ARMV4I)"
-					>
-					<Tool
-						Name="VCCustomBuildTool"
-						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
-						Outputs="$(IntDir)/$(InputName).obj"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
 					Name="cegcc-flac-ffmpeg-release|Windows Mobile 6 Professional SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Pocket PC 2003 (ARMV4)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Smartphone 2003 (ARMV4)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Windows Mobile 5.0 Smartphone SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Windows Mobile 6 Professional SDK (ARMV4I)"
 					>
 					<Tool
 						Name="VCCustomBuildTool"
@@ -4880,6 +5670,25 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
+					Name="ReleaseWOsubs|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -arch 6 -cpu arm1136 &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Win32"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="yasm -f win32 -o &quot;$(IntDir)/$(InputName).obj&quot; $(InputPath)&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
 					Name="Debug|x64"
 					>
 					<Tool
@@ -4956,6 +5765,15 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
+					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
 					Name="Release|Pocket PC 2003 (ARMV4)"
 					>
 					<Tool
@@ -4984,6 +5802,15 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release|Windows Mobile 5.0 Smartphone SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)"
 					>
 					<Tool
 						Name="VCCustomBuildTool"
@@ -5028,6 +5855,15 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
+					Name="Debug Unicode|Windows Mobile 6 Professional SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
 					Name="Release Unicode|Pocket PC 2003 (ARMV4)"
 					>
 					<Tool
@@ -5056,6 +5892,15 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release Unicode|Windows Mobile 5.0 Smartphone SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release Unicode|Windows Mobile 6 Professional SDK (ARMV4I)"
 					>
 					<Tool
 						Name="VCCustomBuildTool"
@@ -5100,43 +5945,52 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
-					>
-					<Tool
-						Name="VCCustomBuildTool"
-						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
-						Outputs="$(IntDir)/$(InputName).obj"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)"
-					>
-					<Tool
-						Name="VCCustomBuildTool"
-						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
-						Outputs="$(IntDir)/$(InputName).obj"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug Unicode|Windows Mobile 6 Professional SDK (ARMV4I)"
-					>
-					<Tool
-						Name="VCCustomBuildTool"
-						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
-						Outputs="$(IntDir)/$(InputName).obj"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release Unicode|Windows Mobile 6 Professional SDK (ARMV4I)"
-					>
-					<Tool
-						Name="VCCustomBuildTool"
-						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
-						Outputs="$(IntDir)/$(InputName).obj"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
 					Name="cegcc-flac-ffmpeg-release|Windows Mobile 6 Professional SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Pocket PC 2003 (ARMV4)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Smartphone 2003 (ARMV4)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Windows Mobile 5.0 Smartphone SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Windows Mobile 6 Professional SDK (ARMV4I)"
 					>
 					<Tool
 						Name="VCCustomBuildTool"
@@ -5197,6 +6051,15 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
+					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
 					Name="Release|Pocket PC 2003 (ARMV4)"
 					>
 					<Tool
@@ -5241,6 +6104,15 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
+					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
 					Name="Debug Unicode|Pocket PC 2003 (ARMV4)"
 					>
 					<Tool
@@ -5277,6 +6149,15 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
+					Name="Debug Unicode|Windows Mobile 6 Professional SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
 					Name="Release Unicode|Pocket PC 2003 (ARMV4)"
 					>
 					<Tool
@@ -5305,6 +6186,15 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release Unicode|Windows Mobile 5.0 Smartphone SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release Unicode|Windows Mobile 6 Professional SDK (ARMV4I)"
 					>
 					<Tool
 						Name="VCCustomBuildTool"
@@ -5357,43 +6247,60 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug|Windows Mobile 6 Professional SDK (ARMV4I)"
-					>
-					<Tool
-						Name="VCCustomBuildTool"
-						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
-						Outputs="$(IntDir)/$(InputName).obj"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Windows Mobile 6 Professional SDK (ARMV4I)"
-					>
-					<Tool
-						Name="VCCustomBuildTool"
-						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
-						Outputs="$(IntDir)/$(InputName).obj"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug Unicode|Windows Mobile 6 Professional SDK (ARMV4I)"
-					>
-					<Tool
-						Name="VCCustomBuildTool"
-						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
-						Outputs="$(IntDir)/$(InputName).obj"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release Unicode|Windows Mobile 6 Professional SDK (ARMV4I)"
-					>
-					<Tool
-						Name="VCCustomBuildTool"
-						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
-						Outputs="$(IntDir)/$(InputName).obj"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
 					Name="cegcc-flac-ffmpeg-release|Windows Mobile 6 Professional SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Pocket PC 2003 (ARMV4)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Smartphone 2003 (ARMV4)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Windows Mobile 5.0 Smartphone SDK (ARMV4I)"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="armasm.exe -cpu xscale &quot;$(InputPath)&quot; &quot;$(IntDir)/$(InputName).obj&quot;&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Windows Mobile 6 Professional SDK (ARMV4I)"
 					>
 					<Tool
 						Name="VCCustomBuildTool"
@@ -5423,6 +6330,14 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="cegcc-flac-ffmpeg-release|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)"
 					ExcludedFromBuild="true"
 					>
 					<Tool
@@ -5459,6 +6374,22 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="cegcc-flac-ffmpeg-release|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Win32"
 					ExcludedFromBuild="true"
 					>
 					<Tool
@@ -5523,6 +6454,23 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="cegcc-flac-ffmpeg-release|Win32"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="yasm -f win32 -o &quot;$(IntDir)/$(InputName).obj&quot; $(InputPath)&#x0D;&#x0A;"
+						Outputs="$(IntDir)/$(InputName).obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Win32"
 					>
 					<Tool
 						Name="VCCustomBuildTool"
@@ -5640,6 +6588,15 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="cegcc-flac-ffmpeg-release|Win32"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="copy &quot;$(InputPath)&quot; &quot;$(TargetDir)&quot;&#x0D;&#x0A;"
+						Outputs="$(TargetDir)/$(InputName).txt"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Win32"
 					>
 					<Tool
 						Name="VCCustomBuildTool"
@@ -5769,6 +6726,15 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="cegcc-flac-ffmpeg-release|Win32"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="copy &quot;$(InputPath)&quot; &quot;$(TargetDir)&quot;&#x0D;&#x0A;"
+						Outputs="$(TargetDir)/$(InputName).txt"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="ReleaseWOsubs|Win32"
 					>
 					<Tool
 						Name="VCCustomBuildTool"

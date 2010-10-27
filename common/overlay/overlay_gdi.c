@@ -32,8 +32,9 @@
 #define STRICT
 #endif
 #include <windows.h>
-
+#if defined(CONFIG_SUBS)
 /*modify*/#include "overlay_subtitle.h"
+#endif
 
 typedef struct gdi
 {
@@ -50,8 +51,9 @@ typedef struct gdi
 	void* Soft2;
 	planes Planes2;
 #endif
-
+#if defined(CONFIG_SUBS)
 	/*modify*/node *s;
+#endif
 } gdi;
 
 static int AllocBitmap(gdi* p)
@@ -169,7 +171,9 @@ static int Init(gdi* p)
 	ReleaseDC(NULL,DC);
 
 	p->p.ClearFX = BLITFX_ONLYDIFF;
+#if defined(CONFIG_SUBS)
 	/*modify*/p->s = NodeEnumObject(0,SUBT_ID);
+#endif
 	return ERR_NONE;
 }
 
@@ -187,8 +191,9 @@ static int Update(gdi* p)
 
 	int OldWidth = p->Overlay.Width;
 	int OldHeight = p->Overlay.Height;
-
+#if defined(CONFIG_SUBS)
 	/*modify*/if(p->s) RedrawSubtitle(p->s);
+#endif
 	VirtToPhy(&p->p.Viewport,&p->p.DstAlignedRect,&p->p.Output.Format.Video);
 	VirtToPhy(NULL,&p->p.SrcAlignedRect,&p->p.Input.Format.Video);
 
@@ -265,6 +270,7 @@ static int Blit(gdi* p, const constplanes Data, const constplanes DataLast )
 	BlitImage(p->Soft2,p->Planes2,Data,DataLast,-1,-1);
 	BlitImage(p->p.Soft,p->Planes,p->Planes2,NULL,-1,-1);
 #else
+#if defined(CONFIG_SUBS)
 	/*modify*/
 	if(p->s){
 		GetSubtitlePos(p->s, p->p.LastTime);
@@ -276,8 +282,10 @@ static int Blit(gdi* p, const constplanes Data, const constplanes DataLast )
 		BlitImage(p->p.Soft,p->Planes,Data,DataLast,-1,-1);
 	}
 	/*modify end*/
-	
-	//BlitImage(p->p.Soft,p->Planes,Data,DataLast,-1,-1);
+#else
+		BlitImage(p->p.Soft,p->Planes,Data,DataLast,-1,-1);
+#endif	//CONFIG_SUBS
+
 #endif
 
 	if (!p->DIBSection)
@@ -312,7 +320,9 @@ static int Create(gdi* p)
 	p->p.Blit = Blit;
 	p->p.Update = Update;
 	p->p.Reset = Reset;
+#if defined(CONFIG_SUBS)
 	/*modify*/p->s = NULL;
+#endif
 	return ERR_NONE;
 }
 

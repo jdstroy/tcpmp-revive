@@ -36,7 +36,9 @@
 #include "playlst.h"
 #include "../skin.h"
 #include "../../config.h"
+#if defined(CONFIG_SUBS)
 #include "../../common/overlay/overlay_subtitle.h"
+#endif
 
 #define CORETHEQUE_UI_ID			FOURCC('C','T','Q','U')
 
@@ -53,8 +55,10 @@
 
 #define REG_INITING		0x2400
 
+#if defined(CONFIG_SUBS)
 #define _T(x)       __TEXT(x)
 //#define _CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES 1
+#endif
 
 #define TIMER_CLIPPING	500
 #define TIMER_INITING	501
@@ -129,10 +133,12 @@ static int HotKey[] =
 	IF_OPTIONS_SATURATION_DOWN,
 	IF_OPTIONS_TOGGLE_VIDEO,
 	IF_OPTIONS_TOGGLE_AUDIO,
+#if defined(CONFIG_SUBS)
 	IF_OPTIONS_TOGGLE_SUBTITLE,
 //	IF_OPTIONS_SUBTITLE_RENABLE,
 	IF_OPTIONS_SUBTITLE_PREV,
 //	IF_OPTIONS_SUBTITLE_NEXT,
+#endif
 	IF_OPTIONS_AUDIO_STEREO_TOGGLE,
 	IF_OPTIONS_SCREEN,
 	IF_FILE_EXIT,
@@ -209,7 +215,9 @@ typedef struct intface
 	tchar_t TitleName[256];
 	tchar_t TitleDur[32];
 	int MenuPreAmp;
+#if defined(CONFIG_SUBS)
 	int MenuSubsSpeed;
+#endif
 
 	int MenuStreams;
 	int MenuAStream;
@@ -740,12 +748,15 @@ static void UpdateMenu(intface* p)
 	int* i;
 	int No,Id;
 	int PreAmp;
+#if defined(CONFIG_SUBS)
 	int SubsSpeed;
+#endif
 	bool_t Accel;
 	tchar_t Name[20+1];
 	int ACurrent = -1;
 	int VCurrent = -1;
 	int SubCurrent = -1;
+#if defined(CONFIG_SUBS)
 	int SubtType=0;
 	int SubNo;
 	tchar_t* SubVal;
@@ -753,13 +764,18 @@ static void UpdateMenu(intface* p)
 
 	if (!p->Subs)  p->Subs=NodeEnumObject(0,SUBT_ID);
 	//if (p->Subs)  SubtitleLoad(p->Subs);
+#endif
 
 	// remove old chapters
 	if (!WinMenuEnable(&p->Win,0,IF_FILE_CHAPTERS_NONE,0))
 	{
 		WinMenuInsert(&p->Win,0,IF_CHAPTER+1,IF_FILE_CHAPTERS_NONE,LangStr(INTERFACE_ID,IF_FILE_CHAPTERS_NONE));
-
+#if defined(CONFIG_SUBS)
 		for (No=1;No<MAXCHAPTER;++No)
+#else
+		if (p->MenuSubStream >= 0)
+			for (No=0;No<p->MenuStreams;++No)
+#endif //CONFIG_SUBS
 			if (!WinMenuDelete(&p->Win,0,IF_CHAPTER+No))
 				break;
 	}
@@ -788,9 +804,12 @@ static void UpdateMenu(intface* p)
 		for (No=0;No<p->MenuStreams;++No)
 			WinMenuDelete(&p->Win,1,IF_STREAM_AUDIO+No);
 	}
-
-	//if (p->MenuSubStream >= 0)
+#if !defined(CONNFIG_SUBS)
+	if (p->MenuSubStream >= 0)
+		for (No=0;No<p->MenuStreams;++No)
+#else
 		for (No=0;No<MAXSUBFILES+1;No++)
+#endif //!CONFIG_SUBS
 			WinMenuDelete(&p->Win,1,IF_STREAM_SUBTITLE+No);
 
 	// add new streams
@@ -821,6 +840,7 @@ static void UpdateMenu(intface* p)
 	p->Player->Get(p->Player,PLAYER_ASTREAM,&ACurrent,sizeof(int));
 	p->Player->Get(p->Player,PLAYER_SUBSTREAM,&SubCurrent,sizeof(int));
 
+#if defined(CONFIG_SUBS)
 	if (p->Subs)
 	{
 		WinMenuInsert(&p->Win,1,IF_OPTIONS_SUBTITLE_STREAM_NONE,IF_STREAM_SUBTITLE,_T("Open..."));
@@ -846,7 +866,7 @@ static void UpdateMenu(intface* p)
 		if (SubCurrent!=-1) SubCurrent++;
 		p->MenuSubStream =SubCurrent;
 	}
-
+#endif
 	if (p->MenuVStream<0)
 		WinMenuEnable(&p->Win,1,IF_OPTIONS_VIDEO_STREAM_NONE,0);
 	else
@@ -910,6 +930,7 @@ static void UpdateMenu(intface* p)
 		stprintf_s(Name,TSIZEOF(Name),LangStr(INTERFACE_ID,IF_OPTIONS_AUDIO_PREAMP),PreAmp);
 		WinMenuDelete(&p->Win,1,IF_OPTIONS_AUDIO_PREAMP);
 		WinMenuInsert(&p->Win,1,IF_OPTIONS_AUDIO_PREAMP_INC,IF_OPTIONS_AUDIO_PREAMP,Name);
+#if defined(CONFIG_SUBS)	
 	}
 	
 	if (!p->Subs) p->Subs=NodeEnumObject(0,SUBT_ID);
@@ -924,6 +945,7 @@ static void UpdateMenu(intface* p)
 			WinMenuDelete(&p->Win,1,IF_OPTIONS_SUBTITLE_SNORMAL);
 			WinMenuInsert(&p->Win,1,IF_OPTIONS_SUBTITLE_SLATER,IF_OPTIONS_SUBTITLE_SNORMAL,Name);
 		}
+#endif
 	}
 
 	UpdateMenuInt(p,IF_OPTIONS_VIDEO_QUALITY_LOWEST,PLAYER_VIDEO_QUALITY,0);
@@ -1631,12 +1653,14 @@ static menudef MenuDef[] =
 	{ 2,INTERFACE_ID, IF_OPTIONS_AUDIO_STREAM, MENU_SMALL|MENU_GRAYED },
 	{ 3,INTERFACE_ID, IF_OPTIONS_AUDIO_STREAM_NONE },
 
+#if defined(CONFIG_SUBS)
 	{ 1,INTERFACE_ID, IF_OPTIONS_SUBTITLE_STREAM, MENU_GRAYED },
 	{ 2,INTERFACE_ID, IF_OPTIONS_SUBTITLE_STREAM_NONE },
 	{ 2,-1,-1 },
 	{ 2,INTERFACE_ID, IF_OPTIONS_SUBTITLE_SEARLIER },
 	{ 2,INTERFACE_ID, IF_OPTIONS_SUBTITLE_SNORMAL },
 	{ 2,INTERFACE_ID, IF_OPTIONS_SUBTITLE_SLATER },
+#endif
 
 	{ 1,-1,-1 },
 	{ 1,INTERFACE_ID, IF_OPTIONS_REPEAT },
@@ -1998,7 +2022,9 @@ static int Command(intface* p,int Cmd)
 	fraction f;
 	tick_t t;
 	int Zero = 0;
+#if defined(CONFIG_SUBS)
 	wchar_t* subsfn;
+#endif
 
 	switch (Cmd)
 	{
@@ -2057,6 +2083,7 @@ static int Command(intface* p,int Cmd)
 
 	case IF_OPTIONS_TOGGLE_SUBTITLE:
 		ToggleStream(p,PLAYER_SUBSTREAM,PACKET_SUBTITLE,1);
+#if defined(CONFIG_SUBS)
 		i=-1;
 		p->Subs->Get(p->Subs,SUBT_STREAM_ID,&i,sizeof(i));
 		//if (i==-1) break;
@@ -2067,7 +2094,9 @@ static int Command(intface* p,int Cmd)
 			if (i>1) i=0;
 			else i=-1;
 		p->Subs->Set(p->Subs,SUBT_STREAM_ID,&i,sizeof(i));
+#endif
 		break;
+#if defined(CONFIG_SUBS)
 /*
 	case IF_OPTIONS_SUBTITLE_RENABLE:
 		p->Subs->Get(p->Subs,SUBT_ENABLED,&i,sizeof(i));
@@ -2100,6 +2129,7 @@ static int Command(intface* p,int Cmd)
 		p->Player->Set(p->Player,PLAYER_POSITION,&i,sizeof(i));
 		break;
 */
+#endif
 	case IF_OPTIONS_TOGGLE_AUDIO:
 		ToggleStream(p,PLAYER_ASTREAM,PACKET_AUDIO,0);
 		break;
@@ -2563,6 +2593,7 @@ static int Command(intface* p,int Cmd)
 		p->Player->Set(p->Player,PLAYER_PREAMP,&i,sizeof(i));
 		break;
 
+#if defined(CONFIG_SUBS)
 	case IF_OPTIONS_SUBTITLE_SLATER:
 		if (!p->Subs) break;
 		p->Subs->Get(p->Subs,SUBT_SPEED,&i,sizeof(i));
@@ -2584,7 +2615,7 @@ static int Command(intface* p,int Cmd)
 		i = 0;
 		p->Subs->Set(p->Subs,SUBT_SPEED,&i,sizeof(i));
 		break;
-
+#endif
 	case IF_OPTIONS_AUDIO_QUALITY_LOW:
 		i = 0;
 		p->Player->Set(p->Player,PLAYER_AUDIO_QUALITY,&i,sizeof(i));
@@ -2694,11 +2725,16 @@ static int Command(intface* p,int Cmd)
 		break;
 
 	case IF_OPTIONS_SUBTITLE_STREAM_NONE:
+#if defined(CONFIG_SUBS)
 		//i = MAXSTREAM;
 		i=-1;
 		p->Subs->Set(p->Subs,SUBT_STREAM_ID,&i,sizeof(i));
 		//if (p->Subs) p->Subs->Set(p->Subs,SUBT_ENABLED,&i,sizeof(i));
 		//p->Player->Set(p->Player,PLAYER_SUBSTREAM,&i,sizeof(i));
+#else
+		i = MAXSTREAM;
+		p->Player->Set(p->Player,PLAYER_SUBSTREAM,&i,sizeof(i));
+#endif //CONFIG_SUBS
 		break;
 	}
 
@@ -2725,13 +2761,16 @@ static int Command(intface* p,int Cmd)
 
 	if (Cmd >= IF_STREAM_SUBTITLE && Cmd < IF_STREAM_SUBTITLE+MAXSTREAM)
 	{
+#if defined(CONFIG_SUBS)
 		i=Cmd-IF_STREAM_SUBTITLE-1;
 		if (i==-1) i=-2;
 		p->Subs->Set(p->Subs,SUBT_STREAM_ID,&i,sizeof(i));
 		//if (p->Subs) p->Subs->Set(p->Subs,SUBT_ENABLED,&i,sizeof(i));
-		//i = Cmd-IF_STREAM_SUBTITLE;
-		//p->Player->Set(p->Player,PLAYER_SUBSTREAM,&i,sizeof(i));
-		//p->Player->Set(p->Player,PLAYER_RESYNC,NULL,0);
+#else
+		i = Cmd-IF_STREAM_SUBTITLE;
+		p->Player->Set(p->Player,PLAYER_SUBSTREAM,&i,sizeof(i));
+		p->Player->Set(p->Player,PLAYER_RESYNC,NULL,0);
+#endif //CONFIG_SUBS
 	}
 
 	if (Cmd >= IF_VIDEO && Cmd < IF_VIDEO+ARRAYCOUNT(p->VOutput,int))
@@ -2777,12 +2816,14 @@ static int PlayerNotify(intface* p,int Id,int Value)
 	{
 		if (!p->Win.FullScreen && !p->Bench && (!p->InSeek || !p->Capture))
 			PostMessage(p->Win.Wnd,MSG_PLAYER,PLAYER_PERCENT,Value);
+#if defined(CONFIG_SUBS)
 	}
 	else if (Id==PLAYER_PLAY)
 	{
 		if (!p->Subs)  p->Subs=NodeEnumObject(0,SUBT_ID);
 		if (p->Subs)  SubtitleLoad(p->Subs);
 		PostMessage(p->Win.Wnd,MSG_PLAYER,Id,Value);
+#endif
 	}
 	else
 		PostMessage(p->Win.Wnd,MSG_PLAYER,Id,Value);
@@ -3525,12 +3566,14 @@ static int Create(intface* p)
 {
 	int Key;
 
+#if defined(CONFIG_SUBS)
 	StringAdd(1,INTERFACE_ID,IF_OPTIONS_SUBTITLE_SEARLIER,_T("Speed decrease"));
 	StringAdd(1,INTERFACE_ID,IF_OPTIONS_SUBTITLE_SNORMAL,_T("Speed %d (clear)"));
 	StringAdd(1,INTERFACE_ID,IF_OPTIONS_SUBTITLE_SLATER,_T("Speed increase"));
 	StringAdd(1,INTERFACE_ID,IF_OPTIONS_SUBTITLE_PREV,_T("Previous keyframe"));
 //	StringAdd(1,INTERFACE_ID,IF_OPTIONS_SUBTITLE_NEXT,_T("Repeat keyframe"));
 //	StringAdd(1,INTERFACE_ID,IF_OPTIONS_SUBTITLE_RENABLE,_T("Subtitles on/off"));
+#endif
 
 	DefaultSkin(p);
 
@@ -3548,7 +3591,9 @@ static int Create(intface* p)
 	p->TitleBar = 1;
 	p->TrackBar = 1;
 	p->MenuPreAmp = -1;
+#if defined(CONFIG_SUBS)
 	p->MenuSubsSpeed = -1;
+#endif
 	p->MenuStreams = 0;
 	p->MenuAStream = -1;
 	p->MenuVStream = -1;
