@@ -22,7 +22,9 @@
  ****************************************************************************/
 
 #include "stdafx.h"
+#if defined(CONFIG_SUBS)
 /*modify*/#include "../common/overlay/overlay_subtitle.h"
+#endif
 
 #if defined(ARM)
 
@@ -308,8 +310,9 @@ typedef struct ahi
 	bool_t IDCTBug;
 	bool_t IDCTInit;
 	bool_t ErrorMemory;
-	
+#if defined(CONFIG_SUBS)	
 	/*modify*/node *s;
+#endif
 } ahi;
 
 const datatable AHIParams[] = 
@@ -496,8 +499,11 @@ static void FreeBuffer(ahi* p,int No,bool_t* Hidden)
 
 static int Lock(ahi* p,int No,planes Planes,bool_t Force)
 {
+#if defined(CONFIG_SUBS)
 	/*modify*/ if (!Force && (No<0 || (No>SCALE+1)))
-	// if (!Force && (No<0 || No>=p->BufCount))
+#else
+	if (!Force && (No<0 || No>=p->BufCount))
+#endif
 	{
 		Planes[0] = NULL;
 		Planes[1] = NULL;
@@ -911,15 +917,18 @@ static void UpdateOverlaySurf(ahi* p,bool_t Idle)
 	}
 }
 
-
+#if defined(CONFIG_SUBS)
 /*modify*/static void Unlock(ahi* p,int No);
+#endif
 static void Stretch(ahi* p,bool_t Update,bool_t Flip)
 {
 	ahisurface* Src;
 	ahisurface*	Dst;
 	ahirect DstRect;
 	ahirect SrcRect;
+#if defined(CONFIG_SUBS)
 	/*modify*/planes Planes;
+#endif
 	int ScaleMode = (p->p.FX.Flags & (BLITFX_ARITHSTRETCH50|BLITFX_ARITHSTRETCHALWAYS)) ? 5:1;
 
 	if (p->Buf[SCALE+1] && Flip)
@@ -977,7 +986,7 @@ static void Stretch(ahi* p,bool_t Update,bool_t Flip)
 		p->AhiDrawStretchBlt(p->Context,&DstRect,&SrcRect,ScaleMode);
 	else
 		p->AhiDrawBitBlt(p->Context,&DstRect,(ahipoint*)&SrcRect.Left);
-
+#if defined(CONFIG_SUBS)
 	/*modify*/
 	if((p->s)&&(Lock(p,SCALE+p->ScaleCurr,Planes,0) == ERR_NONE)){
 		GetSubtitlePos(p->s, p->p.LastTime);
@@ -987,6 +996,7 @@ static void Stretch(ahi* p,bool_t Update,bool_t Flip)
 		Unlock(p,SCALE+p->ScaleCurr);
 	}
 	/*modify end*/
+#endif
 	if (p->Buf[SCALE+1] && Update && Flip)
 		UpdateOverlaySurf(p,1);
 }	
@@ -1636,8 +1646,9 @@ static bool_t UpdateOverlay(ahi* p,int BufCount,int TempCount)
 	bool_t Hidden = 0;
 	int AllCount = BufCount + TempCount;
 	if (AllCount>p->MaxCount) return 0;
-
+#if defined(CONFIG_SUBS)
 	/*modify*/if(p->s) RedrawSubtitle(p->s);
+#endif
 	p->SoftFX.Flags = 0;
 	p->SoftFX.Brightness = p->p.FX.Brightness;
 	p->SoftFX.Contrast = p->p.FX.Contrast;
@@ -1660,8 +1671,11 @@ scaletry:
 	UpdateAlign(p,ScaleMode);
 
 	// allocate/free scale surface
+#if defined(CONFIG_SUBS)
 	/*modify*/if (p->AllCount && (p->s || p->Stretch) && ScaleMode)
-	//if (p->AllCount && p->Stretch)
+#else
+	if (p->AllCount && p->Stretch)
+#endif
 	{
 		if (p->ScaleWidth != p->p.DstAlignedRect.Width ||
 			p->ScaleHeight != p->p.DstAlignedRect.Height)
@@ -1695,11 +1709,16 @@ scaletry:
 	}
 	else
 		FreeScale(p,&Hidden);
+#if defined(CONFIG_SUBS)
 	/*modify*/if ((p->s || p->Stretch) && !p->Buf[SCALE] && ScaleMode && p->AllCount)
-	//if (p->Stretch && !p->Buf[SCALE] && p->AllCount)
+#else
+	if (p->Stretch && !p->Buf[SCALE] && p->AllCount)
+#endif
 	{
 		--ScaleMode;
+#if defined(CONFIG_SUBS)
 		/*modify*/if(ScaleMode > 0)
+#endif
 			goto scaletry; // no memory for scale buffer -> try again
 	}
 
@@ -2055,8 +2074,9 @@ static int Init(ahi* p)
 		if (!p->Context)
 			SafeAhiTerm(p);
 	}
-
+#if defined(CONFIG_SUBS)
 	/*modify*/p->s = NodeEnumObject(0,SUBT_ID);
+#endif
 	return Result;
 }
 

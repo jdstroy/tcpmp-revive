@@ -30,7 +30,9 @@
 #define STRICT
 #endif
 #include <windows.h>
+#if defined(CONFIG_SUBS)
 /*modify*/#include "overlay_subtitle.h"
+#endif
 
 typedef struct GXDisplayProperties 
 {
@@ -82,7 +84,7 @@ typedef struct gapi
 	int (*GXSetViewport)(DWORD dwTop, DWORD dwHeight, DWORD, DWORD);
 	BOOL (*GXIsDisplayDRAMBuffer)();
 	BOOL (WINAPI* SHFullScreen)(HWND, DWORD);
-
+#if defined(CONFIG_SUBS)
 	/*modify*/
 	node *s;
 	planes Buffer[3];
@@ -92,12 +94,14 @@ typedef struct gapi
 	bool_t BufOn;
 	bool_t BufDiff;
 	/*modify end*/
+#endif
 } gapi;
-
+#if defined(CONFIG_SUBS)
 /*modify*/
 #define	GAPI_SUB_BUFFER			0x300
 #define	GAPI_SUB_BUFFER_DIFF	0x301
 /*modify end*/
+#endif
 
 static const datatable Params[] = 
 {
@@ -110,14 +114,16 @@ static const datatable Params[] =
 	{ GAPI_DRAM,	TYPE_BOOL, DF_SETUP | DF_RDONLY | DF_HIDDEN },
 	{ GAPI_POINTER,	TYPE_INT, DF_SETUP | DF_RDONLY|DF_HEX | DF_HIDDEN },
 
+#if defined(CONFIG_SUBS)
 	/*modify*/
 	{ GAPI_SUB_BUFFER,		TYPE_BOOL, DF_SETUP | DF_CHECKLIST },
 	{ GAPI_SUB_BUFFER_DIFF,	TYPE_BOOL, DF_SETUP | DF_CHECKLIST },
 	/*modify end*/
+#endif
 	
 	DATATABLE_END(GAPI_ID)
 };
-
+#if defined(CONFIG_SUBS)
 /*modify*/
 static int BufferAlign(gapi* p)
 {
@@ -153,11 +159,14 @@ static int BufferAlign(gapi* p)
 
 }
 /* end modify*/
+#endif
 
+#if defined(CONFIG_SUBS)
 /*modify*/
 static int Lock(gapi* p, planes Planes, bool_t OnlyAligned);
 static int Unlock(gapi* p);
 /* end modify*/
+#endif
 
 static int Enum(gapi* p, int* No, datadef* Param)
 {
@@ -179,10 +188,12 @@ static int Get(gapi* p,int No,void* Data,int Size)
 	case GAPI_FORMAT: GETVALUE(p->Info.ffFormat,int); break;
 	case GAPI_DRAM: GETVALUE(p->DRAM,bool_t); break;
 	case GAPI_POINTER: GETVALUE((int)p->Pointer,int); break;
+#if defined(CONFIG_SUBS)
 	/*modify*/
 	case GAPI_SUB_BUFFER: GETVALUE(p->BufOn, bool_t); break;
 	case GAPI_SUB_BUFFER_DIFF: GETVALUE(p->BufDiff,bool_t); break;
 	/*modify end*/
+#endif
 	}
 	return Result;
 }
@@ -367,10 +378,12 @@ static int Init(gapi* p)
 
 	if (Info.cxWidth == 240 && Info.cyHeight == 320)
 		AdjustOrientation(&p->Overlay.Output.Format.Video,0);
-
+#if defined(CONFIG_SUBS)
 	/*modify*/p->s = NodeEnumObject(0,SUBT_ID);
+#endif
 	return ERR_NONE;
 }
+#if defined(CONFIG_SUBS)
 /*modify*/int Update( gapi* p )
 {
 	if(p->s){
@@ -382,6 +395,8 @@ static int Init(gapi* p)
 	return OverlayUpdateAlign(&(p->Overlay));
 }
 /*modify end*/
+#endif
+#if defined(CONFIG_SUBS)
 /*modify*/void PlaneCopy(gapi* p, planes Dst, planes Src, planes Last){
 	int Width, Height, DstX, DstY;
 	int x,y;
@@ -476,6 +491,8 @@ static int Init(gapi* p)
 	return;
 }
 /*modify end*/
+#endif
+#if defined(CONFIG_SUBS)
 /*modify*/static int Blit(gapi* p, const constplanes Data, const constplanes DataLast )
 {
 
@@ -536,7 +553,7 @@ static int Init(gapi* p)
 	return Result;
 }
 /*modify end*/
-
+#endif
 static void Done(gapi* p)
 {
 }
@@ -669,6 +686,7 @@ static int UpdateWnd(gapi* p)
 /*modify part*/
 static int Set(gapi* p,int No,const void* Data,int Size)
 {
+#if defined(CONFIG_SUBS)
 	int Result;
 	switch (No)
 	{
@@ -680,13 +698,25 @@ static int Set(gapi* p,int No,const void* Data,int Size)
 		break;
 	}
 	return Result;
+#else
+	int Result = OverlaySet(&p->Overlay,No,Data,Size);
+	switch (No)
+	{
+	case NODE_SETTINGSCHANGED: 
+		Result = UpdateWnd(p);
+		break;
+	}
+	return Result;
+#endif
 }
 /*modify part end*/
 
 static int Create(gapi* p)
 {
-	//if (NodeEnumObject(NULL,RAW_ID))
-	//	return ERR_NOT_SUPPORTED;
+#if !defined(CONFIG_SUBS)
+	if (NodeEnumObject(NULL,RAW_ID))
+		return ERR_NOT_SUPPORTED;
+#endif
 
 	p->Overlay.Node.Enum = Enum;
 	p->Overlay.Node.Get = Get;
@@ -698,17 +728,19 @@ static int Create(gapi* p)
 	p->Overlay.Reset = Reset;
 	p->Overlay.Node.Get = Get;
 	p->Overlay.Node.Enum = Enum;
+#if defined(CONFIG_SUBS)
 	/* modify */
 	p->Overlay.Blit = Blit;
 	p->Overlay.Update = Update;
 	/*modify end*/
+#endif
 
 	if (!LoadDriver(p))
 		return ERR_NOT_SUPPORTED;
 
 	p->AygShell = LoadLibrary(T("aygshell.dll"));
 	GetProc(&p->AygShell,&p->SHFullScreen,T("SHFullScreen"),1);
-
+#if defined(CONFIG_SUBS)
 	/*modify*/
 	p->BufOn = 0;
 	p->BufDiff = 0;
@@ -718,17 +750,19 @@ static int Create(gapi* p)
 
 	p->s = NULL;
 	/*modify end*/
+#endif
 
 	return ERR_NONE;
 }
 
 static void Delete(gapi* p)
 {
-
+#if defined(CONFIG_SUBS)
 	/*modify*/
 	if(p->Buffer[0][0]){ Free16(p->Buffer[0][0]);p->Buffer[0][0] = NULL; }
 	if(p->Buffer[1][0]){ Free16(p->Buffer[1][0]);p->Buffer[1][0] = NULL; }
 	/*modify end*/
+#endif
 
 	if (p->GX)
 		FreeLibrary(p->GX);
