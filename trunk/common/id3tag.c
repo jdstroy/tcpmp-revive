@@ -14,7 +14,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
  *
- * $Id: id3tag.c 620 2006-01-31 14:46:34Z picard $
+ * $Id: id3tag.c,v 1.2 2007/07/02 10:59:58 islandkbm Exp $
  *
  * The Core Pocket Media Player
  * Copyright (c) 2004-2005 Gabor Kovacs
@@ -508,7 +508,20 @@ size_t ID3v2_Query(const void* Ptr,size_t Len)
 void ID3v2_Parse(const void* Ptr,size_t Len,pin* Pin,filepos_t Offset)
 {
 	const uint8_t* Data = (const uint8_t*)Ptr;
+
+	
 	size_t Size = ID3v2_Query(Ptr,Len);
+
+	uint8_t* Data_org=(const uint8_t*)Ptr;
+	Data_org+=Size;
+
+	
+
+
+	
+//	RETAILMSG(1, (TEXT(" ^^^^11111111111111111111^^^^^^^^ID3v2_Parse  = %x , %x, %x  \r\n"), Size,&Size,Data));
+
+
 	if (Size>0 && Pin)
 	{
 		int HeadFlag = Data[5];
@@ -542,7 +555,7 @@ void ID3v2_Parse(const void* Ptr,size_t Len,pin* Pin,filepos_t Offset)
 				Size -= 4+n;
 			}
 
-			while (Size > 0 && Data[0])
+			while (Data_org > Data )
 			{
 				// parse frame
 				uint8_t* Tmp = NULL;
@@ -556,6 +569,11 @@ void ID3v2_Parse(const void* Ptr,size_t Len,pin* Pin,filepos_t Offset)
 				int Len2 = 0;
 				int Flag = 0;
 				const int* Info;
+
+			
+
+				if( Size <= 0 ||  Data[0]==0)
+					break;
 
 				switch (Ver)
 				{
