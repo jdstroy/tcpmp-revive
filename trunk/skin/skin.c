@@ -190,7 +190,7 @@ int ParseSkinFile(skin* p, void* Wnd, const tchar_t* FileName)
 	unsigned long nPos;
 	tchar_t *temp = FileName;
 	tchar_t *next;
-	//int size;
+	int size;
 #ifdef TARGET_WINCE
 	LPSTR buf;
 #endif
