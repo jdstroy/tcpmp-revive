@@ -179,7 +179,7 @@ void LoadSkinNo(skin *p, int no)
 	LoadSkinItem(T("playlist"), &p[no], SKIN_PLAYLIST);
 	LoadSkinItem(T("title"), &p[no], SKIN_TITLE);
 	LoadSkinItem(T("exit"), &p[no], SKIN_EXIT);
-	LoadSkinItem(T("play_fullscreen"), &p[no], SKIN_PLAY_FULLSCREEN);
+	LoadSkinItem(T("play_fullscrn"), &p[no], SKIN_PLAY_FULLSCREEN);
 	LoadSkinItem(T("shuffle"), &p[no], SKIN_SHUFFLE);
 	LoadSkinItem(T("skin0"), &p[no], SKIN_0);
 	LoadSkinItem(T("skin1"), &p[no], SKIN_1);
@@ -190,7 +190,7 @@ int ParseSkinFile(skin* p, void* Wnd, const tchar_t* FileName)
 	unsigned long nPos;
 	tchar_t *temp = FileName;
 	tchar_t *next;
-	int size;
+	//int size;
 #ifdef TARGET_WINCE
 	LPSTR buf;
 #endif
@@ -548,6 +548,7 @@ void SkinUpdate(skin* p,player* Player,void* Wnd,rect* r)
 int SkinMouse(skin* p,int no,int x,int y,player* Player,int* cmd,void* Wnd,rect* r) 
 { 
 	//to do check if we handle all SKIN_ items from skin.h 
+	bool_t play;
 	static int action;
 	fraction fr;
 
@@ -609,7 +610,10 @@ int SkinMouse(skin* p,int no,int x,int y,player* Player,int* cmd,void* Wnd,rect*
 	{
 
 		if (no == 0)
+		{
 			PostMessage(Wnd, WM_COMMAND, IF_PLAY_FULLSCREEN, 0);
+			
+		}
 	}
 
 
@@ -672,6 +676,20 @@ int SkinMouse(skin* p,int no,int x,int y,player* Player,int* cmd,void* Wnd,rect*
 			SkinDrawItem(p, Wnd, action, r);
 			return 1;
 		}
+		if (CheckRect(x, y, p->Item[SKIN_FULLSCREEN]))
+		{
+			action = SKIN_FULLSCREEN;
+			p->Item[action].Pushed = 1;
+			SkinDrawItem(p, Wnd, action, r);
+			return 1;
+		}
+		if (CheckRect(x, y, p->Item[SKIN_PLAY_FULLSCREEN]))
+		{
+			action = SKIN_PLAY_FULLSCREEN;
+			p->Item[action].Pushed = 1;
+			SkinDrawItem(p, Wnd, action, r);
+			return 1;
+		}
 	}
 	if (msg == WM_LBUTTONUP)
 	{
@@ -724,6 +742,30 @@ int SkinMouse(skin* p,int no,int x,int y,player* Player,int* cmd,void* Wnd,rect*
 			}
 			p->Item[action].Pushed = 0;
 			SkinDrawItem(p, Wnd, action, r);
+			break;
+		case SKIN_FULLSCREEN:
+			if (CheckRect(x, y, p->Item[action]))
+				PostMessage(Wnd, WM_COMMAND, IF_OPTIONS_FULLSCREEN, 0);
+			p->Item[action].Pushed = 0;
+			SkinDrawItem(p, Wnd, action, r);
+			break;
+		case SKIN_PLAY_FULLSCREEN:
+
+			if (CheckRect(x, y, p->Item[action]))
+			{
+				play = Player->Get(Player, PLAYER_PLAY, &play, sizeof(play));
+				if (!play)
+				{
+					play = 1;
+					Player->Set(Player, PLAYER_PLAY, &play, sizeof(play));
+				}
+				PostMessage(Wnd, WM_COMMAND, IF_OPTIONS_FULLSCREEN, 0); // start playing and show fullscreen
+			}
+			p->Item[action].Pushed = 0;
+			SkinDrawItem(p, Wnd, action, r);
+			break;
+		default:
+			//todo: refresh whole skin
 			break;
 		}
 		action = 0;
