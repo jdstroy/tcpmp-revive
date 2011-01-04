@@ -1,0 +1,39 @@
+Monkey's audio sdk:
+http://files.monkeysaudio.com/MAC_SDK_406.zip
+
+defines for WnCe:
+	NO_DEFINE_ENVIRONMENT_VARIABLES
+
+SDK Modifications:
+*All.h:
+ added lines:
+	#define wcsicmp	_wcsicmp
+	#define wcsnicmp _wcsnicmp
+	
+	#if defined(_WIN32_WCE)
+	#undef ENABLE_ASSEMBLY
+	#else
+	#define BACKWARDS_COMPATIBILITY
+	#endif
+
+*CharacterHelper.cpp added line 106 -> int z;
+*ApeTag.cpp modify:
+ in method : int CAPETag::LoadField
+	char b = pBuffer[nLocation];
+	//int nFieldValueSize = *((int *) &pBuffer[nLocation]); //Data type misalignment on Wince!!!
+	int nFieldValueSize = (int)b;
+	nLocation += 4;
+	b = pBuffer[nLocation];
+	int nFieldFlags = (int)b;
+*Assembly.h:
+ modify:
+	#if !defined(ENABLE_ASSEMBLY)
+	void Adapt(short * pM, const short * pAdapt, int nDirection, int nOrder){};
+	int CalculateDotProduct(const short * pA, const short * pB, int nOrder){ return 0; };
+	BOOL GetMMXAvailable(){ return 0; };
+	#else
+	void Adapt(short * pM, const short * pAdapt, int nDirection, int nOrder);
+	int CalculateDotProduct(const short * pA, const short * pB, int nOrder);
+	BOOL GetMMXAvailable();
+	#endif
+
