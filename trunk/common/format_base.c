@@ -2518,7 +2518,9 @@ static NOINLINE void FindCoverArt(format_base* p)
 			LockLeave(p->InputLock);
 		}
 	}
-	else if (NodeIsClass(p->Format.Class,RAWAUDIO_CLASS) && GetNonStreamingURL(p,Value,TSIZEOF(Value),1))
+
+	else if ((NodeIsClass(p->Format.Class,RAWAUDIO_CLASS) || (p->Format.Class == FOURCC('F','L','A','C')))
+		&& GetNonStreamingURL(p,Value,TSIZEOF(Value),1))
 	{
 		tchar_t Base[MAXPATH];
 		SplitURL(Value,Base,TSIZEOF(Base),Base,TSIZEOF(Base),NULL,0,NULL,0);
