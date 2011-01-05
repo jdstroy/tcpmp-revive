@@ -248,6 +248,7 @@ RV204400=RealVideo G2
 RV304400=RealVideo 8
 RV404400=RealVideo 9
 TSCC4400=TechSmith Screen Capture Codec
+APEF4400=Monkey's Audio
 
 ;-----------------
 ; file formats
@@ -324,6 +325,7 @@ FLAC0002=flac:A;fla:A
 WVPF0002=wv:A
 TTAF0002=tta:A
 ASAP0002=sap:A;cmc:A;cmr:A;dmc:A;mpt:A;mpd:A;rmt:A;tmc:A;tm8:A;tm2:A
+APEF0002=ape:A;mac:A;apl:A
 
 ;---------------
 ; codecs
