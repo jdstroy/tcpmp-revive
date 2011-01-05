@@ -95,6 +95,7 @@ OGHV0000=Ogg Vorbis files (OGG,OGM)
 SPXL0000=Speex files (SPX)
 SPXH0000=Speex files (SPX)
 SPEX0000=Speex speech decoder
+APEF0000=Monkey's Audio files (APE,MAC,APL)
 AHII0000=ATI IMAGEON Decoder
 AHI_0000=ATI IMAGEON
 AHI_0111=Disable OS Bitmap Caching (Advised!)
