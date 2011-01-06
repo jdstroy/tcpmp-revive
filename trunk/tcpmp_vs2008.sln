@@ -143,6 +143,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tta", "tta\tta.vcproj", "{FA7C64A0-4864-4138-9F85-E41F57D6236E}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ape", "ape\ape.vcproj", "{6CF60112-10E3-4136-9CBA-87196FC484EE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A3E75400-2C70-4D89-9D45-E08DC8259E67} = {A3E75400-2C70-4D89-9D45-E08DC8259E67}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
