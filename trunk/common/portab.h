@@ -259,7 +259,7 @@ typedef char tchar_t;
 //#if defined(MAX_PATH)
 //#define MAXPATH MAX_PATH
 //#else
-#define MAXPATH 256
+#define MAXPATH 512
 //#endif
 #define MAXMIME 16
 

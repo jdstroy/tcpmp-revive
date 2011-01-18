@@ -64,8 +64,8 @@ static const datatable Params[] =
 
 static void UpdateList(playlistwin* p)
 {
-	tchar_t s[256];
-	tchar_t s2[256];
+	tchar_t s[MAXPATH];
+	tchar_t s2[MAXPATH];
 	LVITEM Item;
 	tick_t Length;
 	int i;
@@ -95,7 +95,7 @@ static void UpdateList(playlistwin* p)
 		s[0] = 0;
 		p->Player->Get(p->Player,PLAYER_LIST_AUTOTITLE+i,s,sizeof(s));
 
-		ListView_GetItemText(p->WndList,i,0,s2,256);
+		ListView_GetItemText(p->WndList,i,0,s2,MAXPATH);
 		if (tcscmp(s,s2)!=0)
 			ListView_SetItemText(p->WndList,i,0,s);
 
@@ -105,13 +105,13 @@ static void UpdateList(playlistwin* p)
 			TickToString(s,TSIZEOF(s),Length,0,0,0);
 		else
 			s[0] = 0;
-		ListView_GetItemText(p->WndList,i,1,s2,256);
+		ListView_GetItemText(p->WndList,i,1,s2,MAXPATH);
 		if (tcscmp(s,s2)!=0)
 			ListView_SetItemText(p->WndList,i,1,s);
 
 		s[0] = 0;
 		p->Player->Get(p->Player,PLAYER_LIST_URL+i,s,sizeof(s));
-		ListView_GetItemText(p->WndList,i,2,s2,256);
+		ListView_GetItemText(p->WndList,i,2,s2,MAXPATH);
 		if (tcscmp(s,s2)!=0)
 			ListView_SetItemText(p->WndList,i,2,s);
 
