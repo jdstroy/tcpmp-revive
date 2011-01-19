@@ -125,5 +125,93 @@ int gethdr_intel_h263( mp4_decode *dec )
 	//todo: finish
 	return 0;
 }
+int gethdr_flv_h263( mp4_decode *dec )
+{
+	int code;
+	int width, height;
+	bytealign(dec);
+	loadbits(dec);
+    code = getbits(dec,17);
+	while (!eofbits(dec))
+	{
+		loadbits(dec);
+		code = ((code << 5) + getbits(dec,5)) & 0x3FFFFF;
+		if (code == 33)
+			break;
+	}
+
+	if (code != 33)
+		return 0;
+	loadbits(dec);
+	dec->picture_type = code & 0x1F;
+	dec->picture_number = getbits(dec,8);
+	dec->picture_code_type = getbits(dec,3); // format
+	dec->isFLV = dec->picture_code_type + 1;
+	switch (dec->picture_code_type)
+	{
+	case 0:
+		loadbits(dec);
+		width = getbits(dec,8);
+		height = getbits(dec,8);
+		break;
+	case 1:
+		loadbits(dec);
+		width = getbits(dec,16);
+		height = getbits(dec,16);
+		break;
+	case 2:
+		width = 352;
+		height = 288;
+		break;
+	case 3:
+		width = 176;
+		height = 144;
+		break;
+	case 4:
+		width = 128;
+		height = 96;
+		break;
+	case 5:
+		width = 320;
+		height = 240;
+		break;
+	case 6:
+		width = 160;
+		height = 120;
+		break;
+	default:
+		width = 0;
+		height = 0;
+		break;
+	}
+	if (!dec->Codec.In.Format.Format.Video.Width)
+		dec->Codec.In.Format.Format.Video.Width = width;
+	if (!dec->Codec.In.Format.Format.Video.Height)
+		dec->Codec.In.Format.Format.Video.Height = height;
+	if (!dec->ignoresize && (!width || CodecIDCTSetFormat(&dec->Codec,PF_YUV420,
+			dec->Codec.In.Format.Format.Video.Width,dec->Codec.In.Format.Format.Video.Height,width,height,dec->Codec.In.Format.Format.Video.Aspect) != ERR_NONE))
+	{
+		dec->validvol = 0;
+		return 0;
+	}
+
+	loadbits(dec);
+	dec->prediction_type = getbits(dec,2);
+	flushbits(dec,1);
+	dec->quantizer = getbits(dec,5);
+	dec->rounding = 0;
+
+    while (getbits1(dec)) // pei
+	{
+        flushbits(dec,8);
+		loadbits(dec);
+    }
+
+	dec->fcode_for = 1;
+	dec->validvol = 1;
+	dec->Codec.IDCT.Ptr->Set(dec->Codec.IDCT.Ptr,IDCT_ROUNDING,&dec->rounding,sizeof(bool_t));
+
+	return 1;
+}
 
 #endif

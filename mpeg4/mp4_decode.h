@@ -73,6 +73,10 @@ typedef struct mp4_decode
 	int pos_end;
 	int quant_precision;
 	int quant_type;
+	int quarter_pixel;
+	int complexity_estimation_disable;
+	int error_res_disable;
+	int data_partitioning;
 	int sprite;
 	int sprite_warping_points;
 	int sprite_warping_accuracy;
@@ -97,6 +101,11 @@ typedef struct mp4_decode
 	int fcode_back;
 	int resync_marker_bits;
 	int intra_dc_threshold;
+	// for flv
+	int picture_type;
+	int picture_number;
+	int picture_code_type;
+	int isFLV;
 	
 	// macroblock
 	idct_block_t* blockptr;

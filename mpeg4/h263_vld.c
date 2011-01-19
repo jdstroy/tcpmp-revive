@@ -60,28 +60,65 @@ int vld_block_h263( mp4_decode* dec, const uint16_t *table, const uint8_t *scan,
 			vld_write
 		} else {
 			// this value is escaped
-
-			loadbits_pos(dec);
-			code = showbits_pos(dec,15);
-			flushbits_pos(dec,15);
-			level = (code << 24) >> 24; //sign extend the lower 8 bits
-            if (level == -128)
+			if (dec->isFLV > 1)
 			{
-				level = showbits_pos(dec,5);
-				flushbits_pos(dec,5);
+				int longescape,last,run;
 				loadbits_pos(dec);
-				level |= showbits_pos(dec,6) << 5;
+				longescape = dec->picture_type > 0?  showbits_pos(dec,1) : 0;
+				flushbits_pos(dec,1);
+				last = showbits_pos(dec,1);
+				flushbits_pos(dec,1);
+				run = showbits_pos(dec,6);
 				flushbits_pos(dec,6);
-				level = (level << 21) >> 21;
-			}
-			level *= q_scale;
-			len   += code >> 8;  // last|run
-			if (level > 0)
-				level += q_add;
-			else
-				level -= q_add;
+				if (longescape)
+				{
+					loadbits_pos(dec);
+					level = showbits_pos(dec,11);
+					flushbits_pos(dec,11);
+					code = level<<21;
+					level = code >> 21;
+				}
+				else
+				{
+					loadbits_pos(dec);
+					level = showbits_pos(dec,7);
+					flushbits_pos(dec,7);
+					code = level<<25;
+					level = code >> 25;
+				}
+				level *= q_scale;
+				len += (last<<6) | run;
+				if (level > 0)
+					level += q_add;
+				else
+					level -= q_add;
 
-			vld_write;
+				vld_write;
+			}
+			else
+			{
+				loadbits_pos(dec);
+				code = showbits_pos(dec,15);
+				flushbits_pos(dec,15);
+				level = (code << 24) >> 24; //sign extend the lower 8 bits
+				if (level == -128)
+				{
+					level = showbits_pos(dec,5);
+					flushbits_pos(dec,5);
+					loadbits_pos(dec);
+					level |= showbits_pos(dec,6) << 5;
+					flushbits_pos(dec,6);
+					level = (level << 21) >> 21;
+				}
+				level *= q_scale;
+				len   += code >> 8;  // last|run
+				if (level > 0)
+					level += q_add;
+				else
+					level -= q_add;
+
+				vld_write;
+			}
 		}
 	}
 	return 0;

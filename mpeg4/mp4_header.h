@@ -89,6 +89,7 @@ extern int gethdr_msmpeg( mp4_decode* );
 extern int gethdr_mpeg4( mp4_decode* );
 extern int gethdr_h263( mp4_decode* );
 extern int gethdr_intel_h263( mp4_decode* );
+extern int gethdr_flv_h263( mp4_decode* );
 
 extern bool_t findnext_mpeg4( mp4_decode* );
 

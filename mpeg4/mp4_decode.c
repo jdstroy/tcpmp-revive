@@ -145,18 +145,19 @@ static int mp4_updateinput( mp4_decode* dec )
 
 		if (!dec->Codec.In.Format.PacketRate.Num)
 		{
-			dec->Codec.In.Format.PacketRate.Num = 25;
-			dec->Codec.In.Format.PacketRate.Den = 1;
+			dec->Codec.FrameTime = TIME_UNKNOWN;
 		}
-
-		dec->Codec.FrameTime = Scale(TICKSPERSEC,dec->Codec.In.Format.PacketRate.Den,dec->Codec.In.Format.PacketRate.Num);
+		else
+		{
+			dec->Codec.FrameTime = Scale(TICKSPERSEC,dec->Codec.In.Format.PacketRate.Den,dec->Codec.In.Format.PacketRate.Num);
+		}
 
 		//IDCTWidth = dec->Codec.In.Format.Video.Width;
 		//IDCTHeight = dec->Codec.In.Format.Video.Height;
 		IDCTWidth = dec->Codec.In.Format.Format.Video.Width;
 		IDCTHeight = dec->Codec.In.Format.Format.Video.Height;
 
-		if (dec->Codec.Node.Class == H263_ID)
+		if (dec->Codec.Node.Class == H263_ID || dec->Codec.Node.Class == FLV1_ID)
 		{
 			IDCTWidth = 0;
 			IDCTHeight = 0;
@@ -486,6 +487,11 @@ static int i263_create( mp4_decode* dec )
 	dec->gethdr = gethdr_intel_h263;
 	return ERR_NONE;
 }
+static int flv_create(mp4_decode* dec)
+{
+	dec->gethdr = gethdr_flv_h263;
+	return ERR_NONE;
+}
 
 static _CONST nodedef MPEG4Def =
 {
@@ -515,12 +521,24 @@ static _CONST nodedef I263Def =
 	PRI_DEFAULT,
 	(nodecreate)i263_create,
 };
+static _CONST nodedef FLV1Def =
+{
+	OFS(mp4_decode,codedmap),
+	FLV1_ID,
+	H263_ID,
+	PRI_DEFAULT,
+	(nodecreate)flv_create,
+	(nodedelete)mp4_delete,
+};
 
 void mpeg4_init()
 {
 	NodeRegisterClass(&MPEG4Def);
 	NodeRegisterClass(&H263Def);
 	NodeRegisterClass(&I263Def);
+	StringAdd(1,FOURCC('F','L','V','1'),NODE_NAME,T("H263 FLV1"));
+	StringAdd(1,FOURCC('F','L','V','1'),NODE_CONTENTTYPE,T("vcodec/flv1,vcodec/flv"));
+	NodeRegisterClass(&FLV1Def);
 }
 
 void mpeg4_done()
@@ -528,6 +546,7 @@ void mpeg4_done()
 	NodeUnRegisterClass(MPEG4_ID);
 	NodeUnRegisterClass(H263_ID);
 	NodeUnRegisterClass(I263_ID);
+	NodeUnRegisterClass(FLV1_ID);	
 }
 
 #endif

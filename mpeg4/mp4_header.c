@@ -173,22 +173,22 @@ void gethdr_vol( mp4_decode* dec )
 	height = getbits(dec,13); //height
 	flushbits(dec,1); // marker
 	dec->interlaced = (char)getbits(dec,1);
-	if (dec->interlaced && dec->showerror && notsupported(dec,MPEG4_ERROR_INTERLACE)) // interlace
-		return;
+	if (dec->interlaced)
+	{
+		dec->Codec.IDCT.Mode |= IDCTMODE_INTERLACE;
+		if (dec->showerror && notsupported(dec,MPEG4_ERROR_INTERLACE)) // interlace
+			return;
+	}
 
 	flushbits(dec,1); // obmc_disable
 
-	if (!dec->ignoresize && CodecIDCTSetFormat(&dec->Codec,PF_YUV420,width,height,width,height,dec->Codec.In.Format.Format.Video.Aspect) != ERR_NONE)
-	{
-		dec->validvol = 0;
-		return;
-	}
 
 	loadbits(dec);
 	dec->sprite = getbits(dec,(visual_object_layer_verid==1)?1:2);
 
 	if (dec->sprite == SPRITE_STATIC || dec->sprite == SPRITE_GMC)
 	{
+		dec->Codec.IDCT.Mode |= IDCTMODE_GMC;
 		if (dec->showerror && notsupported(dec,MPEG4_ERROR_GMC))
 			return;
 
@@ -235,19 +235,29 @@ void gethdr_vol( mp4_decode* dec )
 	loadbits(dec);
 	if (visual_object_layer_verid != 1) 
 	{
-		if (getbits1(dec) && dec->showerror && notsupported(dec,MPEG4_ERROR_QPEL))
+		//if (getbits1(dec) && dec->showerror && notsupported(dec,MPEG4_ERROR_QPEL))
+		//	return;
+		dec->quarter_pixel = getbits(dec,1);
+		if (dec->quarter_pixel)
+			dec->Codec.IDCT.Mode |= IDCTMODE_QPEL;
+		if(dec->quarter_pixel && dec->showerror && notsupported(dec,MPEG4_ERROR_QPEL))
 			return;
 	} 
+	else
+	{
+		dec->quarter_pixel = 0;
+	}
 
-	flushbits(dec,1); // complexity estimation
-	flushbits(dec,1); // resync marker disabled (?)
-
-	if (getbits1(dec))
+	dec->complexity_estimation_disable = getbits(dec,1);
+	dec->error_res_disable = getbits(dec,1);
+	dec->data_partitioning = getbits(dec,1);
+	if (dec->data_partitioning)
 	{
 		flushbits(dec,1);
 		if (dec->showerror && notsupported(dec,MPEG4_ERROR_PARTITIONING))
 			return;
 	}
+#if 0
 
     if (visual_object_layer_verid != 1) 
 	{
@@ -255,12 +265,17 @@ void gethdr_vol( mp4_decode* dec )
 			flushbits(dec,2+1); // req msg type, seg type
 		flushbits(dec,1); //reduced res not supported
     }
-
+#endif
 	if (getbits1(dec)) // scalability
 		flushbits(dec,1+4+1+5+5+5+5+1); // not supported
 
 	dec->validvol = 1;
 	dec->showerror = 0;
+	if (!dec->ignoresize && CodecIDCTSetFormat(&dec->Codec,PF_YUV420,width,height,width,height,dec->Codec.In.Format.Format.Video.Aspect) != ERR_NONE)
+	{
+		dec->validvol = 0;
+		return;
+	}
 }
 
 bool_t findnext_mpeg4( mp4_decode* dec )
