@@ -28,6 +28,7 @@
 #define MPEG4_ID		FOURCC('D','I','V','X')
 #define H263_ID			FOURCC('H','2','6','3')
 #define I263_ID			FOURCC('I','2','6','3')
+#define FLV1_ID			FOURCC('F','L','V','1')
 
 #define MPEG4_ERROR_QPEL		0x200
 #define MPEG4_ERROR_INTERLACE	0x201
