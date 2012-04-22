@@ -206,10 +206,10 @@ int ParseSkinFile(skin* p, void* Wnd, const tchar_t* FileName)
 #if defined(TARGET_WINCE) || defined(UNICODE)
 		buf = (LPSTR)malloc(GetFileSize(SkinFile, NULL));
 		ReadFile(SkinFile, buf, GetFileSize(SkinFile, NULL), &nPos, NULL);
-		size = sizeof(tchar_t) * strlen(buf);
+		size = sizeof(tchar_t) * strlen(buf)+1;
 		SkinData = (tchar_t*)malloc(size);
 		//size = MultiByteToWideChar(CP_ACP, MB_PRECOMPOSED, buf, strlen(buf), SkinData, size);
-		size = mbstowcs(SkinData, buf, size);
+		size = mbstowcs(SkinData, buf, strlen(buf));
 		free(buf);
 		if (size == 0)
 			return -1;
